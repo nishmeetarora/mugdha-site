@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Story — Mugdha Pradhan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Cinzel:wght@400;500;600;700&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #07060a;
+    --deep: #0d0b14;
+    --charcoal: #161320;
+    --gold: #c9984a;
+    --gold-light: #e8c07e;
+    --gold-dim: rgba(201, 152, 74, 0.15);
+    --amber: #d4803a;
+    --cream: #f0e8d8;
+    --white: #faf8f4;
+    --muted: rgba(240, 232, 216, 0.45);
+    --border: rgba(201, 152, 74, 0.2);
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--cream);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Custom Cursor */
+  .cursor {
+    position: fixed;
+    width: 8px; height: 8px;
+    background: var(--gold);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.1s ease;
+    transform: translate(-50%, -50%);
+  }
+  .cursor-ring {
+    position: fixed;
+    width: 36px; height: 36px;
+    border: 1px solid rgba(201, 152, 74, 0.5);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transition: transform 0.18s ease, width 0.2s ease, height 0.2s ease, opacity 0.2s ease;
+    transform: translate(-50%, -50%);
+  }
+
+  /* Grain */
+  .grain {
+    position: fixed; inset: -50%;
+    width: 200%; height: 200%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: 0.35;
+    pointer-events: none;
+    z-index: 999;
+    animation: grain-move 8s steps(10) infinite;
+  }
+  @keyframes grain-move {
+    0%, 100% { transform: translate(0, 0); }
+    10% { transform: translate(-2%, -3%); }
+    20% { transform: translate(3%, 1%); }
+    30% { transform: translate(-1%, 4%); }
+    40% { transform: translate(2%, -2%); }
+    50% { transform: translate(-3%, 2%); }
+    60% { transform: translate(1%, -4%); }
+    70% { transform: translate(-2%, 3%); }
+    80% { transform: translate(3%, -1%); }
+    90% { transform: translate(-1%, -3%); }
+  }
+
+  /* Reading Progress Bar */
+  .progress-bar {
+    position: fixed;
+    top: 0; left: 0;
+    height: 2px;
+    width: 0%;
+    background: linear-gradient(to right, var(--gold), var(--gold-light));
+    z-index: 200;
+    transition: width 0.1s linear;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 2rem 4rem;
+    display: flex; align-items: center; justify-content: space-between;
+    transition: background 0.4s ease, padding 0.4s ease;
+  }
+  nav.scrolled {
+    background: rgba(7, 6, 10, 0.92);
+    backdrop-filter: blur(12px);
+    padding: 1.2rem 4rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Cinzel', serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.25em;
+    color: var(--gold-light);
+    text-decoration: none;
+  }
+  .nav-links {
+    display: flex; gap: 2.5rem; list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+  .nav-links a.active { color: var(--gold-light); }
+
+  /* Chapter Navigator */
+  .chapter-nav {
+    position: fixed;
+    right: 2.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-end;
+  }
+  .chapter-dot {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+  }
+  .chapter-dot-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.5rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    opacity: 0;
+    transform: translateX(8px);
+    transition: opacity 0.3s, transform 0.3s, color 0.3s;
+    white-space: nowrap;
+  }
+  .chapter-dot:hover .chapter-dot-label,
+  .chapter-dot.active .chapter-dot-label {
+    opacity: 1;
+    transform: translateX(0);
+    color: var(--gold-light);
+  }
+  .chapter-dot-pip {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: transparent;
+    border: 1px solid rgba(201, 152, 74, 0.35);
+    transition: background 0.3s, transform 0.3s, border-color 0.3s;
+    flex-shrink: 0;
+  }
+  .chapter-dot:hover .chapter-dot-pip,
+  .chapter-dot.active .chapter-dot-pip {
+    background: var(--gold);
+    border-color: var(--gold);
+    transform: scale(1.4);
+  }
+  @media (max-width: 1200px) { .chapter-nav { display: none; } }
+
+  /* HERO */
+  .story-hero {
+    position: relative;
+    min-height: 85vh;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 14rem 4rem 9rem;
+    overflow: hidden;
+  }
+  .hero-ambient {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 70% 50% at 50% 90%, rgba(201, 152, 74, 0.05) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 30% at 20% 30%, rgba(201, 152, 74, 0.02) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .story-hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 800px;
+  }
+  .story-eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.45em;
+    color: var(--gold);
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fade-up 1s ease 0.3s forwards;
+    margin-bottom: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+  .story-eyebrow::before, .story-eyebrow::after {
+    content: '';
+    width: 40px; height: 1px;
+    background: var(--gold);
+    opacity: 0.4;
+  }
+  .story-hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(3rem, 7vw, 6rem);
+    line-height: 1.1;
+    color: var(--white);
+    opacity: 0;
+    animation: fade-up 1.2s ease 0.55s forwards;
+    margin-bottom: 2.5rem;
+    letter-spacing: -0.01em;
+  }
+  .story-hero-title em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+  .story-hero-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    color: var(--muted);
+    opacity: 0;
+    animation: fade-up 1s ease 0.9s forwards;
+    letter-spacing: 0.05em;
+  }
+  .story-hero-divider {
+    width: 1px; height: 70px;
+    background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+    margin: 3rem auto 0;
+    opacity: 0;
+    animation: fade-in 1s ease 1.3s forwards;
+  }
+
+  /* STORY BODY */
+  .story-body { position: relative; }
+
+  /* OPENING */
+  .story-opening {
+    padding: 7rem 4rem 3rem;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  /* CHAPTER SECTIONS */
+  .chapter-section {
+    padding: 5rem 4rem 4rem;
+    max-width: 720px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .chapter-header { margin-bottom: 3rem; }
+
+  .chapter-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.4em;
+    color: var(--gold);
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    margin-bottom: 1.2rem;
+  }
+  .chapter-label::after {
+    content: '';
+    width: 40px; height: 1px;
+    background: var(--gold);
+    opacity: 0.35;
+  }
+  .chapter-num-small {
+    color: rgba(201, 152, 74, 0.4);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+  }
+  .chapter-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(1.9rem, 3.5vw, 2.9rem);
+    line-height: 1.15;
+    color: var(--cream);
+    margin-bottom: 0.4rem;
+  }
+  .chapter-date {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    opacity: 0.6;
+    margin-top: 0.6rem;
+  }
+
+  /* Prose */
+  .prose p {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 2.05;
+    color: rgba(240, 232, 216, 0.72);
+    margin-bottom: 1.75rem;
+  }
+  .prose p:last-child { margin-bottom: 0; }
+  .prose p strong { color: var(--cream); font-weight: 400; }
+  .prose p em { color: rgba(240, 232, 216, 0.9); font-style: italic; }
+
+  /* Staccato — short punchy lines */
+  .staccato { margin: 2.5rem 0; }
+  .staccato p {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(1.2rem, 2.5vw, 1.75rem);
+    line-height: 1.35;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+    padding-left: 2rem;
+    border-left: 1px solid rgba(201, 152, 74, 0.2);
+  }
+  .staccato p.gold { color: var(--gold-light); font-style: italic; }
+
+  /* Pull Quote */
+  .pull-quote {
+    position: relative;
+    margin: 3.5rem 0;
+    padding: 2.5rem 3rem 2.5rem 4rem;
+    border-left: 2px solid var(--gold);
+    background: rgba(201, 152, 74, 0.03);
+  }
+  .pull-quote::before {
+    content: '\201C';
+    position: absolute;
+    top: 0.8rem; left: 1.2rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem;
+    line-height: 1;
+    color: var(--gold);
+    opacity: 0.25;
+  }
+  .pull-quote p {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(1.3rem, 2.5vw, 1.9rem);
+    line-height: 1.45;
+    color: var(--cream);
+    margin: 0;
+  }
+  .pull-quote p em { color: var(--gold-light); }
+
+  /* Centered Pull — for singular lines */
+  .centered-pull {
+    text-align: center;
+    margin: 4.5rem auto;
+    max-width: 560px;
+  }
+  .centered-pull p {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1.5rem, 3vw, 2.4rem);
+    line-height: 1.4;
+    color: var(--gold-light);
+    margin: 0;
+  }
+
+  /* Confession Block */
+  .confession {
+    margin: 3rem 0;
+    padding: 2.5rem 3rem;
+    border: 1px solid var(--border);
+    background: var(--deep);
+    position: relative;
+  }
+  .confession p {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(1.1rem, 2vw, 1.45rem);
+    line-height: 1.65;
+    color: var(--cream);
+    margin-bottom: 0.7rem;
+  }
+  .confession p:last-child { margin-bottom: 0; }
+  .confession p.muted {
+    color: var(--muted);
+    font-size: 0.95rem;
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    line-height: 1.8;
+  }
+
+  /* Mantra Block */
+  .mantra-block {
+    text-align: center;
+    margin: 4rem auto;
+    padding: 3rem 2rem;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    max-width: 600px;
+  }
+  .mantra-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.4rem, 2.8vw, 2.3rem);
+    font-weight: 300;
+    color: var(--gold-light);
+    letter-spacing: 0.05em;
+    line-height: 1.7;
+    margin-bottom: 0.5rem;
+  }
+  .mantra-trans {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.4em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-top: 0.5rem;
+  }
+  .mantra-body {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    line-height: 1.7;
+    color: rgba(240, 232, 216, 0.5);
+    margin-top: 1.5rem;
+  }
+  .mantra-return {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1.2rem, 2.2vw, 1.7rem);
+    color: var(--gold);
+    margin-top: 1.5rem;
+    display: block;
+  }
+
+  /* Timeline Marker */
+  .timeline-marker {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin: 2.5rem 0;
+  }
+  .timeline-year {
+    font-family: 'Cinzel', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .timeline-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, rgba(201, 152, 74, 0.3), transparent);
+  }
+
+  /* Chapter Divider */
+  .chapter-divider {
+    max-width: 720px;
+    margin: 2rem auto;
+    padding: 0 4rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .chapter-divider-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+  .chapter-divider-ornament {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.9rem;
+    color: var(--gold);
+    opacity: 0.35;
+    flex-shrink: 0;
+  }
+
+  /* Section break dots */
+  .story-break {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    margin: 3rem auto;
+    max-width: 720px;
+    padding: 0 4rem;
+  }
+  .story-break-dot {
+    width: 3px; height: 3px;
+    border-radius: 50%;
+    background: var(--gold);
+    opacity: 0.35;
+  }
+
+  /* Closing */
+  .story-closing {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 5rem 4rem 10rem;
+    text-align: center;
+  }
+  .story-signature {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--gold);
+    letter-spacing: 0.04em;
+    line-height: 2;
+  }
+
+  /* Next page CTA */
+  .page-cta {
+    background: var(--deep);
+    border-top: 1px solid var(--border);
+    padding: 5rem 4rem;
+    text-align: center;
+  }
+  .page-cta p {
+    font-family: 'Cinzel', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.35em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+  .page-cta-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    display: inline-block;
+    font-family: 'Cinzel', serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--black);
+    background: var(--gold);
+    padding: 1rem 2.5rem;
+    text-decoration: none;
+    transition: background 0.3s;
+  }
+  .btn-primary:hover { background: var(--gold-light); }
+  .btn-secondary {
+    display: inline-block;
+    font-family: 'Cinzel', serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    border: 1px solid var(--border);
+    padding: 1rem 2.5rem;
+    text-decoration: none;
+    transition: border-color 0.3s, color 0.3s;
+  }
+  .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* FOOTER */
+  footer {
+    padding: 3rem 4rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+  .footer-logo {
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    color: var(--gold-light);
+  }
+  .footer-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--muted);
+    text-align: center;
+  }
+  .footer-links {
+    display: flex; gap: 2rem; list-style: none;
+  }
+  .footer-links a {
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .footer-links a:hover { color: var(--gold-light); }
+  .footer-copy {
+    width: 100%;
+    text-align: center;
+    font-size: 0.68rem;
+    color: rgba(240, 232, 216, 0.2);
+    letter-spacing: 0.1em;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(201, 152, 74, 0.08);
+    margin-top: 1rem;
+  }
+
+  /* Animations */
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.15s; }
+  .reveal-delay-2 { transition-delay: 0.3s; }
+  .reveal-delay-3 { transition-delay: 0.45s; }
+
+  @media (max-width: 768px) {
+    nav { padding: 1.5rem 2rem; }
+    nav.scrolled { padding: 1rem 2rem; }
+    .nav-links { display: none; }
+    .story-hero { padding: 10rem 2rem 6rem; }
+    .story-opening, .chapter-section { padding: 4rem 2rem 3rem; }
+    .chapter-divider { padding: 0 2rem; }
+    .story-break { padding: 0 2rem; }
+    .story-closing { padding: 4rem 2rem 8rem; }
+    .page-cta { padding: 4rem 2rem; }
+    .page-cta-links { flex-direction: column; }
+    footer { padding: 2rem; flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+<div class="grain"></div>
+<div class="progress-bar" id="progress-bar"></div>
+
+<!-- CHAPTER NAVIGATOR -->
+<aside class="chapter-nav" aria-label="Chapter navigation">
+  <a href="#opening" class="chapter-dot" data-section="opening">
+    <span class="chapter-dot-label">Preface</span>
+    <span class="chapter-dot-pip"></span>
+  </a>
+  <a href="#chapter-1" class="chapter-dot" data-section="chapter-1">
+    <span class="chapter-dot-label">First Transformation</span>
+    <span class="chapter-dot-pip"></span>
+  </a>
+  <a href="#chapter-2" class="chapter-dot" data-section="chapter-2">
+    <span class="chapter-dot-label">What Nobody Tells You</span>
+    <span class="chapter-dot-pip"></span>
+  </a>
+  <a href="#chapter-3" class="chapter-dot" data-section="chapter-3">
+    <span class="chapter-dot-label">The War For My Daughter</span>
+    <span class="chapter-dot-pip"></span>
+  </a>
+  <a href="#chapter-4" class="chapter-dot" data-section="chapter-4">
+    <span class="chapter-dot-label">On Patriarchy</span>
+    <span class="chapter-dot-pip"></span>
+  </a>
+  <a href="#chapter-5" class="chapter-dot" data-section="chapter-5">
+    <span class="chapter-dot-label">The Second Descent</span>
+    <span class="chapter-dot-pip"></span>
+  </a>
+  <a href="#chapter-6" class="chapter-dot" data-section="chapter-6">
+    <span class="chapter-dot-label">What Kept Me Alive</span>
+    <span class="chapter-dot-pip"></span>
+  </a>
+  <a href="#chapter-7" class="chapter-dot" data-section="chapter-7">
+    <span class="chapter-dot-label">The Other Side</span>
+    <span class="chapter-dot-pip"></span>
+  </a>
+  <a href="#chapter-8" class="chapter-dot" data-section="chapter-8">
+    <span class="chapter-dot-label">What I Am Building</span>
+    <span class="chapter-dot-pip"></span>
+  </a>
+</aside>
+
+<!-- MAIN NAV -->
+<nav id="nav">
+  <a href="index.html" class="nav-logo">Mugdha Pradhan</a>
+  <ul class="nav-links">
+    <li><a href="#" class="active">The Story</a></li>
+    <li><a href="index.html#mission">The Mission</a></li>
+    <li><a href="index.html#work">The Work</a></li>
+    <li><a href="index.html#thinking">The Thinking</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="story-hero">
+  <div class="hero-ambient"></div>
+  <div class="story-hero-content">
+    <p class="story-eyebrow">Mugdha Pradhan</p>
+    <h1 class="story-hero-title">
+      This is not a<br><em>success story.</em><br>
+      It is a remembrance.
+    </h1>
+    <p class="story-hero-sub">A memoir in eight chapters.</p>
+    <div class="story-hero-divider"></div>
+  </div>
+</section>
+
+<!-- STORY BODY -->
+<main class="story-body">
+
+  <!-- PREFACE -->
+  <section id="opening" class="story-opening">
+    <div class="staccato reveal">
+      <p>I have been one step away from death.</p>
+      <p>Not metaphorically.</p>
+      <p>Not as a way of dramatizing a difficult period.</p>
+      <p>Literally. Standing at the edge. Looking down. Wanting it to stop.</p>
+    </div>
+
+    <div class="prose reveal reveal-delay-1" style="margin-top:2.5rem;">
+      <p>And I want you to know that — before I tell you anything else about who I am — because everything else I'm about to say only means something if you understand that I have been exactly where you might be right now.</p>
+      <p>Broken. Drowning. Convinced that the darkness was permanent.</p>
+    </div>
+
+    <div class="centered-pull reveal">
+      <p>It isn't.</p>
+    </div>
+
+    <div class="prose reveal">
+      <p>But I'm getting ahead of myself.</p>
+    </div>
+  </section>
+
+  <div class="story-break reveal">
+    <div class="story-break-dot"></div>
+    <div class="story-break-dot"></div>
+    <div class="story-break-dot"></div>
+  </div>
+
+  <!-- CHAPTER I -->
+  <section id="chapter-1" class="chapter-section">
+    <div class="chapter-header reveal">
+      <p class="chapter-label"><span class="chapter-num-small">I</span>&nbsp;&nbsp;Chapter One</p>
+      <h2 class="chapter-title">The First Transformation</h2>
+      <p class="chapter-date">2017</p>
+    </div>
+
+    <div class="prose">
+      <p class="reveal">By the time I was 37, I had built what looked from the outside like a reasonable life.</p>
+      <p class="reveal">A Master's degree in Food Science and Nutrition. Years in corporate HR in Canada. A marriage. A child. A career.</p>
+      <p class="reveal">And I was dying slowly inside all of it.</p>
+    </div>
+
+    <div class="confession reveal">
+      <p>Clinically depressed. Hashimoto's thyroiditis. 37 kilograms overweight.</p>
+      <p>A nutritionist — someone who had studied the human body for decades — who could not heal herself.</p>
+    </div>
+
+    <div class="prose">
+      <p class="reveal">The system I had trusted completely had nothing to offer me except management. Medicate the depression. Monitor the thyroid. Maintain the status quo of a life that was slowly extinguishing the person inside it.</p>
+      <p class="reveal">I refused.</p>
+      <p class="reveal">Not because I was brave. Because I was desperate. And desperation, it turns out, can be a form of grace.</p>
+      <p class="reveal">I turned the full force of my scientific training on my own body. Advanced diagnostics. Root cause analysis. Functional medicine. I became my own most rigorous experiment.</p>
+      <p class="reveal">In one year I reversed the Hashimoto's completely. Lost the 37 kilograms. The depression lifted — not because I medicated it into silence but because I had begun, for the first time, to live in some alignment with my own nature.</p>
+    </div>
+
+    <div class="pull-quote reveal">
+      <p>I came back to India in 2017 with one question I could not stop asking: <em>If this is possible for me — what is possible for everyone?</em></p>
+    </div>
+
+    <div class="prose">
+      <p class="reveal">I founded iThrive in 2019 to find out.</p>
+      <p class="reveal">And for a while — I thought that was the whole story.</p>
+      <p class="reveal">It wasn't.</p>
+    </div>
+  </section>
+
+  <div class="chapter-divider reveal">
+    <div class="chapter-divider-line"></div>
+    <div class="chapter-divider-ornament">✦</div>
+    <div class="chapter-divider-line"></div>
+  </div>
+
+  <!-- CHAPTER II -->
+  <section id="chapter-2" class="chapter-section">
+    <div class="chapter-header reveal">
+      <p class="chapter-label"><span class="chapter-num-small">II</span>&nbsp;&nbsp;Chapter Two</p>
+      <h2 class="chapter-title">What Nobody Tells You About Leaving</h2>
+    </div>
+
+    <div class="prose">
+      <p class="reveal">Before the healing. Before the company. Before any of it — there was a marriage I had to survive.</p>
+      <p class="reveal">My ex-husband was a covert narcissist. I didn't have that language for it then. I just knew that something essential in me was being slowly, quietly, systematically drained. Not through violence. Not through anything you could point to in a courtroom. Through a thousand small erosions. Gaslighting. Financial control. Emotional manipulation so precise it left no visible marks.</p>
+      <p class="reveal">I had my daughter in 2010. During the pregnancy itself the depression arrived. After she was born it became clinical. I was put on antidepressants at 14 months postpartum. I was isolated. No community of older women around me. No village. Just the four walls of a marriage that was slowly consuming the person inside it.</p>
+      <p class="reveal">My daughter was extraordinary from the beginning. I taught her sign language at six months old so she could communicate before her fine motor skills developed enough to speak. We had a language that was entirely ours. She was sensitive, magical, deeply connected to nature and consciousness and soul. She is still all of those things.</p>
+    </div>
+
+    <div class="timeline-marker reveal">
+      <span class="timeline-year">2014</span>
+      <div class="timeline-line"></div>
+    </div>
+
+    <div class="prose">
+      <p class="reveal">In 2014 my mother died. She was my closest person. I held her until her last breath. And then I had nothing left to hold onto inside a marriage that had never truly held me.</p>
+    </div>
+
+    <div class="timeline-marker reveal">
+      <span class="timeline-year">2016</span>
+      <div class="timeline-line"></div>
+    </div>
+
+    <div class="prose">
+      <p class="reveal">In 2016 we moved to Toronto. His idea. His escape from the accountability India had started to demand of him. And in Toronto — doing the dishes and the laundry and the vacuuming and the cooking while he still couldn't hold a job, while the money I had saved and the gold my mother had left me slowly disappeared — something in me finally broke open.</p>
+      <p class="reveal">The questions started.</p>
+    </div>
+
+    <div class="staccato reveal">
+      <p>Was this the life I was actually meant to live?</p>
+      <p>What if I was meant for something completely different?</p>
+      <p>What if I was allowed to want more than this?</p>
+    </div>
+
+    <div class="prose">
+      <p class="reveal">In July 2016 I told him the marriage was over.</p>
+      <p class="reveal">In October 2016 — so angry I couldn't see clearly, so desperate to become someone he could no longer recognize and control — I shaved my head completely. Standing in a bathroom in Toronto. Taking scissors to the one thing I thought might signal to him that the woman he had been managing was gone.</p>
+      <p class="reveal">It shocked him. It didn't free me. But it was the first act of a woman beginning to remember herself.</p>
+    </div>
+
+    <div class="timeline-marker reveal">
+      <span class="timeline-year">January 2017</span>
+      <div class="timeline-line"></div>
+    </div>
+
+    <div class="prose">
+      <p class="reveal">In January 2017 I came back to India with my daughter and 300 rupees in my bank account. My family thought I had lost my mind. My father couldn't comprehend that I had walked away from the narrative he had been proud of — the abroad life, the stable marriage, the story that fit. Everyone sided with my ex-husband. I became the crazy woman who had thrown everything away.</p>
+    </div>
+
+    <div class="pull-quote reveal">
+      <p>I had actually just started to find <em>everything that mattered.</em></p>
+    </div>
+  </section>
+
+  <div class="chapter-divider reveal">
+    <div class="chapter-divider-line"></div>
+    <div class="chapter-divider-ornament">✦</div>
+    <div class="chapter-divider-line"></div>
+  </div>
+
+  <!-- CHAPTER III -->
+  <section id="chapter-3" class="chapter-section">
+    <div class="chapter-header reveal">
+      <p class="chapter-label"><span class="chapter-num-small">III</span>&nbsp;&nbsp;Chapter Three</p>
+      <h2 class="chapter-title">The War For My Daughter</h2>
+    </div>
+
+    <div class="prose reveal">
+      <p style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.05rem; color:var(--muted); line-height:1.8;">This is the chapter I have never told publicly. Not because I am ashamed of it. Because the truth of it has had no witness. Until now.</p>
+    </div>
+
+    <div class="timeline-marker reveal">
+      <span class="timeline-year">August 2017</span>
+      <div class="timeline-line"></div>
+    </div>
+
+    <div class="prose">
+      <p class="reveal">In August 2017 my daughter got seriously ill with appendicitis. She was hospitalized. The bill ran to lakhs. My ex-husband contributed almost nothing. My father stepped in. We got through it.</p>
+      <p class="reveal">Two days after she came home from hospital she collapsed again. She said she couldn't see. She couldn't hear. I rushed her back. They found nothing physically wrong.</p>
+      <p class="reveal">When I asked her what was happening, she told me the truth — because we had that kind of connection. She and I could always speak soul to soul, no filters.</p>
+      <p class="reveal">She told me she was tired of the scarcity. Tired of the stress. She had been receiving messages from her father — pictures of food, of fun, of money, of everything the life with him represented. She wanted to go live with him for two or three months.</p>
+      <p class="reveal">I told her I couldn't afford to send her for just two or three months. But if she went for a year — a full year — I would use that time to stabilize myself financially, set up a proper home, build something solid. And then she would come back and we would have a real life together.</p>
+      <p class="reveal">She agreed. We agreed together. That was August 2017.</p>
+      <p class="reveal">I was naive enough to believe her father would honor it.</p>
+      <p class="reveal">He filed for divorce the moment she landed in Toronto. I was okay with that. I had no interest in preserving the marriage. My only fear — the one I expressed clearly, the one I begged his lawyer to protect me from — was that he would use the legal process to take my daughter permanently.</p>
+      <p class="reveal">His lawyer told me not to worry. She said they would include a clause that the child's consent would be primary. That if my daughter wanted to come to me, he could not stand in the way.</p>
+      <p class="reveal">I believed her. I signed the papers without my own lawyer. I had no money for one and I didn't know I could find one through women's groups.</p>
+    </div>
+
+    <div class="confession reveal">
+      <p>That was the most expensive mistake of my life.</p>
+    </div>
+
+    <div class="prose">
+      <p class="reveal">He took my daughter to Toronto at the end of August 2017. And the systematic erasure of her memory of me began.</p>
+    </div>
+
+    <div class="story-break reveal">
+      <div class="story-break-dot"></div>
+      <div class="story-break-dot"></div>
+      <div class="story-break-dot"></div>
+    </div>
+
+    <div class="prose">
+      <p class="reveal">The years that followed are a specific kind of grief that has no name in any language I know.</p>
+      <p class="reveal">I went back to Toronto in July 2018 because I missed her so badly I could not function. I found shared accommodation near her school. I picked her up. I dropped her off. I became present again.</p>
+      <p class="reveal">And then slowly — because this is what covert narcissists do when they sense you getting close to what they control — I became useful again. The default nanny. The cook. The cleaner. The laundry person. By October 2018 I had moved back into their house. By December I could see I was being absorbed back into the same construct I had escaped.</p>
+    </div>
+
+    <div class="timeline-marker reveal">
+      <span class="timeline-year">January 2019</span>
+      <div class="timeline-line"></div>
+    </div>
+
+    <div class="prose">
+      <p class="reveal">I came back to India in January 2019 with a promise from him that she would follow in March.</p>
+      <p class="reveal">March came. Then summer. Then winter. Excuse after excuse. Manipulation after manipulation. Using my daughter's own voice to deliver his refusals — training her to say she wanted to go to Florida instead, that she didn't want to come to India, that she preferred to stay.</p>
+    </div>
+
+    <div class="timeline-marker reveal">
+      <span class="timeline-year">December 2019</span>
+      <div class="timeline-line"></div>
+    </div>
+
+    <div class="confession reveal">
+      <p>December 2019 is the last time I held my daughter.</p>
+      <p>She was supposed to come back in February 2020.</p>
+      <p>COVID hit.</p>
+      <p>The flights stopped.</p>
+    </div>
+
+    <div class="prose">
+      <p class="reveal">And he — who I now understand had been planning this for years, who had watched my Canadian visa expiry date and calculated when the pandemic would give him the perfect cover — had finally completed what he set out to do.</p>
+    </div>
+
+    <div class="timeline-marker reveal">
+      <span class="timeline-year">October 2020 — December 2022</span>
+      <div class="timeline-line"></div>
+    </div>
+
+    <div class="prose">
+      <p class="reveal">In October 2020 I went to court. I asked the court to enforce the divorce decree. The case dragged until the end of 2022.</p>
+      <p class="reveal">During those two years my daughter hit puberty. She was going through her own hormonal storm. And every time she showed any warmth toward me — every time she texted that she missed me, every time she said she wanted to come back — he was there. Recording the calls. Monitoring her phone. Cross-questioning every word she said to me. Making her pay for loving her mother.</p>
+      <p class="reveal">She told me once in a call: <em>'I keep telling him you're not like that. But he just wants to convince me you're a bad person.'</em></p>
+      <p class="reveal">She was a child. She got tired. For her own safety and sanity she made the only choice available to her.</p>
+    </div>
+
+    <div class="timeline-marker reveal">
+      <span class="timeline-year">December 2022</span>
+      <div class="timeline-line"></div>
+    </div>
+
+    <div class="prose">
+      <p class="reveal">By December 2022 she cut contact completely. She withdrew her consent to be with me. The court case was over.</p>
+    </div>
+
+    <div class="story-break reveal">
+      <div class="story-break-dot"></div>
+      <div class="story-break-dot"></div>
+      <div class="story-break-dot"></div>
+    </div>
+
+    <div class="prose">
+      <p class="reveal">To the world — to everyone who only heard his version — I am the career woman who didn't care enough about her child. Who left her daughter to pursue her dreams. Who chose iThrive over motherhood.</p>
+      <p class="reveal">That is the story he told. That is the story she has been conditioned to believe.</p>
+    </div>
+
+    <div class="pull-quote reveal">
+      <p>The truth is I am a mother who loved her daughter so completely that she honored her daughter's consent <em>even when that consent was being engineered by someone else.</em></p>
+    </div>
+
+    <div class="prose">
+      <p class="reveal">Who sent her away not from abandonment but from a place of such fierce love that she refused to make her child the battleground of her own escape. Who fought through a court system for two years with no money and no family support. Who flew across the world twice just to be near her. Who kept building and healing and showing up so that one day she would have something real to offer her daughter — not scarcity and stress but proof that her mother was exactly who she always said she was.</p>
+      <p class="reveal">Her mother loves her. Her mother loves herself too. Her mother is a strong warrior who never gave up on her daughter.</p>
+      <p class="reveal">She is 15 now. She has no idea who I actually am. She has forgotten — or been made to forget — the woman who taught her sign language at six months, who reminded her of dragons and crystals and the divine, who told her she was magic before she knew what the word meant.</p>
+      <p class="reveal">But I have not forgotten her.</p>
+      <p class="reveal">And I am building something she will find one day.</p>
+      <p class="reveal">This story. This movement. This proof that her mother never stopped.</p>
+      <p class="reveal">That is my legacy to her. And she will come back for it.</p>
+      <p class="reveal">I know this the way I know everything that has ever turned out to be true — not from logic, not from hope, but from the deepest place in my soul.</p>
+    </div>
+
+    <div class="centered-pull reveal">
+      <p>She will remember.</p>
+    </div>
+  </section>
+
+  <div class="chapter-divider reveal">
+    <div class="chapter-divider-line"></div>
+    <div class="chapter-divider-ornament">✦</div>
+    <div class="chapter-divider-line"></div>
+  </div>
+
+  <!-- CHAPTER IV -->
+  <section id="chapter-4" class="chapter-section">
+    <div class="chapter-header reveal">
+      <p class="chapter-label"><span class="chapter-num-small">IV</span>&nbsp;&nbsp;Chapter Four</p>
+      <h2 class="chapter-title">On Patriarchy —<br>The Thing That Has No Face</h2>
+    </div>
+
+    <div class="prose">
+      <p class="reveal">I want to say something about patriarchy that goes beyond the political.</p>
+      <p class="reveal">Because I am not talking about an ideology. I am talking about a lived, daily, grinding reality that I have navigated my entire life as a woman in India — and that I continue to navigate as a woman entrepreneur building a company in 2026.</p>
+    </div>
+
+    <div class="confession reveal">
+      <p>Patriarchy is my family siding with my ex-husband because he was the man and I was the woman who had disturbed the order of things by wanting to be free.</p>
+      <p class="muted">Patriarchy is the lawyer who betrayed me because she was working for him and I was the one without money or representation.</p>
+      <p>Patriarchy is being told — by doctors, by family, by the culture at large — that my depression was a personal failing rather than the biological consequence of a body and a soul being systematically denied their own nature.</p>
+      <p class="muted">Patriarchy is walking into investor meetings and being asked about work-life balance while my male counterparts are asked about growth strategy.</p>
+      <p>Patriarchy is building a company to ₹6.47 crore in revenue and still having to prove in every room that I deserve to be taken seriously.</p>
+      <p class="muted">Patriarchy is the specific exhaustion of being a woman who leads — who is simultaneously expected to be warm enough, soft enough, accessible enough, while also being rigorous enough, bold enough, credible enough.</p>
+    </div>
+
+    <div class="prose">
+      <p class="reveal">I have spent my entire life navigating the gap between who I actually am and who the world needed me to be in order to feel comfortable.</p>
+    </div>
+
+    <div class="pull-quote reveal">
+      <p>I am done with that gap.</p>
+    </div>
+
+    <div class="prose">
+      <p class="reveal">I have individually freed myself from patriarchy's grip on my own psychology. The conditioning that told me my worth was in my role — wife, daughter-in-law, mother, homemaker — that has been dismantled layer by layer through years of the hardest inner work I have ever done.</p>
+      <p class="reveal">But I am clear that the collective version of it — the one that lives in institutions, in funding ecosystems, in boardrooms, in the cultural assumptions about what a woman entrepreneur is allowed to want and allowed to be — that work is not done.</p>
+      <p class="reveal">I don't say this with bitterness.</p>
+      <p class="reveal">I say it with the clear eyes of someone who has been inside the machine and understands exactly how it operates.</p>
+      <p class="reveal">And I am building something that operates completely differently.</p>
+    </div>
+  </section>
+
+  <div class="chapter-divider reveal">
+    <div class="chapter-divider-line"></div>
+    <div class="chapter-divider-ornament">✦</div>
+    <div class="chapter-divider-line"></div>
+  </div>
+
+  <!-- CHAPTER V -->
+  <section id="chapter-5" class="chapter-section">
+    <div class="chapter-header reveal">
+      <p class="chapter-label"><span class="chapter-num-small">V</span>&nbsp;&nbsp;Chapter Five</p>
+      <h2 class="chapter-title">The Second Descent</h2>
+      <p class="chapter-date">October 2021 — December 2024</p>
+    </div>
+
+    <div class="prose">
+      <p class="reveal">What nobody tells you about healing is that the body is just the beginning.</p>
+      <p class="reveal">Fix the thyroid. Reverse the autoimmunity. Lose the weight. Feel the energy. Watch thousands of clients transform. Build a company. Write a book. Give talks. Raise funding.</p>
+      <p class="reveal">And then —</p>
+    </div>
+
+    <div class="centered-pull reveal" style="margin:2.5rem auto;">
+      <p style="font-size:clamp(1.4rem,2.8vw,2.2rem);">The real work begins.</p>
+    </div>
+
+    <div class="timeline-marker reveal">
+      <span class="timeline-year">October 2021</span>
+      <div class="timeline-line"></div>
+    </div>
+
+    <div class="prose">
+      <p class="reveal">I remember the feeling exactly. Not as a memory. As a physical sensation I can still access if I go looking for it.</p>
+      <p class="reveal">Drowning. Not in water. In something black and gunky and thick. Something that had weight and pressure and the specific quality of being inescapable.</p>
+    </div>
+
+    <div class="staccato reveal">
+      <p>My heart broke. And then broke again. And then broke again.</p>
+      <p>I felt unloved. Uncared for. Betrayed.</p>
+      <p>Hurt in ways I didn't have language for yet.</p>
+      <p>Hated. Rejected. Absolutely unwanted in this world.</p>
+    </div>
+
+    <div class="prose">
+      <p class="reveal">And I — the woman who had built a company to heal others — turned to food to survive it.</p>
+      <p class="reveal">20 kilograms over three years. Gained in secret. Gained in shame. Gained while I was simultaneously running iThrive and helping thousands of people heal their bodies.</p>
+      <p class="reveal">The irony was not lost on me.</p>
+    </div>
+
+    <div class="confession reveal">
+      <p>The healer who couldn't heal herself. Again.</p>
+      <p>Except this time it wasn't the body that was broken.</p>
+      <p>It was everything underneath the body.</p>
+    </div>
+
+    <div class="prose">
+      <p class="reveal">The mind. The vital. The psyche. The places that no blood test reaches. The layers where childhood wounds live. Where betrayal leaves its residue. Where the parts of yourself you exiled to survive eventually demand to be seen.</p>
+      <p class="reveal">Carl Jung calls it the Shadow. Sri Aurobindo calls it the Ignorance. The modules I was building for the healers I was training called it many things.</p>
+      <p class="reveal">I called it hell.</p>
+      <p class="reveal">There were nights between 2021 and 2024 when I wanted to give up. When I wanted to run away from everything I had built, everything I was responsible for, everyone who needed me.</p>
+      <p class="reveal">When I just wanted it to stop.</p>
+    </div>
+
+    <div class="pull-quote reveal">
+      <p>I am telling you this <em>without shame.</em></p>
+    </div>
+
+    <div class="prose">
+      <p class="reveal">Because this is the part of the healer's story that never gets told. The part that happens after the inspiring first transformation. The deeper descent. The darker cave. The one that makes the first one look like a warm-up.</p>
+      <p class="reveal">And I am telling you this because if you are in your own black descent right now — if you are drowning in your own thick dark weight — I need you to know that someone who has been exactly there came out the other side.</p>
+    </div>
+
+    <div class="staccato reveal">
+      <p>Not intact.</p>
+      <p class="gold">Transformed.</p>
+    </div>
+  </section>
+
+  <div class="chapter-divider reveal">
+    <div class="chapter-divider-line"></div>
+    <div class="chapter-divider-ornament">✦</div>
+    <div class="chapter-divider-line"></div>
+  </div>
+
+  <!-- CHAPTER VI -->
+  <section id="chapter-6" class="chapter-section">
+    <div class="chapter-header reveal">
+      <p class="chapter-label"><span class="chapter-num-small">VI</span>&nbsp;&nbsp;Chapter Six</p>
+      <h2 class="chapter-title">What Kept Me Alive</h2>
+    </div>
+
+    <div class="staccato reveal">
+      <p>It wasn't a protocol.</p>
+      <p>It wasn't a supplement.</p>
+      <p>It wasn't a therapy modality — though I used many.</p>
+    </div>
+
+    <div class="pull-quote reveal">
+      <p>What kept me alive through three years of the darkest night of my soul was something I can only call <em>remembrance.</em></p>
+    </div>
+
+    <div class="prose">
+      <p class="reveal">Moments — sometimes small, sometimes enormous — of remembering who I actually was.</p>
+      <p class="reveal">Beneath the depression. Beneath the weight. Beneath the betrayal and the heartbreak and the crushing pressure of it all.</p>
+      <p class="reveal">Moments when the Divine Consciousness — what Sri Aurobindo calls the Mother, what I experience as the Force that holds all of this together — would break through the darkness and remind me.</p>
+    </div>
+
+    <div class="mantra-block reveal">
+      <p class="mantra-text">You are not this.<br>You are not the pain.<br>You are not the weight.<br>You are not the abandonment<br>or the rejection or the unwantedness.</p>
+      <p class="mantra-text" style="margin-top:2rem; color:var(--cream);">You are</p>
+      <p class="mantra-text" style="font-size:clamp(1.8rem,3.5vw,3rem); letter-spacing:0.12em;">Sat · Chit · Ānanda</p>
+      <p class="mantra-trans">Truth · Consciousness · Bliss</p>
+      <p class="mantra-body">This is your nature. This is what you are<br>underneath everything that happened to you.</p>
+      <span class="mantra-return">Come back.</span>
+    </div>
+
+    <div class="prose">
+      <p class="reveal">Again and again and again.</p>
+      <p class="reveal">That is what kept me alive. Not willpower. Not discipline. Not the force of my own determination.</p>
+      <p class="reveal">Remembrance.</p>
+      <p class="reveal">And slowly — through the shadow work and the breathwork and the somatic healing and the IFS and the nervous system regulation and the Integral Yoga and the Grace of the Mother — slowly, the light began to return.</p>
+    </div>
+
+    <div class="timeline-marker reveal">
+      <span class="timeline-year">August 2025</span>
+      <div class="timeline-line"></div>
+    </div>
+
+    <div class="prose">
+      <p class="reveal">By August 2025 I began to lose the 20 kilograms.</p>
+    </div>
+
+    <div class="timeline-marker reveal">
+      <span class="timeline-year">February 2026</span>
+      <div class="timeline-line"></div>
+    </div>
+
+    <div class="prose">
+      <p class="reveal">By February 2026 they were gone.</p>
+      <p class="reveal">But the weight was never the story. The weight was just the body keeping score.</p>
+    </div>
+  </section>
+
+  <div class="chapter-divider reveal">
+    <div class="chapter-divider-line"></div>
+    <div class="chapter-divider-ornament">✦</div>
+    <div class="chapter-divider-line"></div>
+  </div>
+
+  <!-- CHAPTER VII -->
+  <section id="chapter-7" class="chapter-section">
+    <div class="chapter-header reveal">
+      <p class="chapter-label"><span class="chapter-num-small">VII</span>&nbsp;&nbsp;Chapter Seven</p>
+      <h2 class="chapter-title">What Lives On The Other Side</h2>
+    </div>
+
+    <div class="prose">
+      <p class="reveal">I found the Divine Consciousness. Not as a concept. Not as a philosophy. As a lived reality.</p>
+      <p class="reveal">I found the Mother — Sri Aurobindo's Shakti, the Force that sustains all of this — not in a book but in the darkest moments of my own existence, showing up as the only thing between me and the edge.</p>
+      <p class="reveal">I found my soul purpose. Not the version I had constructed intellectually. The real one. The one that was waiting underneath everything I thought I was.</p>
+      <p class="reveal">And I found something I had spent years teaching about but had never fully lived — the connection between my Soul and my body. A real, felt, embodied connection. My Soul speaking through my cells. My body finally trusted as the sacred instrument it always was.</p>
+      <p class="reveal">From that connected place — Soul rooted in body, body held by Soul — I began to see clearly for the first time what Sri Aurobindo is pointing at. What the supramental transformation actually means. What this species is designed to become. I haven't arrived there. But I have stood close enough to feel its reality. And that proximity changed everything about how I understand what healing is actually for.</p>
+    </div>
+
+    <div class="centered-pull reveal">
+      <p>The light reaches us the most when we break and open up.</p>
+    </div>
+
+    <div class="prose">
+      <p class="reveal">I know this not because I read it.</p>
+      <p class="reveal">Because I lived it.</p>
+    </div>
+  </section>
+
+  <div class="chapter-divider reveal">
+    <div class="chapter-divider-line"></div>
+    <div class="chapter-divider-ornament">✦</div>
+    <div class="chapter-divider-line"></div>
+  </div>
+
+  <!-- CHAPTER VIII -->
+  <section id="chapter-8" class="chapter-section">
+    <div class="chapter-header reveal">
+      <p class="chapter-label"><span class="chapter-num-small">VIII</span>&nbsp;&nbsp;Chapter Eight</p>
+      <h2 class="chapter-title">What I Am Building Now</h2>
+    </div>
+
+    <div class="staccato reveal">
+      <p>I am not the nutritionist who reversed Hashimoto's.</p>
+      <p>I am not the founder who built iThrive.</p>
+      <p>I am not the author or the TEDx speaker or the person who has treated 174 different medical conditions.</p>
+      <p>I am not even the mother who lost her daughter to a system that had no mechanism to protect her — and kept building anyway.</p>
+    </div>
+
+    <div class="prose">
+      <p class="reveal">I am all of those things — but I am more than all of those things.</p>
+      <p class="reveal">I am someone who has now traveled the complete map of human transformation. From the biochemistry of a broken body all the way to the edge of a higher consciousness. Through the shadow and the subconscient and back up through the vital and the mind and the higher mind toward something that Sri Aurobindo says is the next stage of what we are.</p>
+      <p class="reveal">And I have built — through iThrive, through the Academy, through the Research Center, through Essentials, through the Inner Awakening Journey, through the science and the ancient wisdom and the lived experience of thousands of human beings who have walked this path with me — the infrastructure to help you make that journey too.</p>
+    </div>
+
+    <div class="confession reveal">
+      <p>Not just to heal your body.</p>
+      <p>Not just to fix your thyroid or reverse your autoimmunity or lose the weight.</p>
+      <p>But to remember what you actually are.</p>
+    </div>
+
+    <div class="prose">
+      <p class="reveal">To descend into your own cave — whatever that cave is like — and discover what Jung said is always waiting there:</p>
+    </div>
+
+    <div class="pull-quote reveal">
+      <p>The treasure. Your own divine nature. Waiting patiently beneath everything that happened to you. Beneath every wound and every betrayal and every moment of darkness.</p>
+    </div>
+
+    <div class="mantra-block reveal">
+      <p class="mantra-text" style="font-size:clamp(1.8rem,3.5vw,3rem); letter-spacing:0.12em;">Sat · Chit · Ānanda</p>
+      <p class="mantra-trans">Truth · Consciousness · Bliss</p>
+    </div>
+
+    <div class="prose">
+      <p class="reveal">This is not a destination I am pointing you toward from a safe distance.</p>
+      <p class="reveal">This is a place I have been.</p>
+      <p class="reveal">And I am here — with everything I know, everything I have built, everything I have survived — to take you there.</p>
+    </div>
+
+    <div class="centered-pull reveal">
+      <p>If you are ready to remember.</p>
+    </div>
+  </section>
+
+  <!-- CLOSING ATTRIBUTION -->
+  <div class="story-closing reveal">
+    <div class="story-break" style="padding:0; margin-bottom:3rem;">
+      <div class="story-break-dot"></div>
+      <div class="story-break-dot"></div>
+      <div class="story-break-dot"></div>
+    </div>
+    <p class="story-signature">
+      — Mugdha Pradhan<br>
+      Pune, February 2026
+    </p>
+  </div>
+
+</main>
+
+<!-- NEXT STEPS CTA -->
+<section class="page-cta">
+  <p>Continue the journey</p>
+  <div class="page-cta-links">
+    <a href="index.html#mission" class="btn-primary">The Mission</a>
+    <a href="index.html#work" class="btn-secondary">The Work</a>
+    <a href="index.html#contact" class="btn-secondary">Get in Touch</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">Mugdha Pradhan © 2026</span>
+  <p class="footer-quote">"You are not sick. You are asleep."</p>
+  <ul class="footer-links">
+    <li><a href="#">Instagram</a></li>
+    <li><a href="#">LinkedIn</a></li>
+    <li><a href="#">YouTube</a></li>
+    <li><a href="#">X</a></li>
+  </ul>
+  <p class="footer-copy">mugdhapradhan.com — The Remembrance Movement</p>
+</footer>
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursor-ring');
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+    setTimeout(() => {
+      ring.style.left = e.clientX + 'px';
+      ring.style.top = e.clientY + 'px';
+    }, 60);
+  });
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      ring.style.width = '60px';
+      ring.style.height = '60px';
+      ring.style.opacity = '0.6';
+    });
+    el.addEventListener('mouseleave', () => {
+      ring.style.width = '36px';
+      ring.style.height = '36px';
+      ring.style.opacity = '1';
+    });
+  });
+
+  // Nav scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Reading progress bar
+  const progressBar = document.getElementById('progress-bar');
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    progressBar.style.width = ((scrollTop / docHeight) * 100) + '%';
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Chapter navigator active state
+  const sections = document.querySelectorAll('#opening, [id^="chapter-"]');
+  const dots = document.querySelectorAll('.chapter-dot');
+  const sectionObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        dots.forEach(dot => {
+          dot.classList.toggle('active', dot.getAttribute('href') === '#' + e.target.id);
+        });
+      }
+    });
+  }, { threshold: 0.25, rootMargin: '-15% 0px -55% 0px' });
+  sections.forEach(s => sectionObserver.observe(s));
+</script>
+</body>
+</html>
