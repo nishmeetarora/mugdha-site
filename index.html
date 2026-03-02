@@ -20,6 +20,7 @@
     --white: #faf8f4;
     --muted: rgba(240, 232, 216, 0.45);
     --border: rgba(201, 152, 74, 0.2);
+    --crimson: #8B0000;
   }
 
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -100,19 +101,21 @@
     overflow: hidden;
   }
 
-  /* Animated fire canvas background */
+  /* Consciousness field canvas */
   #fire-canvas {
     position: absolute; inset: 0;
     width: 100%; height: 100%;
-    z-index: 0;
+    z-index: 3;
+    mix-blend-mode: screen;
+    pointer-events: none;
   }
 
   /* Dark overlay gradient */
   .hero-overlay {
     position: absolute; inset: 0;
     background:
-      radial-gradient(ellipse 60% 70% at 50% 60%, transparent 0%, rgba(7,6,10,0.5) 60%, rgba(7,6,10,0.95) 100%),
-      linear-gradient(to bottom, rgba(7,6,10,0.4) 0%, transparent 30%, transparent 60%, rgba(7,6,10,0.9) 100%);
+      radial-gradient(ellipse 55% 60% at 50% 45%, transparent 0%, rgba(7,6,10,0.45) 60%, rgba(7,6,10,0.92) 100%),
+      linear-gradient(to bottom, rgba(7,6,10,0.35) 0%, transparent 28%, transparent 58%, rgba(7,6,10,0.70) 100%);
     z-index: 1;
   }
 
@@ -141,7 +144,7 @@
 
   .hero-content {
     position: relative;
-    z-index: 2;
+    z-index: 5;
     text-align: center;
     padding: 0 2rem;
     max-width: 1300px;
@@ -160,7 +163,7 @@
 
   .hero-headline {
     font-family: 'Cormorant Garamond', serif;
-    font-weight: 300;
+    font-weight: 500;
     font-size: clamp(4rem, 9vw, 8rem);
     line-height: 1.08;
     letter-spacing: -0.01em;
@@ -183,13 +186,14 @@
   }
 
   .hero-sub {
-    font-family: 'Jost', sans-serif;
-    font-weight: 200;
-    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(1.1rem, 2.2vw, 1.5rem);
     line-height: 1.8;
-    color: rgba(240, 232, 216, 0.7);
-    max-width: 540px; margin: 0 auto;
-    letter-spacing: 0.04em;
+    color: var(--gold);
+    max-width: 600px; margin: 0 auto;
+    letter-spacing: 0.02em;
     opacity: 0;
     animation: fade-up 1s ease 1.1s forwards;
   }
@@ -224,11 +228,38 @@
   .btn-enter:hover::before { transform: translateX(0); }
   .btn-enter:hover { color: var(--black); }
 
+  .btn-crimson {
+    display: inline-block;
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--white);
+    text-decoration: none;
+    background: var(--crimson);
+    border-radius: 0;
+    padding: 1.1rem 3rem;
+    transition: background 0.3s ease;
+  }
+  .btn-crimson:hover { background: #a30000; }
+
+  .hero-story-link {
+    display: block;
+    margin-top: 1.5rem;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    transition: color 0.3s;
+  }
+  .hero-story-link:hover { color: var(--gold); }
+
   .scroll-indicator {
     position: absolute;
     bottom: 2.5rem; left: 50%;
     transform: translateX(-50%);
-    z-index: 2;
+    z-index: 5;
     opacity: 0;
     animation: fade-in 1s ease 2s forwards;
   }
@@ -248,16 +279,19 @@
   .hook-section {
     position: relative;
     padding: 10rem 4rem;
+    max-width: 100%;
+    background: #F5F0E8;
+  }
+  .hook-section-inner {
     max-width: 1200px;
     margin: 0 auto;
   }
-  .hook-section::before {
-    content: '';
-    position: absolute;
-    left: -100px; top: 0;
-    width: 1px; height: 100%;
-    background: linear-gradient(to bottom, transparent, var(--border), transparent);
-  }
+  .hook-section .section-tag { color: #8B6914; }
+  .hook-section .section-tag::after { background: #8B6914; }
+  .hook-section .hook-lead { color: #1A1209; font-weight: 600; }
+  .hook-section .hook-lead em { color: #8B6914; }
+  .hook-section .hook-body p { color: #3D3020; }
+  .hook-section .hook-body strong { color: #1A1209; }
 
   .section-tag {
     font-family: 'Cinzel', serif;
@@ -306,63 +340,51 @@
     font-weight: 400;
   }
 
-  /* NUMBERS */
-  .numbers-section {
-    position: relative;
-    padding: 6rem 4rem;
+  /* PROOF STRIP */
+  .proof-strip {
     background: var(--deep);
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
-    overflow: hidden;
+    padding: 5rem 4rem;
   }
-  .numbers-section::before {
-    content: 'REMEMBRANCE';
-    position: absolute;
-    font-family: 'Cinzel', serif;
-    font-size: 18vw;
-    font-weight: 700;
-    color: rgba(201, 152, 74, 0.03);
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    white-space: nowrap;
-    pointer-events: none;
-    letter-spacing: 0.05em;
-  }
-  .numbers-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-    max-width: 900px;
+  .proof-strip-inner {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: center;
+    max-width: 1100px;
     margin: 0 auto;
-    position: relative;
-    z-index: 1;
   }
-  .number-item {
+  .proof-item {
+    flex: 1;
     text-align: center;
-    padding: 4rem 2rem;
-    border-right: 1px solid var(--border);
+    padding: 3rem 1.5rem;
+    border-right: 1px solid rgba(139, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
-  .number-item:last-child { border-right: none; }
-  .number-item .num {
+  .proof-item:last-child { border-right: none; }
+  .proof-stat {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(3.5rem, 7vw, 6rem);
-    font-weight: 300;
+    font-size: clamp(2rem, 3.2vw, 3.2rem);
     color: var(--gold-light);
     line-height: 1;
     display: block;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
   }
-  .number-item .num-label {
-    font-family: 'Jost', sans-serif;
-    font-size: 0.72rem;
-    font-weight: 300;
+  .proof-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.55rem;
     color: var(--muted);
-    letter-spacing: 0.15em;
     text-transform: uppercase;
-    margin-top: 1rem;
-    line-height: 1.6;
-    max-width: 180px;
-    margin-left: auto; margin-right: auto;
+    letter-spacing: 0.12em;
+    margin-top: 0.9rem;
+    display: block;
+    line-height: 1.8;
+    max-width: 130px;
   }
 
   /* MISSION */
@@ -657,6 +679,57 @@
     margin-bottom: 3rem;
   }
 
+  /* STORY GRID — 2-col layout */
+  .story-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    max-width: 1100px;
+    position: relative;
+    z-index: 1;
+  }
+  @media (max-width: 900px) {
+    .story-grid { grid-template-columns: 1fr; gap: 3rem; }
+  }
+  .story-photo-col {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  /* PHOTO PLACEHOLDERS */
+  .photo-placeholder {
+    border: 1px dashed var(--gold);
+    aspect-ratio: 3/4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    text-align: center;
+    width: 100%;
+    opacity: 0.6;
+  }
+  .photo-placeholder-icon {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    margin-bottom: 1rem;
+  }
+  .photo-placeholder-text {
+    font-family: 'Jost', sans-serif;
+    font-style: italic;
+    font-size: 0.75rem;
+    color: rgba(201, 152, 74, 0.6);
+    line-height: 1.7;
+  }
+  .photo-placeholder--wide {
+    aspect-ratio: 16/9;
+    max-width: 800px;
+    margin: 0 auto 4rem;
+  }
+
   /* LATEST THINKING */
   .thinking-section {
     padding: 10rem 4rem;
@@ -738,6 +811,104 @@
     padding: 0.4rem 0.9rem;
     display: inline-block;
     align-self: flex-start;
+  }
+
+  /* WORK SECTION */
+  .work-section {
+    position: relative;
+    padding: 10rem 4rem;
+    background: var(--charcoal);
+    border-top: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .work-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 60% at 50% 30%, rgba(201, 152, 74, 0.04) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .work-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .work-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    color: var(--gold-light);
+    line-height: 1.5;
+    max-width: 700px;
+    margin: 3rem 0 1.5rem;
+  }
+  .work-quote-attr {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    color: var(--muted);
+    margin-bottom: 4rem;
+    text-transform: uppercase;
+  }
+  .work-intro {
+    font-size: 0.95rem;
+    line-height: 2;
+    color: rgba(240, 232, 216, 0.65);
+    max-width: 640px;
+    margin-bottom: 5rem;
+  }
+  .element-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-bottom: 5rem;
+  }
+  .element-card {
+    background: var(--black);
+    padding: 3rem 2rem;
+    text-align: center;
+    position: relative;
+    transition: background 0.4s;
+    overflow: hidden;
+  }
+  .element-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+  }
+  .element-card:hover { background: rgba(201, 152, 74, 0.04); }
+  .element-card:hover::after { transform: scaleX(1); }
+  .element-symbol {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 1.5rem;
+    opacity: 0.7;
+  }
+  .element-name {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    color: var(--gold-light);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: block;
+  }
+  .element-desc {
+    font-size: 0.8rem;
+    line-height: 1.8;
+    color: var(--muted);
+  }
+  .work-cta {
+    text-align: center;
   }
 
   /* CLOSING */
@@ -881,14 +1052,27 @@
   .reveal-delay-2 { transition-delay: 0.3s; }
   .reveal-delay-3 { transition-delay: 0.45s; }
 
+  @media (max-width: 900px) {
+    .element-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 480px) {
+    .element-grid { grid-template-columns: 1fr; }
+  }
+
   @media (max-width: 768px) {
     nav { padding: 1.5rem 2rem; }
     nav.scrolled { padding: 1rem 2rem; }
-    .hook-section, .audience-section, .thinking-section { padding: 6rem 2rem; }
-    .numbers-section, .story-section, .closing-section { padding: 6rem 2rem; }
+    .hook-section { padding: 6rem 2rem; }
+    .audience-section, .thinking-section { padding: 6rem 2rem; }
+    .proof-strip { padding: 4rem 2rem; }
+    .proof-strip-inner { flex-direction: column; }
+    .proof-item { border-right: none; border-bottom: 1px solid rgba(139, 0, 0, 0.3); width: 100%; padding: 2.5rem 2rem; flex-direction: row; align-items: center; gap: 1.5rem; text-align: left; }
+    .proof-item .proof-label { max-width: none; margin-top: 0; }
+    .proof-item:last-child { border-bottom: none; }
+    .story-section, .closing-section { padding: 6rem 2rem; }
     .mission-section { padding: 6rem 2rem; }
-    .numbers-grid { grid-template-columns: 1fr; }
-    .number-item { border-right: none; border-bottom: 1px solid var(--border); }
+    .work-section { padding: 6rem 2rem; }
+    .story-grid { grid-template-columns: 1fr; gap: 3rem; }
     footer { padding: 2rem; flex-direction: column; align-items: flex-start; }
     .thinking-header { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
     .closing-ctas { flex-direction: column; }
@@ -920,14 +1104,13 @@
   <div class="hero-overlay"></div>
   
   <div class="hero-content">
-    <p class="hero-eyebrow">The Remembrance Movement</p>
     <h1 class="hero-headline">
-      You are not <em>sick.</em><br>You are <em>asleep.</em>
+      I help humans remember<br>what they are.
     </h1>
-    <div class="hero-divider"></div>
-    <p class="hero-sub">And somewhere beneath the fatigue, the diagnosis, the confusion and the noise — you already know this.</p>
+    <p class="hero-sub">Not manage their symptoms. Not optimise their performance.<br>Remember.</p>
     <div class="hero-cta">
-      <a href="#story" class="btn-enter">Enter</a>
+      <a href="#story" class="btn-crimson">Begin your remembrance</a>
+      <a href="story.html" class="hero-story-link">Read my story →</a>
     </div>
   </div>
   
@@ -938,34 +1121,46 @@
 
 <!-- HOOK -->
 <section class="hook-section" id="story">
-  <p class="section-tag reveal">The Crisis</p>
-  <h2 class="hook-lead reveal reveal-delay-1">
-    For the last decade, the world has been having<br>
-    <em>the wrong conversation</em> about health.
-  </h2>
-  <div class="hook-body reveal reveal-delay-2">
-    <p>We've been arguing about diets. Debating supplements. Optimizing sleep. Tracking macros. Managing symptoms. Outsourcing our bodies to systems that <strong>profit from our confusion and our compliance.</strong></p>
-    <p>Meanwhile the actual crisis goes unnamed. Humanity has forgotten what it is. Not metaphorically. Not philosophically. Biologically, neurologically, spiritually — we have lost contact with our own nature.</p>
-    <p>The fatigue is not laziness. The autoimmune disease is not bad luck. The depression is not a chemical imbalance. The chronic illness is not your destiny.</p>
-    <p><strong>It is your body — your most loyal messenger — telling you that the life you are living is not the life you were built for.</strong></p>
-    <p>I have spent the last decade proving this. With blood work. With ancient wisdom. With 174 different medical conditions that all pointed to the same root cause. With thousands of human beings who came to me broken by the system and left remembering who they actually are.</p>
+  <div class="hook-section-inner">
+    <p class="section-tag reveal">The Crisis</p>
+    <h2 class="hook-lead reveal reveal-delay-1">
+      For the last decade, the world has been having the wrong conversation about health.
+    </h2>
+    <div class="hook-body reveal reveal-delay-2">
+      <p>We've been arguing about diets. Debating supplements. Optimising sleep. Tracking macros. Managing symptoms. Outsourcing our bodies to systems that <strong>profit from our confusion and our compliance.</strong></p>
+      <p>Meanwhile the actual crisis goes unnamed. Humanity has forgotten what it is. Not metaphorically. Not philosophically. <strong>Biologically, neurologically, spiritually — we have lost contact with our own nature.</strong></p>
+      <p>The fatigue is not laziness. The autoimmune disease is not bad luck. The depression is not a chemical imbalance. The chronic illness is not your destiny.</p>
+      <p><strong>It is your body — your most loyal messenger — telling you that the life you are living is not the life you were built for.</strong></p>
+      <p>I have spent nine years proving this. With blood work. With ancient wisdom. With 174 different medical conditions that all pointed to the same root cause.</p>
+      <p>With thousands of human beings who came to me broken by the system and left remembering who they actually are.</p>
+      <p>The body does not malfunction at random. Every symptom is a signal. Every diagnosis is a doorway. <strong>The question is not what is wrong with you. The question is what your body is trying to tell you.</strong></p>
+      <p>And beneath that question — if you go deep enough — is always the same answer: you have forgotten what you are. And your body refuses to let you stay asleep.</p>
+    </div>
   </div>
 </section>
 
-<!-- NUMBERS -->
-<section class="numbers-section">
-  <div class="numbers-grid">
-    <div class="number-item reveal">
-      <span class="num" data-target="10000">0</span>
-      <p class="num-label">Human beings who have begun their remembrance</p>
+<!-- PROOF STRIP -->
+<section class="proof-strip">
+  <div class="proof-strip-inner">
+    <div class="proof-item reveal">
+      <span class="proof-stat">9 Years</span>
+      <span class="proof-label">Practising at the edge of what medicine thought possible</span>
     </div>
-    <div class="number-item reveal reveal-delay-1">
-      <span class="num" data-target="174">0</span>
-      <p class="num-label">Medical conditions treated at the root — not managed at the surface</p>
+    <div class="proof-item reveal reveal-delay-1">
+      <span class="proof-stat">174</span>
+      <span class="proof-label">Medical conditions treated at the root — not managed at the surface</span>
     </div>
-    <div class="number-item reveal reveal-delay-2">
-      <span class="num">1</span>
-      <p class="num-label">Conviction that has never wavered — your body was built for something divine</p>
+    <div class="proof-item reveal reveal-delay-2">
+      <span class="proof-stat">10,000+</span>
+      <span class="proof-label">Human beings who have begun their remembrance</span>
+    </div>
+    <div class="proof-item reveal reveal-delay-3">
+      <span class="proof-stat">800</span>
+      <span class="proof-label">Hours of ancient wisdom integrated with functional science</span>
+    </div>
+    <div class="proof-item reveal reveal-delay-3">
+      <span class="proof-stat">2× TEDx</span>
+      <span class="proof-label">Speaker — on consciousness, healing, and the future of the human body</span>
     </div>
   </div>
 </section>
@@ -1018,23 +1213,23 @@
   <div class="mission-text">
     <p class="section-tag reveal">The Mission</p>
     <h2 class="mission-headline reveal reveal-delay-1">
-      This is not a wellness brand.<br>
-      Wellness <em>optimizes</em> the human being.<br>
-      That is not what I am here to do.
+      This is not a wellness brand.
     </h2>
     <div class="mission-body reveal reveal-delay-2">
-      <p>I am here because we are at an inflection point in human evolution. A moment where the choice between continuing to sleepwalk — or waking up to the full magnitude of what we actually are — has never been more urgent or more possible.</p>
-      <p>The science is ready. The ancient wisdom has always been here. The human being — your body, your mind, your vital force, your soul — is capable of transformation so complete that the word healing doesn't begin to cover it.</p>
-      <p>Sri Aurobindo called it the divinization of life. I call it <strong>remembering</strong>.</p>
+      <p>We are at an inflection point in human evolution. A moment where the choice between continuing to sleepwalk — or waking up to the full magnitude of what we actually are — has never been more urgent or more possible.</p>
+      <p>The science is ready. The ancient wisdom has always been here. The human being — your body, your mind, your vital force, your soul — is capable of transformation so complete that the word <em>healing</em> doesn't begin to cover it.</p>
+      <p>Sri Aurobindo called it the divinization of life. The Vedas encoded it in three syllables. I have spent nine years watching it happen — in blood panels, in neurology, in the quiet moment when someone realises they were never broken.</p>
+      <p>I call it <strong>remembering</strong>.</p>
     </div>
     <p class="mission-attribution reveal reveal-delay-3">
-      — Mugdha Pradhan<br>
-      Functional Nutritionist. Consciousness Activist.<br>Founder & CEO, iThrive.
+      Sat. Chit. Ananda.<br>
+      Truth. Consciousness. Bliss.
     </p>
   </div>
 </section>
 
 <!-- CREDIBILITY -->
+<!-- TODO: Replace text labels with logo SVGs when assets are ready -->
 <section class="credibility-section">
   <p class="cred-label reveal">As Seen On & Spoken At</p>
   <div class="cred-logos reveal reveal-delay-1">
@@ -1048,18 +1243,18 @@
 </section>
 
 <!-- WHO FINDS THEIR WAY HERE -->
-<section class="audience-section" id="work">
+<section class="audience-section">
   <div class="audience-header">
-    <p class="section-tag" style="justify-content: center;" >Who Finds Their Way Here</p>
-    <h2>This is not for everyone.<br><em>It never was.</em></h2>
-    <p>Three conversations worth having.</p>
+    <p class="section-tag" style="justify-content: center;">Who Finds Their Way Here</p>
+    <h2>Who finds their way here</h2>
+    <p>This is not for everyone. It never was.</p>
   </div>
   <div class="audience-cards">
     <div class="audience-card reveal">
       <div>
         <p class="card-icon">Investor</p>
-        <h3 class="card-title">If you invest in the future of humanity</h3>
-        <p class="card-body">You are looking for the intersection of rigorous science, ancient wisdom and a founder whose conviction is unshakeable because it was forged in the laboratory of her own body and tested on thousands of others. Not a company — a category. Not a product — a paradigm shift.</p>
+        <h3 class="card-title">If you back paradigm shifts, not products</h3>
+        <p class="card-body">You are looking for the intersection of rigorous science, ancient wisdom, and a founder whose conviction was forged in the laboratory of her own body and tested on thousands of others. This is not a company building a supplement. This is a movement rewriting the story of human health. Not a product — a new paradigm. Not a market — a new category.</p>
       </div>
       <a href="#contact" class="card-link">Investor Inquiry</a>
     </div>
@@ -1067,7 +1262,7 @@
       <div>
         <p class="card-icon">Stage</p>
         <h3 class="card-title">If you curate stages where ideas change rooms</h3>
-        <p class="card-body">Your audience has heard the biohackers and the longevity brothers. They've heard the mindfulness teachers. They have not heard someone who stands at the precise intersection of functional science, consciousness evolution and ancient Vedic wisdom — and makes all three feel urgent and undeniable.</p>
+        <p class="card-body">Your audience has heard the biohackers and the longevity brothers. They have heard the mindfulness teachers and the metabolic coaches. They have not heard someone who stands at the precise intersection of functional science, consciousness evolution, and ancient Vedic wisdom — and makes all three feel urgent, undeniable, and actionable in a single breath.</p>
       </div>
       <a href="#contact" class="card-link">Speaking Inquiry</a>
     </div>
@@ -1075,7 +1270,7 @@
       <div>
         <p class="card-icon">Media</p>
         <h3 class="card-title">If you tell stories the world hasn't heard yet</h3>
-        <p class="card-body">The story of a woman who reversed an irreversible disease, built a movement, and is now attempting something medicine has never documented — the complete divinization of the human body — is not a wellness story. It is a story about what humanity is capable of.</p>
+        <p class="card-body">The story of a woman who reversed an irreversible disease, built a movement from a hospital bed, and is now attempting something medicine has never documented — the complete divinization of the human body — is not a wellness story. It is a story about what humanity is actually capable of, told by someone who has lived it.</p>
       </div>
       <a href="#contact" class="card-link">Media Inquiry</a>
     </div>
@@ -1085,18 +1280,93 @@
 <!-- STORY TEASER -->
 <section class="story-section">
   <div class="story-bg-number">2017</div>
-  <div class="story-inner">
-    <div class="story-meta reveal">
-      <span class="story-year">Pune, 2017</span>
-      <div class="story-line"></div>
+  <div class="story-grid">
+    <div class="story-inner">
+      <div class="story-meta reveal">
+        <span class="story-year">Pune, 2017</span>
+        <div class="story-line"></div>
+      </div>
+      <p class="story-quote reveal reveal-delay-1">
+        In 2017, I was the proof that everything<br>I believed was <em>wrong.</em>
+      </p>
+      <p class="story-body reveal reveal-delay-2">
+        Clinically depressed. Autoimmune. 37 kilograms overweight. A nutritionist who couldn't heal herself. I had built a practice telling people how to heal their bodies, and my own body was staging a revolt.
+      </p>
+      <p class="story-body reveal reveal-delay-2">
+        What happened next didn't just change my body. It dismantled everything I thought I knew about medicine, about healing, about what a human being actually is — and rebuilt it from the ground up.
+      </p>
+      <p class="story-body reveal reveal-delay-2">
+        The disease wasn't the problem. The disease was the doorway.
+      </p>
+      <a href="story.html" class="card-link reveal reveal-delay-3">Read the full story →</a>
     </div>
-    <p class="story-quote reveal reveal-delay-1">
-      In 2017, I was the proof that everything<br>I believed was <em>wrong.</em>
+    <div class="story-photo-col reveal reveal-delay-2">
+      <div class="photo-placeholder">
+        <p class="photo-placeholder-icon">Photograph</p>
+        <p class="photo-placeholder-text">
+          [PHOTO: Mugdha Pradhan — intimate portrait, documentary style.<br>
+          Warm, directional light. Vulnerability and strength.<br>
+          Filename: mugdha-portrait-story.jpg]
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE WORK -->
+<section class="work-section" id="work">
+  <div class="work-inner">
+    <p class="section-tag reveal">The Work</p>
+    <p class="work-quote reveal reveal-delay-1">"The body is not an obstacle to the spirit. It is its instrument."</p>
+    <p class="work-quote-attr reveal reveal-delay-1">— Sri Aurobindo</p>
+    <p class="work-intro reveal reveal-delay-2">
+      Alive 2.0 is not a programme. It is a complete recalibration of the human system — using the eight primal elements that govern every biological, neurological, and energetic process in the body. Ancient wisdom. Modern science. Zero compromise.
     </p>
-    <p class="story-body reveal reveal-delay-2">
-      Clinically depressed. Autoimmune. 37 kilograms overweight. A nutritionist who couldn't heal herself. What happened next didn't just change my body. It changed my understanding of what a human being actually is — and what it is capable of becoming.
-    </p>
-    <a href="story.html" class="card-link reveal reveal-delay-3">Read the full story</a>
+    <div class="element-grid">
+      <div class="element-card reveal">
+        <span class="element-symbol">☀</span>
+        <span class="element-name">Light</span>
+        <p class="element-desc">Circadian intelligence and the photobiology of healing</p>
+      </div>
+      <div class="element-card reveal reveal-delay-1">
+        <span class="element-symbol">◈</span>
+        <span class="element-name">Water</span>
+        <p class="element-desc">Cellular hydration, structured water, and the chemistry of vitality</p>
+      </div>
+      <div class="element-card reveal reveal-delay-1">
+        <span class="element-symbol">⬡</span>
+        <span class="element-name">Earth</span>
+        <p class="element-desc">The microbiome, mineral intelligence, and biological grounding</p>
+      </div>
+      <div class="element-card reveal reveal-delay-2">
+        <span class="element-symbol">♫</span>
+        <span class="element-name">Sound</span>
+        <p class="element-desc">Vibrational medicine and the frequency architecture of the nervous system</p>
+      </div>
+      <div class="element-card reveal reveal-delay-2">
+        <span class="element-symbol">∿</span>
+        <span class="element-name">Air</span>
+        <p class="element-desc">Breathwork, pranayama, and the biochemistry of prana</p>
+      </div>
+      <div class="element-card reveal reveal-delay-3">
+        <span class="element-symbol">△</span>
+        <span class="element-name">Fire</span>
+        <p class="element-desc">Metabolic transformation, agni, and the alchemy of digestion</p>
+      </div>
+      <div class="element-card reveal reveal-delay-3">
+        <span class="element-symbol">∞</span>
+        <span class="element-name">Sky</span>
+        <p class="element-desc">Akasha, space, and the field intelligence that connects all systems</p>
+      </div>
+      <div class="element-card reveal reveal-delay-3">
+        <span class="element-symbol">◎</span>
+        <span class="element-name">Consciousness</span>
+        <p class="element-desc">The master variable — the one the textbooks forgot to include</p>
+      </div>
+    </div>
+    <div class="work-cta reveal">
+      <a href="#contact" class="btn-crimson">Discover Alive 2.0</a>
+    </div>
   </div>
 </section>
 
@@ -1142,15 +1412,24 @@
   <div class="closing-bg"></div>
   <div class="closing-inner">
     <p class="section-tag reveal" style="justify-content: center;">The Next Stage</p>
+    <div class="photo-placeholder photo-placeholder--wide reveal">
+      <p class="photo-placeholder-icon">Photograph</p>
+      <p class="photo-placeholder-text">
+        [PHOTO: Mugdha Pradhan — powerful, authoritative portrait.<br>
+        Dark background, forward-facing. End-of-manifesto feel.<br>
+        Filename: mugdha-portrait-closing.jpg]
+      </p>
+    </div>
     <h2 class="closing-headline reveal reveal-delay-1">
-      The next stage of human evolution<br>is not <em>coming.</em><br>It is <em>here.</em>
+      The next stage of human evolution<br>
+      is not <em>coming.</em><br>
+      It is <em>here.</em>
     </h2>
     <p class="closing-sub reveal reveal-delay-2">And it runs directly through your body.</p>
     <p class="closing-attribution reveal reveal-delay-2">— Mugdha Pradhan</p>
     <div class="closing-ctas reveal reveal-delay-3">
       <a href="#" class="btn-primary">Join the Movement</a>
-      <a href="#" class="btn-secondary">Watch the TEDx</a>
-      <a href="#" class="btn-secondary">Get in Touch</a>
+      <a href="#contact" class="btn-crimson">Begin your remembrance</a>
     </div>
   </div>
 </section>
@@ -1235,10 +1514,11 @@
   }, { threshold: 0.5 });
   document.querySelectorAll('.num[data-target]').forEach(el => numObserver.observe(el));
 
-  // Fire canvas — additive particle blending
+  // Consciousness field — canvas sits ABOVE overlay (z-index:3, mix-blend-mode:screen)
+  // Dark canvas areas are transparent-equivalent; gold/amber areas add visible brightness.
   const canvas = document.getElementById('fire-canvas');
   const ctx = canvas.getContext('2d');
-  let W, H;
+  let W, H, T = 0;
 
   function resize() {
     W = canvas.width = canvas.offsetWidth;
@@ -1247,88 +1527,108 @@
   resize();
   window.addEventListener('resize', resize);
 
-  class FireParticle {
-    constructor(seed) { this.reset(seed); }
-
-    reset(seed) {
-      // Narrow column at bottom center — widens slightly higher up
-      const colW = W * 0.18;
-      this.x = W * 0.5 + (Math.random() - 0.5) * colW;
-      this.y = H * 0.88 + Math.random() * H * 0.12;
-      this.vx = (Math.random() - 0.5) * 0.55;
-      this.vy = -(Math.random() * 3.8 + 2.2);
-      this.maxLife = Math.random() * 80 + 55;
-      this.life = seed ? Math.floor(Math.random() * this.maxLife) : 0;
-      this.baseR = Math.random() * 3.5 + 1.5;   // 1.5 – 5 px
-      this.temp = Math.pow(Math.random(), 0.4);  // bias toward hotter
-      this.phase = Math.random() * Math.PI * 2;
-      this.freq = 0.06 + Math.random() * 0.07;
+  // ── Floating mote ─────────────────────────────────────────────────────────
+  class Mote {
+    constructor(scatter) { this.reset(scatter); }
+    reset(scatter) {
+      this.x       = Math.random() * W;
+      this.y       = scatter ? Math.random() * H : H + 8;
+      this.vy      = -(Math.random() * 0.20 + 0.06);
+      this.vx      = (Math.random() - 0.5) * 0.06;
+      this.r       = Math.random() * 1.3 + 0.4;
+      this.maxLife = Math.random() * 800 + 600;
+      this.life    = scatter ? Math.random() * this.maxLife : 0;
+      this.alpha   = Math.random() * 0.40 + 0.16;
+      this.sway    = Math.random() * Math.PI * 2;
+      this.sf      = 0.003 + Math.random() * 0.004;
+      this.mc      = Math.random() > 0.78 ? [238, 210, 140] : [201, 152, 74];
     }
-
-    update() {
+    step() {
       this.life++;
-      if (this.life >= this.maxLife) { this.reset(false); return; }
-      this.phase += this.freq;
-      this.x += this.vx + Math.sin(this.phase) * 0.65;
+      if (this.life > this.maxLife || this.y < -12) { this.reset(false); return; }
+      this.sway += this.sf;
+      this.x += this.vx + Math.sin(this.sway) * 0.12;
       this.y += this.vy;
-      this.vy -= 0.028;   // convective acceleration
-      this.vx *= 0.98;
+      if (this.x < -5) this.x = W + 5;
+      if (this.x > W + 5) this.x = -5;
     }
-
     draw() {
-      const t = this.life / this.maxLife;
-      const fade = t < 0.18 ? t / 0.18 : t > 0.62 ? 1 - (t - 0.62) / 0.38 : 1;
-      if (fade < 0.02) return;
-
-      // Heat drops as particle rises
-      const heat = this.temp * (1 - t * 0.88);
-
-      // Fire colour palette
-      let r, g, b;
-      if      (heat > 0.72) { r = 255; g = 230; b = 140; }  // hot white-yellow
-      else if (heat > 0.52) { r = 255; g = 165; b = 30;  }  // golden orange
-      else if (heat > 0.32) { r = 255; g = 95;  b = 8;   }  // orange
-      else if (heat > 0.14) { r = 215; g = 55;  b = 5;   }  // deep orange-red
-      else                  { r = 140; g = 30;  b = 4;   }  // dark red-amber
-
-      const sz = this.baseR * (1 + Math.sin(t * Math.PI) * 0.45);
-
-      // Additive blending: overlapping particles ADD colour → bright fire core
-      ctx.globalCompositeOperation = 'lighter';
-
-      // Bright inner core
-      ctx.globalAlpha = fade * 0.42;
-      const g1 = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, sz * 3);
-      g1.addColorStop(0,    `rgb(${r},${g},${b})`);
-      g1.addColorStop(0.45, `rgba(${r},${Math.floor(g * 0.3)},0,0.5)`);
-      g1.addColorStop(1,    `rgba(${r},0,0,0)`);
-      ctx.fillStyle = g1;
+      const p    = this.life / this.maxLife;
+      const fade = p < 0.10 ? p / 0.10 : p > 0.80 ? (1 - p) / 0.20 : 1;
+      const a    = this.alpha * fade;
+      if (a < 0.01) return;
+      const [mr, mg, mb] = this.mc;
+      // glow halo
+      const grd = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.r * 6);
+      grd.addColorStop(0,    `rgba(${mr},${mg},${mb},${a})`);
+      grd.addColorStop(0.45, `rgba(${mr},${mg},${mb},${a * 0.25})`);
+      grd.addColorStop(1,    `rgba(${mr},${mg},${mb},0)`);
+      ctx.fillStyle = grd;
       ctx.beginPath();
-      ctx.arc(this.x, this.y, sz * 3, 0, Math.PI * 2);
+      ctx.arc(this.x, this.y, this.r * 6, 0, 6.283);
       ctx.fill();
-
-      // Soft atmospheric bloom
-      ctx.globalAlpha = fade * 0.09;
-      const g2 = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, sz * 14);
-      g2.addColorStop(0, `rgb(${r},${Math.floor(g * 0.22)},0)`);
-      g2.addColorStop(1, `rgba(${r},0,0,0)`);
-      ctx.fillStyle = g2;
+      // hard core
+      ctx.globalAlpha = a;
+      ctx.fillStyle = `rgb(${mr},${mg},${mb})`;
       ctx.beginPath();
-      ctx.arc(this.x, this.y, sz * 14, 0, Math.PI * 2);
+      ctx.arc(this.x, this.y, this.r, 0, 6.283);
       ctx.fill();
-
-      ctx.globalCompositeOperation = 'source-over';
       ctx.globalAlpha = 1;
     }
   }
 
-  const fireParticles = [];
-  for (let i = 0; i < 520; i++) fireParticles.push(new FireParticle(true));
+  // ── Drifting ambient orbs (large radial glows that slowly wander) ─────────
+  const ORBS = [
+    { bx:0.50, by:0.60, ax:0.10, ay:0.08, sx:0.08, sy:0.06, r:0.70, or:[201,152,74], oa:0.38 },
+    { bx:0.30, by:0.68, ax:0.12, ay:0.05, sx:0.11, sy:0.09, r:0.50, or:[180,112,40], oa:0.26 },
+    { bx:0.70, by:0.52, ax:0.08, ay:0.09, sx:0.07, sy:0.12, r:0.46, or:[139,  0, 0], oa:0.24 },
+  ];
+
+  function drawOrbs(t) {
+    ORBS.forEach(o => {
+      const cx  = W * (o.bx + Math.sin(t * o.sx) * o.ax);
+      const cy  = H * (o.by + Math.cos(t * o.sy) * o.ay);
+      const rad = Math.min(W, H) * o.r;
+      const grd = ctx.createRadialGradient(cx, cy, 0, cx, cy, rad);
+      grd.addColorStop(0,    `rgba(${o.or[0]},${o.or[1]},${o.or[2]},${o.oa})`);
+      grd.addColorStop(0.45, `rgba(${o.or[0]},${o.or[1]},${o.or[2]},${o.oa * 0.28})`);
+      grd.addColorStop(1,    `rgba(${o.or[0]},${o.or[1]},${o.or[2]},0)`);
+      ctx.fillStyle = grd;
+      ctx.fillRect(0, 0, W, H);
+    });
+  }
+
+  // ── Horizontal aurora bands — simple rect + vertical gradient (reliable) ──
+  // cy oscillates with time; gradient follows cy so it's always centred on the band.
+  const BANDS = [
+    { by:0.52, amp:0.06, spd:0.14, br:[201,152,74], bh:0.32, peak:0.48 },
+    { by:0.68, amp:0.05, spd:0.10, br:[180,112,40], bh:0.26, peak:0.38 },
+    { by:0.36, amp:0.07, spd:0.18, br:[139,  0, 0], bh:0.24, peak:0.30 },
+  ];
+
+  function drawBands(t) {
+    BANDS.forEach(bd => {
+      const cy   = H * (bd.by + Math.sin(t * bd.spd) * bd.amp);
+      const half = H * bd.bh * 0.5;
+      // gradient centred on actual cy (not a fixed position)
+      const grad = ctx.createLinearGradient(0, cy - half, 0, cy + half);
+      grad.addColorStop(0,    `rgba(${bd.br[0]},${bd.br[1]},${bd.br[2]},0)`);
+      grad.addColorStop(0.38, `rgba(${bd.br[0]},${bd.br[1]},${bd.br[2]},${bd.peak})`);
+      grad.addColorStop(0.62, `rgba(${bd.br[0]},${bd.br[1]},${bd.br[2]},${bd.peak})`);
+      grad.addColorStop(1,    `rgba(${bd.br[0]},${bd.br[1]},${bd.br[2]},0)`);
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, cy - half, W, half * 2);
+    });
+  }
+
+  const motes = Array.from({ length: 220 }, () => new Mote(true));
 
   function loop() {
-    ctx.fillStyle = 'rgba(7,6,10,0.22)';
-    ctx.fillRect(0, 0, W, H);
-    fireParticles.forEach(p => { p.update(); p.draw(); });
+    T += 0.009;
+    ctx.clearRect(0, 0, W, H);
+    drawOrbs(T);
+    drawBands(T);
+    motes.forEach(m => { m.step(); m.draw(); });
     requestAnimationFrame(loop);
   }
   loop();
