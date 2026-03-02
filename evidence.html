@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Evidence — Mugdha Pradhan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Cinzel:wght@400;500;600;700&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #07060a;
+    --deep: #0d0b14;
+    --charcoal: #161320;
+    --gold: #c9984a;
+    --gold-light: #e8c07e;
+    --gold-dim: rgba(201, 152, 74, 0.15);
+    --amber: #d4803a;
+    --cream: #f0e8d8;
+    --white: #faf8f4;
+    --muted: rgba(240, 232, 216, 0.45);
+    --border: rgba(201, 152, 74, 0.2);
+    --crimson: #8B0000;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black);
+    color: var(--cream);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* === CURSOR === */
+  .cursor {
+    position: fixed; width: 8px; height: 8px;
+    background: var(--gold); border-radius: 50%;
+    pointer-events: none; z-index: 9999;
+    transition: transform 0.1s ease;
+    transform: translate(-50%, -50%);
+  }
+  .cursor-ring {
+    position: fixed; width: 36px; height: 36px;
+    border: 1px solid rgba(201, 152, 74, 0.5); border-radius: 50%;
+    pointer-events: none; z-index: 9998;
+    transition: transform 0.18s ease, width 0.2s ease, height 0.2s ease, opacity 0.2s ease;
+    transform: translate(-50%, -50%);
+  }
+
+  /* === GRAIN === */
+  .grain {
+    position: fixed; inset: -50%;
+    width: 200%; height: 200%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: 0.35; pointer-events: none; z-index: 999;
+    animation: grain-move 8s steps(10) infinite;
+  }
+  @keyframes grain-move {
+    0%, 100% { transform: translate(0, 0); }
+    10% { transform: translate(-2%, -3%); }
+    20% { transform: translate(3%, 1%); }
+    30% { transform: translate(-1%, 4%); }
+    40% { transform: translate(2%, -2%); }
+    50% { transform: translate(-3%, 2%); }
+    60% { transform: translate(1%, -4%); }
+    70% { transform: translate(-2%, 3%); }
+    80% { transform: translate(3%, -1%); }
+    90% { transform: translate(-1%, -3%); }
+  }
+
+  /* === NAV === */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100; padding: 2rem 4rem;
+    display: flex; align-items: center; justify-content: space-between;
+    transition: background 0.4s ease, padding 0.4s ease;
+  }
+  nav.scrolled {
+    background: rgba(7, 6, 10, 0.92);
+    backdrop-filter: blur(12px);
+    padding: 1.2rem 4rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Cinzel', serif; font-size: 0.78rem;
+    letter-spacing: 0.25em; color: var(--gold-light); text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--muted); text-decoration: none; transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+  .nav-links a.active { color: var(--gold-light); }
+
+  /* === HERO === */
+  .hero {
+    position: relative; height: 100vh; min-height: 700px;
+    display: flex; align-items: center; justify-content: center; overflow: hidden;
+  }
+  #ember-canvas {
+    position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0;
+  }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 70% at 50% 60%, transparent 0%, rgba(7,6,10,0.55) 60%, rgba(7,6,10,0.97) 100%),
+      linear-gradient(to bottom, rgba(7,6,10,0.5) 0%, transparent 30%, transparent 65%, rgba(7,6,10,0.95) 100%);
+    z-index: 1;
+  }
+  .hero-content {
+    position: relative; z-index: 2; text-align: center;
+    padding: 0 2rem; max-width: 900px;
+  }
+  .hero-eyebrow {
+    font-family: 'Cinzel', serif; font-size: 0.65rem;
+    letter-spacing: 0.35em; color: var(--gold); text-transform: uppercase;
+    opacity: 0; animation: fade-up 1s ease 0.3s forwards; margin-bottom: 2.5rem;
+  }
+  .hero-headline {
+    font-family: 'Cormorant Garamond', serif; font-weight: 300;
+    font-size: clamp(4rem, 10vw, 8.5rem); line-height: 1;
+    letter-spacing: -0.01em; color: var(--white);
+    opacity: 0; animation: fade-up 1.2s ease 0.55s forwards;
+  }
+  .hero-headline em { font-style: italic; color: var(--gold-light); }
+  .hero-divider {
+    width: 1px; height: 60px;
+    background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+    margin: 2.5rem auto; opacity: 0; animation: fade-in 1s ease 1s forwards;
+  }
+  .hero-sub {
+    font-family: 'Cormorant Garamond', serif; font-weight: 300; font-style: italic;
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem); line-height: 1.8;
+    color: rgba(240, 232, 216, 0.7); max-width: 540px; margin: 0 auto;
+    letter-spacing: 0.04em; opacity: 0; animation: fade-up 1s ease 1.1s forwards;
+  }
+  .hero-cta {
+    margin-top: 3.5rem; opacity: 0; animation: fade-up 1s ease 1.4s forwards;
+  }
+  .btn-enter {
+    display: inline-block; font-family: 'Cinzel', serif; font-size: 0.72rem;
+    letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold-light);
+    text-decoration: none; border: 1px solid var(--gold); padding: 1.1rem 3rem;
+    position: relative; overflow: hidden; transition: color 0.4s ease;
+  }
+  .btn-enter::before {
+    content: ''; position: absolute; inset: 0;
+    background: var(--gold); transform: translateX(-100%);
+    transition: transform 0.4s ease; z-index: -1;
+  }
+  .btn-enter:hover::before { transform: translateX(0); }
+  .btn-enter:hover { color: var(--black); }
+  .scroll-indicator {
+    position: absolute; bottom: 2.5rem; left: 50%;
+    transform: translateX(-50%); z-index: 2;
+    opacity: 0; animation: fade-in 1s ease 2s forwards;
+  }
+  .scroll-indicator span {
+    display: block; width: 1px; height: 50px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    margin: 0 auto; animation: scroll-pulse 2s ease-in-out infinite;
+  }
+  @keyframes scroll-pulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.2); }
+  }
+
+  /* === SECTION TAG === */
+  .section-tag {
+    font-family: 'Cinzel', serif; font-size: 0.6rem;
+    letter-spacing: 0.35em; color: var(--gold); text-transform: uppercase;
+    margin-bottom: 3rem; display: flex; align-items: center; gap: 1.5rem;
+  }
+  .section-tag::after {
+    content: ''; flex: 1; max-width: 60px; height: 1px;
+    background: var(--gold); opacity: 0.4;
+  }
+
+  /* === TALKS SECTION === */
+  .talks-section {
+    background: var(--black); padding: 10rem 0 8rem;
+    border-top: 1px solid var(--border);
+  }
+  .talks-inner { max-width: 1200px; margin: 0 auto; padding: 0 4rem; }
+
+  .talks-header {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: end; margin-bottom: 5rem;
+  }
+  .talks-intro-headline {
+    font-family: 'Cormorant Garamond', serif; font-weight: 300;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem); line-height: 1.35; color: var(--cream);
+  }
+  .talks-intro-headline em { font-style: italic; color: var(--gold-light); }
+  .talks-intro-body {
+    font-size: 0.95rem; line-height: 2;
+    color: rgba(240, 232, 216, 0.55);
+  }
+
+  /* TEDx full-bleed video grid */
+  .tedx-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 3px; background: var(--border);
+    margin: 0 -4rem 5rem;
+  }
+  .tedx-card { background: var(--black); }
+  .tedx-video-wrap {
+    position: relative; width: 100%; padding-bottom: 56.25%;
+    background: #010009; overflow: hidden;
+  }
+  .tedx-video-wrap iframe {
+    position: absolute; inset: 0; width: 100%; height: 100%; border: none;
+  }
+  .tedx-info {
+    padding: 2rem 2.5rem 2.5rem;
+    border-top: 1px solid rgba(201, 152, 74, 0.1);
+    display: flex; align-items: flex-start; justify-content: space-between; gap: 1.5rem;
+  }
+  .tedx-meta-left {}
+  .tedx-type {
+    font-family: 'Cinzel', serif; font-size: 0.55rem;
+    letter-spacing: 0.3em; color: var(--gold); text-transform: uppercase;
+    display: block; margin-bottom: 0.6rem;
+  }
+  .tedx-title {
+    font-family: 'Cormorant Garamond', serif; font-weight: 400;
+    font-size: clamp(1.05rem, 1.5vw, 1.3rem); line-height: 1.4; color: var(--cream);
+  }
+  .tedx-year {
+    font-family: 'Cinzel', serif; font-size: 0.55rem;
+    letter-spacing: 0.2em; color: var(--muted);
+    text-transform: uppercase; white-space: nowrap;
+    flex-shrink: 0; align-self: flex-end;
+  }
+
+  /* Speaking engagements list */
+  .speaking-wrap { margin-top: 1rem; }
+  .speaking-header-label {
+    font-family: 'Cinzel', serif; font-size: 0.58rem;
+    letter-spacing: 0.32em; color: var(--gold); text-transform: uppercase;
+    margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1.5rem;
+  }
+  .speaking-header-label::after {
+    content: ''; flex: 1; height: 1px; background: var(--gold); opacity: 0.2;
+  }
+  .speaking-list { border-top: 1px solid rgba(201, 152, 74, 0.15); }
+  .speaking-item {
+    display: grid; grid-template-columns: minmax(160px, auto) 1fr auto;
+    gap: 2.5rem; padding: 1.6rem 0;
+    border-bottom: 1px solid rgba(201, 152, 74, 0.06);
+    align-items: center;
+    transition: padding-left 0.3s ease;
+  }
+  .speaking-item:hover { padding-left: 0.8rem; }
+  .speaking-event {
+    font-family: 'Cinzel', serif; font-size: 0.68rem;
+    letter-spacing: 0.18em; color: var(--gold-light); text-transform: uppercase;
+  }
+  .speaking-topic {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: clamp(0.95rem, 1.4vw, 1.15rem); color: rgba(240, 232, 216, 0.65);
+  }
+  .speaking-year {
+    font-family: 'Cinzel', serif; font-size: 0.58rem;
+    letter-spacing: 0.15em; color: var(--muted); text-transform: uppercase;
+    text-align: right;
+  }
+
+  /* === MEDIA SECTION === */
+  .media-section {
+    background: var(--charcoal); padding: 10rem 4rem;
+    border-top: 1px solid var(--border); position: relative; overflow: hidden;
+  }
+  .media-section::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 40% at 50% 0%, rgba(139,0,0,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .media-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+  .media-intro {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 6rem; align-items: start; margin-bottom: 6rem;
+  }
+  .media-intro-headline {
+    font-family: 'Cormorant Garamond', serif; font-weight: 300;
+    font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.25; color: var(--cream);
+  }
+  .media-intro-headline em { font-style: italic; color: var(--gold-light); }
+  .media-intro-body {
+    font-size: 0.95rem; line-height: 2;
+    color: rgba(240, 232, 216, 0.5); padding-top: 0.5rem;
+  }
+
+  .media-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 2px; background: rgba(201, 152, 74, 0.07);
+    border: 1px solid rgba(201, 152, 74, 0.07);
+  }
+  .media-card {
+    background: var(--charcoal); padding: 3rem;
+    position: relative; overflow: hidden; transition: background 0.4s;
+  }
+  .media-card:hover { background: rgba(10, 8, 16, 0.6); }
+  .media-card-accent {
+    position: absolute; top: 0; left: 0; width: 3px; height: 100%;
+    background: var(--crimson); transform: scaleY(0); transform-origin: top;
+    transition: transform 0.5s ease;
+  }
+  .media-card:hover .media-card-accent { transform: scaleY(1); }
+  .media-pub-name {
+    font-family: 'Cinzel', serif; font-size: 0.6rem;
+    letter-spacing: 0.32em; color: var(--gold); text-transform: uppercase;
+    margin-bottom: 2rem; display: block;
+  }
+  .media-quote {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: clamp(1.15rem, 1.7vw, 1.4rem); line-height: 1.55;
+    color: var(--cream); margin-bottom: 2rem;
+    border-left: 2px solid var(--crimson); padding-left: 1.5rem;
+  }
+  .media-link {
+    font-family: 'Cinzel', serif; font-size: 0.58rem;
+    letter-spacing: 0.25em; color: rgba(201, 152, 74, 0.45);
+    text-decoration: none; text-transform: uppercase;
+    transition: color 0.3s;
+    display: inline-flex; align-items: center; gap: 0.6rem;
+  }
+  .media-link:hover { color: var(--gold-light); }
+  .media-link::after { content: '→'; font-style: normal; }
+
+  /* === RESEARCH SECTION === */
+  .research-section {
+    background: var(--black); padding: 10rem 4rem;
+    border-top: 1px solid var(--border);
+  }
+  .research-inner { max-width: 1200px; margin: 0 auto; }
+  .research-header {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 6rem; align-items: start; margin-bottom: 6rem;
+  }
+  .research-headline {
+    font-family: 'Cormorant Garamond', serif; font-weight: 300;
+    font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.25; color: var(--cream);
+  }
+  .research-headline em { font-style: italic; color: var(--gold-light); }
+  .research-body {
+    font-size: 0.95rem; line-height: 2;
+    color: rgba(240, 232, 216, 0.5); padding-top: 0.5rem;
+  }
+
+  .research-list { border-top: 1px solid var(--border); }
+  .paper-item {
+    display: grid; grid-template-columns: 3rem 1fr auto;
+    gap: 2.5rem; padding: 3.5rem 0;
+    border-bottom: 1px solid rgba(201, 152, 74, 0.08);
+    align-items: start;
+    transition: background 0.3s;
+  }
+  .paper-item:hover {
+    background: rgba(201, 152, 74, 0.02);
+    margin: 0 -1.5rem; padding-left: 1.5rem; padding-right: 1.5rem;
+  }
+  .paper-num {
+    font-family: 'Cinzel', serif; font-size: 0.56rem;
+    letter-spacing: 0.2em; color: rgba(201, 152, 74, 0.25);
+    padding-top: 0.35rem; white-space: nowrap;
+  }
+  .paper-content {}
+  .paper-title {
+    font-family: 'Cormorant Garamond', serif; font-weight: 400;
+    font-size: clamp(1.05rem, 1.6vw, 1.35rem); line-height: 1.5;
+    color: var(--cream); margin-bottom: 0.7rem;
+  }
+  .paper-citation {
+    font-family: 'Cinzel', serif; font-size: 0.56rem;
+    letter-spacing: 0.18em; color: var(--gold); text-transform: uppercase;
+    margin-bottom: 1.2rem; display: block;
+  }
+  .paper-abstract {
+    font-size: 0.875rem; line-height: 1.9;
+    color: rgba(240, 232, 216, 0.4); max-width: 660px;
+  }
+  .paper-link {
+    font-family: 'Cinzel', serif; font-size: 0.58rem;
+    letter-spacing: 0.22em; color: rgba(201, 152, 74, 0.45);
+    text-decoration: none; text-transform: uppercase;
+    white-space: nowrap; padding-top: 0.35rem;
+    transition: color 0.3s;
+    display: inline-flex; align-items: flex-start; gap: 0.5rem;
+  }
+  .paper-link:hover { color: var(--gold-light); }
+  .paper-link::after { content: '→'; }
+
+  /* === NUMBERS SECTION === */
+  .numbers-section {
+    background: var(--deep); padding: 10rem 4rem;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    position: relative; overflow: hidden;
+  }
+  .numbers-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 70% at 50% 50%, rgba(201, 152, 74, 0.04) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .numbers-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+  .numbers-intro {
+    text-align: center; margin-bottom: 6rem;
+  }
+  .numbers-title {
+    font-family: 'Cormorant Garamond', serif; font-weight: 300; font-style: italic;
+    font-size: clamp(1.4rem, 2.5vw, 2rem); color: rgba(240, 232, 216, 0.5);
+    letter-spacing: 0.02em;
+  }
+
+  .numbers-grid {
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    border: 1px solid rgba(201, 152, 74, 0.15);
+  }
+  .number-item {
+    padding: 4rem 2rem; text-align: center;
+    border-right: 1px solid rgba(201, 152, 74, 0.15);
+    position: relative; overflow: hidden;
+    transition: background 0.4s;
+  }
+  .number-item:last-child { border-right: none; }
+  .number-item:hover { background: rgba(201, 152, 74, 0.03); }
+  .number-item::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    transform: scaleX(0); transition: transform 0.5s ease;
+  }
+  .number-item:hover::after { transform: scaleX(1); }
+  .number-stat {
+    font-family: 'Cormorant Garamond', serif; font-weight: 300;
+    font-size: clamp(2.8rem, 3.5vw, 4.2rem); color: var(--gold-light);
+    line-height: 1; display: block; letter-spacing: -0.02em; margin-bottom: 1.2rem;
+  }
+  .number-label {
+    font-family: 'Cinzel', serif; font-size: 0.5rem;
+    color: var(--muted); text-transform: uppercase;
+    letter-spacing: 0.12em; line-height: 1.9; display: block;
+    max-width: 120px; margin: 0 auto;
+  }
+
+  /* === BOOK SECTION === */
+  .book-section {
+    background: var(--charcoal); padding: 12rem 4rem;
+    border-top: 1px solid var(--border); position: relative; overflow: hidden;
+  }
+  .book-section::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse 50% 60% at 80% 50%, rgba(201, 152, 74, 0.04) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .book-inner {
+    max-width: 1200px; margin: 0 auto; position: relative; z-index: 1;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 9rem; align-items: center;
+  }
+
+  .book-cover-wrap { position: relative; }
+  .book-cover-visual {
+    background: var(--black); border: 1px solid var(--border);
+    aspect-ratio: 2/3;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .book-cover-visual::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 40% at 50% 25%, rgba(201, 152, 74, 0.09) 0%, transparent 70%),
+      linear-gradient(to bottom, rgba(201, 152, 74, 0.04) 0%, transparent 60%);
+  }
+  .book-cover-ornament {
+    position: absolute; top: 2rem; left: 50%; transform: translateX(-50%);
+    font-family: 'Cinzel', serif; font-size: 0.5rem;
+    letter-spacing: 0.5em; color: var(--gold); opacity: 0.35;
+    text-transform: uppercase; white-space: nowrap;
+  }
+  .book-cover-content {
+    position: relative; z-index: 1; text-align: center; padding: 3rem;
+  }
+  .book-cover-line {
+    width: 36px; height: 1px; background: var(--gold); opacity: 0.4;
+    margin: 0 auto 2.5rem;
+  }
+  .book-cover-title {
+    font-family: 'Cormorant Garamond', serif; font-weight: 400;
+    font-size: clamp(2.5rem, 4vw, 3.8rem); line-height: 1;
+    color: var(--white); letter-spacing: 0.08em; display: block; margin-bottom: 1.2rem;
+  }
+  .book-cover-sub {
+    font-family: 'Cinzel', serif; font-size: 0.55rem;
+    letter-spacing: 0.38em; color: var(--gold); text-transform: uppercase;
+    display: block; margin-bottom: 2.5rem; line-height: 1.8;
+  }
+  .book-cover-author {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: 1.05rem; color: rgba(240, 232, 216, 0.45); display: block;
+  }
+  .book-cover-line2 {
+    width: 36px; height: 1px; background: var(--gold); opacity: 0.4;
+    margin: 2.5rem auto 0;
+  }
+  .book-cover-wrap::after {
+    content: ''; position: absolute;
+    bottom: -1.5rem; left: 1.5rem; right: -1.5rem; top: 1.5rem;
+    border: 1px solid rgba(201, 152, 74, 0.12); z-index: -1;
+  }
+
+  .book-content {}
+  .book-headline {
+    font-family: 'Cormorant Garamond', serif; font-weight: 300;
+    font-size: clamp(2rem, 3.5vw, 3rem); line-height: 1.25;
+    color: var(--cream); margin-bottom: 2.5rem;
+  }
+  .book-headline em { font-style: italic; color: var(--gold-light); }
+  .book-description {
+    font-size: 0.95rem; line-height: 2;
+    color: rgba(240, 232, 216, 0.58); margin-bottom: 2rem;
+  }
+  .book-ctas {
+    display: flex; gap: 1.5rem; margin-bottom: 4rem; flex-wrap: wrap;
+  }
+  .btn-primary {
+    display: inline-block; font-family: 'Cinzel', serif; font-size: 0.68rem;
+    letter-spacing: 0.3em; text-transform: uppercase; color: var(--black);
+    background: var(--gold); padding: 1rem 2.5rem; text-decoration: none;
+    transition: background 0.3s;
+  }
+  .btn-primary:hover { background: var(--gold-light); }
+  .btn-secondary {
+    display: inline-block; font-family: 'Cinzel', serif; font-size: 0.68rem;
+    letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold-light);
+    border: 1px solid var(--border); padding: 1rem 2.5rem; text-decoration: none;
+    transition: border-color 0.3s, color 0.3s;
+  }
+  .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+
+  .book-reviews { border-top: 1px solid var(--border); padding-top: 2.5rem; }
+  .book-reviews-label {
+    font-family: 'Cinzel', serif; font-size: 0.55rem;
+    letter-spacing: 0.3em; color: var(--muted); text-transform: uppercase;
+    margin-bottom: 1.5rem; display: block;
+  }
+  .review-item {
+    padding: 1.5rem 0; border-bottom: 1px solid rgba(201, 152, 74, 0.06);
+  }
+  .review-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .review-quote {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: 1.05rem; line-height: 1.65; color: rgba(240, 232, 216, 0.7);
+    margin-bottom: 0.6rem;
+  }
+  .review-attr {
+    font-family: 'Cinzel', serif; font-size: 0.54rem;
+    letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase;
+  }
+
+  /* === FOOTER === */
+  footer {
+    padding: 3rem 4rem; border-top: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 2rem;
+  }
+  .footer-logo { font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 0.25em; color: var(--gold-light); }
+  .footer-quote { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 0.9rem; color: var(--muted); text-align: center; }
+  .footer-links { display: flex; gap: 2rem; list-style: none; }
+  .footer-links a { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.3s; }
+  .footer-links a:hover { color: var(--gold-light); }
+  .footer-copy { width: 100%; text-align: center; font-size: 0.68rem; color: rgba(240, 232, 216, 0.2); letter-spacing: 0.1em; padding-top: 2rem; border-top: 1px solid rgba(201, 152, 74, 0.08); margin-top: 1rem; }
+
+  /* === ANIMATIONS === */
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fade-in {
+    from { opacity: 0; } to { opacity: 1; }
+  }
+  .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.9s ease, transform 0.9s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.15s; }
+  .reveal-delay-2 { transition-delay: 0.3s; }
+  .reveal-delay-3 { transition-delay: 0.45s; }
+
+  /* === RESPONSIVE === */
+  @media (max-width: 900px) {
+    .talks-header { grid-template-columns: 1fr; gap: 2rem; }
+    .tedx-grid { grid-template-columns: 1fr; margin: 0 0 4rem; }
+    .media-intro { grid-template-columns: 1fr; gap: 2.5rem; }
+    .media-grid { grid-template-columns: 1fr; }
+    .research-header { grid-template-columns: 1fr; gap: 2.5rem; }
+    .numbers-grid { grid-template-columns: repeat(3, 1fr); }
+    .number-item:nth-child(3) { border-right: none; }
+    .number-item:nth-child(4) { border-top: 1px solid rgba(201,152,74,0.15); }
+    .number-item:nth-child(5) { border-top: 1px solid rgba(201,152,74,0.15); border-right: none; }
+    .book-inner { grid-template-columns: 1fr; gap: 5rem; }
+    .book-cover-wrap { max-width: 320px; }
+  }
+  @media (max-width: 768px) {
+    nav { padding: 1.5rem 2rem; }
+    nav.scrolled { padding: 1rem 2rem; }
+    .nav-links { display: none; }
+    .talks-section { padding: 6rem 0 5rem; }
+    .talks-inner { padding: 0 2rem; }
+    .tedx-grid { margin: 0 0 3rem; }
+    .media-section, .research-section, .book-section { padding: 6rem 2rem; }
+    .numbers-section { padding: 6rem 2rem; }
+    .numbers-grid { grid-template-columns: 1fr 1fr; }
+    .number-item:nth-child(2) { border-right: none; }
+    .number-item:nth-child(3) { border-right: 1px solid rgba(201,152,74,0.15); border-top: 1px solid rgba(201,152,74,0.15); }
+    .number-item:nth-child(4) { border-top: 1px solid rgba(201,152,74,0.15); }
+    .number-item:nth-child(5) { border-top: 1px solid rgba(201,152,74,0.15); border-right: none; }
+    .speaking-item { grid-template-columns: 1fr 1fr; gap: 1rem 2rem; }
+    .speaking-year { text-align: right; }
+    .speaking-topic { grid-column: 1 / -1; }
+    .paper-item { grid-template-columns: 1fr; gap: 1.2rem; }
+    .paper-num, .paper-link { display: none; }
+    footer { padding: 2rem; flex-direction: column; align-items: flex-start; }
+  }
+  @media (max-width: 480px) {
+    .numbers-grid { grid-template-columns: 1fr; }
+    .number-item { border-right: none !important; border-top: 1px solid rgba(201,152,74,0.15) !important; }
+    .number-item:first-child { border-top: none !important; }
+    .book-cover-wrap { max-width: 260px; }
+    .speaking-item { grid-template-columns: 1fr; }
+    .speaking-year { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+<div class="grain"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="index.html" class="nav-logo">Mugdha Pradhan</a>
+  <ul class="nav-links">
+    <li><a href="story.html">The Story</a></li>
+    <li><a href="mission.html">The Mission</a></li>
+    <li><a href="work.html">The Work</a></li>
+    <li><a href="evidence.html" class="active">The Evidence</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <canvas id="ember-canvas"></canvas>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">The Evidence</p>
+    <h1 class="hero-headline">
+      The proof<br>of the <em>possible</em>
+    </h1>
+    <div class="hero-divider"></div>
+    <p class="hero-sub">Nine years. Clinical precision. Published research. Spoken from stages. Written into a book.</p>
+    <div class="hero-cta">
+      <a href="#talks" class="btn-enter">Examine the Evidence</a>
+    </div>
+  </div>
+  <div class="scroll-indicator"><span></span></div>
+</section>
+
+<!-- ═══════════════════════════════ TALKS ═══════════════════════════════ -->
+<section class="talks-section" id="talks">
+  <div class="talks-inner">
+    <p class="section-tag reveal">On Stage</p>
+
+    <div class="talks-header">
+      <h2 class="talks-intro-headline reveal">
+        The ideas that stopped<br>a room — and <em>started</em><br>a movement.
+      </h2>
+      <p class="talks-intro-body reveal reveal-delay-1">
+        Two TEDx talks. A Josh Talks appearance. Stages across India. Each time, the same invitation: to see the human body — and the human being — completely differently.
+      </p>
+    </div>
+  </div>
+
+  <!-- Full-bleed TEDx videos -->
+  <div class="tedx-grid reveal">
+    <div class="tedx-card">
+      <div class="tedx-video-wrap">
+        <!-- Replace TEDX_VIDEO_ID_1 with the actual YouTube video ID -->
+        <iframe
+          src="https://www.youtube.com/embed/TEDX_VIDEO_ID_1"
+          title="TEDx Talk 1 — Mugdha Pradhan"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          loading="lazy">
+        </iframe>
+      </div>
+      <div class="tedx-info">
+        <div class="tedx-meta-left">
+          <span class="tedx-type">TEDx Talk</span>
+          <p class="tedx-title">Talk Title — Replace with Actual Title</p>
+        </div>
+        <span class="tedx-year">Year · Location</span>
+      </div>
+    </div>
+    <div class="tedx-card">
+      <div class="tedx-video-wrap">
+        <!-- Replace TEDX_VIDEO_ID_2 with the actual YouTube video ID -->
+        <iframe
+          src="https://www.youtube.com/embed/TEDX_VIDEO_ID_2"
+          title="TEDx Talk 2 — Mugdha Pradhan"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          loading="lazy">
+        </iframe>
+      </div>
+      <div class="tedx-info">
+        <div class="tedx-meta-left">
+          <span class="tedx-type">TEDx Talk</span>
+          <p class="tedx-title">Talk Title — Replace with Actual Title</p>
+        </div>
+        <span class="tedx-year">Year · Location</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Speaking engagements -->
+  <div class="talks-inner">
+    <div class="speaking-wrap reveal">
+      <p class="speaking-header-label">Further Speaking Engagements</p>
+      <div class="speaking-list">
+        <div class="speaking-item">
+          <span class="speaking-event">Josh Talks</span>
+          <span class="speaking-topic">Talk Topic — Replace with Actual Topic</span>
+          <span class="speaking-year">Year</span>
+        </div>
+        <div class="speaking-item">
+          <span class="speaking-event">Event Name</span>
+          <span class="speaking-topic">Talk Topic — Replace with Actual Topic</span>
+          <span class="speaking-year">Year</span>
+        </div>
+        <div class="speaking-item">
+          <span class="speaking-event">Event Name</span>
+          <span class="speaking-topic">Talk Topic — Replace with Actual Topic</span>
+          <span class="speaking-year">Year</span>
+        </div>
+        <div class="speaking-item">
+          <span class="speaking-event">Event Name</span>
+          <span class="speaking-topic">Talk Topic — Replace with Actual Topic</span>
+          <span class="speaking-year">Year</span>
+        </div>
+        <div class="speaking-item">
+          <span class="speaking-event">Event Name</span>
+          <span class="speaking-topic">Talk Topic — Replace with Actual Topic</span>
+          <span class="speaking-year">Year</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ MEDIA ═══════════════════════════════ -->
+<section class="media-section" id="media">
+  <div class="media-inner">
+    <p class="section-tag reveal">In the Press</p>
+
+    <div class="media-intro">
+      <h2 class="media-intro-headline reveal">
+        The work that made<br>editors stop and <em>ask</em><br>questions.
+      </h2>
+      <p class="media-intro-body reveal reveal-delay-1">
+        Mainstream media does not cover functional medicine lightly. These features are not profile pieces — they are conversations about a paradigm shift in how we understand the human body.
+      </p>
+    </div>
+
+    <div class="media-grid">
+      <div class="media-card reveal">
+        <div class="media-card-accent"></div>
+        <span class="media-pub-name">Publication Name</span>
+        <blockquote class="media-quote">"Pull quote — maximum ten words here."</blockquote>
+        <a href="#" class="media-link">Read Article</a>
+      </div>
+      <div class="media-card reveal reveal-delay-1">
+        <div class="media-card-accent"></div>
+        <span class="media-pub-name">Publication Name</span>
+        <blockquote class="media-quote">"Pull quote — maximum ten words here."</blockquote>
+        <a href="#" class="media-link">Read Article</a>
+      </div>
+      <div class="media-card reveal reveal-delay-2">
+        <div class="media-card-accent"></div>
+        <span class="media-pub-name">Publication Name</span>
+        <blockquote class="media-quote">"Pull quote — maximum ten words here."</blockquote>
+        <a href="#" class="media-link">Read Article</a>
+      </div>
+      <div class="media-card reveal">
+        <div class="media-card-accent"></div>
+        <span class="media-pub-name">Publication Name</span>
+        <blockquote class="media-quote">"Pull quote — maximum ten words here."</blockquote>
+        <a href="#" class="media-link">Read Article</a>
+      </div>
+      <div class="media-card reveal reveal-delay-1">
+        <div class="media-card-accent"></div>
+        <span class="media-pub-name">Publication Name</span>
+        <blockquote class="media-quote">"Pull quote — maximum ten words here."</blockquote>
+        <a href="#" class="media-link">Read Article</a>
+      </div>
+      <div class="media-card reveal reveal-delay-2">
+        <div class="media-card-accent"></div>
+        <span class="media-pub-name">Publication Name</span>
+        <blockquote class="media-quote">"Pull quote — maximum ten words here."</blockquote>
+        <a href="#" class="media-link">Read Article</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ RESEARCH ═══════════════════════════════ -->
+<section class="research-section" id="research">
+  <div class="research-inner">
+    <p class="section-tag reveal">Peer-Reviewed Research</p>
+
+    <div class="research-header">
+      <h2 class="research-headline reveal">
+        Science that moves<br>functional medicine from<br>the fringe to the <em>frontier.</em>
+      </h2>
+      <p class="research-body reveal reveal-delay-1">
+        These papers are not just citations. They are the documented proof that what was once called alternative is becoming the new standard — root cause resolution over surface-level suppression.
+      </p>
+    </div>
+
+    <div class="research-list">
+      <div class="paper-item reveal">
+        <span class="paper-num">01</span>
+        <div class="paper-content">
+          <h3 class="paper-title">Paper Title — Replace with Full Paper Title</h3>
+          <span class="paper-citation">Journal Name · Volume, Issue · Year</span>
+          <p class="paper-abstract">Abstract text — replace with the full abstract or a concise summary of the paper's findings, methodology, and significance to functional and integrative medicine.</p>
+        </div>
+        <a href="#" class="paper-link">Read Paper</a>
+      </div>
+      <div class="paper-item reveal">
+        <span class="paper-num">02</span>
+        <div class="paper-content">
+          <h3 class="paper-title">Paper Title — Replace with Full Paper Title</h3>
+          <span class="paper-citation">Journal Name · Volume, Issue · Year</span>
+          <p class="paper-abstract">Abstract text — replace with the full abstract or a concise summary of the paper's findings, methodology, and significance to functional and integrative medicine.</p>
+        </div>
+        <a href="#" class="paper-link">Read Paper</a>
+      </div>
+      <div class="paper-item reveal">
+        <span class="paper-num">03</span>
+        <div class="paper-content">
+          <h3 class="paper-title">Paper Title — Replace with Full Paper Title</h3>
+          <span class="paper-citation">Journal Name · Volume, Issue · Year</span>
+          <p class="paper-abstract">Abstract text — replace with the full abstract or a concise summary of the paper's findings, methodology, and significance to functional and integrative medicine.</p>
+        </div>
+        <a href="#" class="paper-link">Read Paper</a>
+      </div>
+      <div class="paper-item reveal">
+        <span class="paper-num">04</span>
+        <div class="paper-content">
+          <h3 class="paper-title">Paper Title — Replace with Full Paper Title</h3>
+          <span class="paper-citation">Journal Name · Volume, Issue · Year</span>
+          <p class="paper-abstract">Abstract text — replace with the full abstract or a concise summary of the paper's findings, methodology, and significance to functional and integrative medicine.</p>
+        </div>
+        <a href="#" class="paper-link">Read Paper</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ NUMBERS ═══════════════════════════════ -->
+<section class="numbers-section" id="numbers">
+  <div class="numbers-bg"></div>
+  <div class="numbers-inner">
+    <p class="section-tag reveal" style="justify-content:center;">The Numbers</p>
+    <div class="numbers-intro reveal">
+      <p class="numbers-title">Not metrics. Milestones of a movement.</p>
+    </div>
+    <div class="numbers-grid">
+      <div class="number-item reveal">
+        <span class="number-stat">9</span>
+        <span class="number-label">Years of clinical practice in functional medicine</span>
+      </div>
+      <div class="number-item reveal reveal-delay-1">
+        <span class="number-stat">174</span>
+        <span class="number-label">Medical conditions treated at the root — not managed at the surface</span>
+      </div>
+      <div class="number-item reveal reveal-delay-2">
+        <span class="number-stat">10,000<sup style="font-size:0.5em;vertical-align:super;">+</sup></span>
+        <span class="number-label">Human beings who have begun their remembrance</span>
+      </div>
+      <div class="number-item reveal reveal-delay-3">
+        <span class="number-stat">800<sup style="font-size:0.5em;vertical-align:super;">+</sup></span>
+        <span class="number-label">Practitioners trained through the iThrive Academy</span>
+      </div>
+      <div class="number-item reveal reveal-delay-3">
+        <span class="number-stat">2</span>
+        <span class="number-label">TEDx talks delivered</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ BOOK ═══════════════════════════════ -->
+<section class="book-section" id="book">
+  <div class="book-inner">
+
+    <!-- Cover -->
+    <div class="book-cover-wrap reveal">
+      <div class="book-cover-visual">
+        <span class="book-cover-ornament">Mugdha Pradhan</span>
+        <div class="book-cover-content">
+          <div class="book-cover-line"></div>
+          <span class="book-cover-title">Health<br>Inc.</span>
+          <span class="book-cover-sub">A Remembrance</span>
+          <span class="book-cover-author">Mugdha Pradhan</span>
+          <div class="book-cover-line2"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="book-content reveal reveal-delay-1">
+      <p class="section-tag">Health Inc.</p>
+      <h2 class="book-headline">
+        The book that <em>indicts</em><br>a system and liberates<br>a reader.
+      </h2>
+      <p class="book-description">
+        Health Inc. is not a wellness book. It is an intellectual argument — a forensic examination of a healthcare system that profits from keeping human beings sick, confused and dependent. Written from nine years at the clinical frontier, it maps the gap between what medicine knows and what medicine does.
+      </p>
+      <p class="book-description">
+        It is also an invitation. To remember that the body is not broken — it is speaking. That chronic illness is not a life sentence — it is a message. That what we call disease is, in most cases, the predictable result of a species that has forgotten what it is.
+      </p>
+      <div class="book-ctas">
+        <a href="#" class="btn-primary">Order Now</a>
+        <a href="#" class="btn-secondary">Read an Excerpt</a>
+      </div>
+      <div class="book-reviews">
+        <span class="book-reviews-label">What Readers Are Saying</span>
+        <div class="review-item">
+          <p class="review-quote">"Review quote — replace with actual reader or endorser quote here."</p>
+          <span class="review-attr">Reader Name · Context or Title</span>
+        </div>
+        <div class="review-item">
+          <p class="review-quote">"Review quote — replace with actual reader or endorser quote here."</p>
+          <span class="review-attr">Reader Name · Context or Title</span>
+        </div>
+        <div class="review-item">
+          <p class="review-quote">"Review quote — replace with actual reader or endorser quote here."</p>
+          <span class="review-attr">Reader Name · Context or Title</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">Mugdha Pradhan © 2026</span>
+  <p class="footer-quote">"You are not sick. You are asleep."</p>
+  <ul class="footer-links">
+    <li><a href="#">Instagram</a></li>
+    <li><a href="#">LinkedIn</a></li>
+    <li><a href="#">YouTube</a></li>
+    <li><a href="#">X</a></li>
+  </ul>
+  <p class="footer-copy">mugdhapradhan.com — The Remembrance Movement</p>
+</footer>
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursor-ring');
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+    setTimeout(() => {
+      ring.style.left = e.clientX + 'px';
+      ring.style.top = e.clientY + 'px';
+    }, 60);
+  });
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      ring.style.width = '60px';
+      ring.style.height = '60px';
+      ring.style.opacity = '0.6';
+    });
+    el.addEventListener('mouseleave', () => {
+      ring.style.width = '36px';
+      ring.style.height = '36px';
+      ring.style.opacity = '1';
+    });
+  });
+
+  // Nav scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => revealObserver.observe(el));
+
+  // Ember canvas — slow golden motes drifting upward
+  const canvas = document.getElementById('ember-canvas');
+  const ctx = canvas.getContext('2d');
+  let W, H;
+
+  function resize() {
+    W = canvas.width = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  class Ember {
+    constructor(init) { this.reset(init); }
+    reset(init = false) {
+      this.x = Math.random() * W;
+      this.y = init ? Math.random() * H : H + Math.random() * 80 + 20;
+      this.size = Math.random() * 1.8 + 0.3;
+      this.glowR = Math.random() * 80 + 30;
+      this.speedY = -(Math.random() * 0.35 + 0.08);
+      this.speedX = (Math.random() - 0.5) * 0.12;
+      this.drift = Math.random() * Math.PI * 2;
+      this.driftSpeed = Math.random() * 0.008 + 0.003;
+      this.driftAmt = Math.random() * 0.25 + 0.08;
+      this.life = 0;
+      this.maxLife = Math.random() * 500 + 300;
+      this.hue = Math.random() * 25 + 18;
+      this.pulsing = Math.random() * Math.PI * 2;
+    }
+    update() {
+      this.life++;
+      this.drift += this.driftSpeed;
+      this.pulsing += 0.015;
+      this.x += this.speedX + Math.sin(this.drift) * this.driftAmt;
+      this.y += this.speedY;
+      if (this.life > this.maxLife || this.y < -20) this.reset();
+    }
+    draw() {
+      const t = this.life / this.maxLife;
+      const fade = t < 0.15 ? t / 0.15 : t > 0.75 ? (1 - t) / 0.25 : 1;
+      const pulse = 0.85 + Math.sin(this.pulsing) * 0.15;
+      const alpha = fade * pulse;
+      const grd = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.glowR);
+      grd.addColorStop(0, `hsla(${this.hue}, 85%, 62%, ${alpha * 0.07})`);
+      grd.addColorStop(0.4, `hsla(${this.hue}, 80%, 48%, ${alpha * 0.03})`);
+      grd.addColorStop(1, `hsla(${this.hue}, 70%, 30%, 0)`);
+      ctx.fillStyle = grd;
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.glowR, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = `hsla(${this.hue + 10}, 90%, 78%, ${alpha * 0.65})`;
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size * pulse, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  class Orb {
+    constructor() { this.reset(true); }
+    reset(init = false) {
+      this.x = Math.random() * W;
+      this.y = init ? Math.random() * H : H + 100;
+      this.r = Math.random() * 180 + 80;
+      this.speedY = -(Math.random() * 0.06 + 0.02);
+      this.speedX = (Math.random() - 0.5) * 0.04;
+      this.life = 0;
+      this.maxLife = Math.random() * 2000 + 1200;
+      this.hue = Math.random() * 20 + 20;
+      this.phase = Math.random() * Math.PI * 2;
+    }
+    update() {
+      this.life++;
+      this.phase += 0.005;
+      this.x += this.speedX + Math.sin(this.phase * 0.3) * 0.08;
+      this.y += this.speedY;
+      if (this.life > this.maxLife || this.y < -this.r) this.reset();
+    }
+    draw() {
+      const t = this.life / this.maxLife;
+      const fade = t < 0.2 ? t / 0.2 : t > 0.7 ? (1 - t) / 0.3 : 1;
+      const pulse = 0.9 + Math.sin(this.phase) * 0.1;
+      const grd = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.r * pulse);
+      grd.addColorStop(0, `hsla(${this.hue}, 75%, 45%, ${fade * 0.05})`);
+      grd.addColorStop(0.5, `hsla(${this.hue}, 65%, 35%, ${fade * 0.02})`);
+      grd.addColorStop(1, `hsla(${this.hue}, 55%, 25%, 0)`);
+      ctx.fillStyle = grd;
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.r * pulse, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  const embers = Array.from({ length: 90 }, (_, i) => new Ember(i < 45));
+  const orbs = Array.from({ length: 5 }, () => new Orb());
+
+  function animate() {
+    ctx.clearRect(0, 0, W, H);
+    orbs.forEach(o => { o.update(); o.draw(); });
+    embers.forEach(e => { e.update(); e.draw(); });
+    requestAnimationFrame(animate);
+  }
+  animate();
+</script>
+</body>
+</html>
