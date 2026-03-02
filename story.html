@@ -707,7 +707,7 @@
   <a href="index.html" class="nav-logo">Mugdha Pradhan</a>
   <ul class="nav-links">
     <li><a href="#" class="active">The Story</a></li>
-    <li><a href="index.html#mission">The Mission</a></li>
+    <li><a href="mission.html">The Mission</a></li>
     <li><a href="index.html#work">The Work</a></li>
     <li><a href="index.html#thinking">The Thinking</a></li>
     <li><a href="index.html#contact">Contact</a></li>
@@ -770,7 +770,7 @@
 
     <div class="prose">
       <p class="reveal">By the time I was 37, I had built what looked from the outside like a reasonable life.</p>
-      <p class="reveal">A Master's degree in Food Science and Nutrition. Years in corporate HR in Canada. A marriage. A child. A career.</p>
+      <p class="reveal">A Master's degree in Food Science and Nutrition. Years in corporate HR. A life in Canada. A marriage. A child. A career.</p>
       <p class="reveal">And I was dying slowly inside all of it.</p>
     </div>
 
@@ -855,7 +855,7 @@
     </div>
 
     <div class="prose">
-      <p class="reveal">In January 2017 I came back to India with my daughter and 300 rupees in my bank account. My family thought I had lost my mind. My father couldn't comprehend that I had walked away from the narrative he had been proud of — the abroad life, the stable marriage, the story that fit. Everyone sided with my ex-husband. I became the crazy woman who had thrown everything away.</p>
+      <p class="reveal">In January 2017 I came back to India with my daughter and no money. My father and the extended family thought I had lost my mind. My father couldn't comprehend that I had walked away from the narrative he had been proud of — the abroad life, the stable marriage, the story that fit. Everyone sided with my ex-husband. I became the crazy woman who had thrown everything away.</p>
     </div>
 
     <div class="pull-quote reveal">
@@ -893,7 +893,7 @@
       <p class="reveal">I told her I couldn't afford to send her for just two or three months. But if she went for a year — a full year — I would use that time to stabilize myself financially, set up a proper home, build something solid. And then she would come back and we would have a real life together.</p>
       <p class="reveal">She agreed. We agreed together. That was August 2017.</p>
       <p class="reveal">I was naive enough to believe her father would honor it.</p>
-      <p class="reveal">He filed for divorce the moment she landed in Toronto. I was okay with that. I had no interest in preserving the marriage. My only fear — the one I expressed clearly, the one I begged his lawyer to protect me from — was that he would use the legal process to take my daughter permanently.</p>
+      <p class="reveal">He filed for divorce the moment he came to India to pick her up. I was okay with that. I had no interest in preserving the marriage. My only fear — the one I expressed clearly, the one I begged his lawyer to protect me from — was that he would use the legal process to take my daughter permanently.</p>
       <p class="reveal">His lawyer told me not to worry. She said they would include a clause that the child's consent would be primary. That if my daughter wanted to come to me, he could not stand in the way.</p>
       <p class="reveal">I believed her. I signed the papers without my own lawyer. I had no money for one and I didn't know I could find one through women's groups.</p>
     </div>
@@ -962,7 +962,7 @@
     </div>
 
     <div class="prose">
-      <p class="reveal">By December 2022 she cut contact completely. She withdrew her consent to be with me. The court case was over.</p>
+      <p class="reveal">By December 2022 she cut contact completely.</p>
     </div>
 
     <div class="story-break reveal">
@@ -972,7 +972,7 @@
     </div>
 
     <div class="prose">
-      <p class="reveal">To the world — to everyone who only heard his version — I am the career woman who didn't care enough about her child. Who left her daughter to pursue her dreams. Who chose iThrive over motherhood.</p>
+      <p class="reveal">To the world — to everyone who only heard his version — I am the ambitious career woman who didn't care enough about her child. Who left her daughter to pursue her dreams. Who chose iThrive over motherhood.</p>
       <p class="reveal">That is the story he told. That is the story she has been conditioned to believe.</p>
     </div>
 
@@ -1355,18 +1355,26 @@
   reveals.forEach(el => observer.observe(el));
 
   // Chapter navigator active state
-  const sections = document.querySelectorAll('#opening, [id^="chapter-"]');
+  const sections = Array.from(document.querySelectorAll('#opening, [id^="chapter-"]'));
   const dots = document.querySelectorAll('.chapter-dot');
-  const sectionObserver = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        dots.forEach(dot => {
-          dot.classList.toggle('active', dot.getAttribute('href') === '#' + e.target.id);
-        });
+
+  function updateActiveChapter() {
+    const viewportMid = window.scrollY + window.innerHeight * 0.4;
+    let activeId = sections[0].id;
+    for (const section of sections) {
+      if (section.offsetTop <= viewportMid) {
+        activeId = section.id;
+      } else {
+        break;
       }
+    }
+    dots.forEach(dot => {
+      dot.classList.toggle('active', dot.getAttribute('href') === '#' + activeId);
     });
-  }, { threshold: 0.25, rootMargin: '-15% 0px -55% 0px' });
-  sections.forEach(s => sectionObserver.observe(s));
+  }
+
+  window.addEventListener('scroll', updateActiveChapter, { passive: true });
+  updateActiveChapter();
 </script>
 </body>
 </html>

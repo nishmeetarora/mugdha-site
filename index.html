@@ -101,12 +101,11 @@
     overflow: hidden;
   }
 
-  /* Consciousness field canvas */
-  #fire-canvas {
+  /* Ember canvas */
+  #ember-canvas {
     position: absolute; inset: 0;
     width: 100%; height: 100%;
-    z-index: 3;
-    mix-blend-mode: screen;
+    z-index: 0;
     pointer-events: none;
   }
 
@@ -163,8 +162,8 @@
 
   .hero-headline {
     font-family: 'Cormorant Garamond', serif;
-    font-weight: 500;
-    font-size: clamp(4rem, 9vw, 8rem);
+    font-weight: 300;
+    font-size: clamp(2.8rem, 5.5vw, 5.8rem);
     line-height: 1.08;
     letter-spacing: -0.01em;
     color: var(--white);
@@ -188,10 +187,10 @@
   .hero-sub {
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
-    font-weight: 400;
+    font-weight: 300;
     font-size: clamp(1.1rem, 2.2vw, 1.5rem);
     line-height: 1.8;
-    color: var(--gold);
+    color: rgba(240, 232, 216, 0.7);
     max-width: 600px; margin: 0 auto;
     letter-spacing: 0.02em;
     opacity: 0;
@@ -1100,20 +1099,22 @@
 
 <!-- HERO -->
 <section class="hero">
-  <canvas id="fire-canvas"></canvas>
+  <canvas id="ember-canvas"></canvas>
   <div class="hero-overlay"></div>
-  
+
   <div class="hero-content">
+    <p class="hero-eyebrow">The Remembrance Movement</p>
     <h1 class="hero-headline">
-      I help humans remember<br>what they are.
+      I help humans <em>remember</em><br>what they are.
     </h1>
+    <div class="hero-divider"></div>
     <p class="hero-sub">Not manage their symptoms. Not optimise their performance.<br>Remember.</p>
     <div class="hero-cta">
-      <a href="#story" class="btn-crimson">Begin your remembrance</a>
+      <a href="#story" class="btn-enter">Begin your remembrance</a>
       <a href="story.html" class="hero-story-link">Read my story →</a>
     </div>
   </div>
-  
+
   <div class="scroll-indicator">
     <span></span>
   </div>
@@ -1514,11 +1515,10 @@
   }, { threshold: 0.5 });
   document.querySelectorAll('.num[data-target]').forEach(el => numObserver.observe(el));
 
-  // Consciousness field — canvas sits ABOVE overlay (z-index:3, mix-blend-mode:screen)
-  // Dark canvas areas are transparent-equivalent; gold/amber areas add visible brightness.
-  const canvas = document.getElementById('fire-canvas');
+  // Ember canvas — slow golden motes drifting upward
+  const canvas = document.getElementById('ember-canvas');
   const ctx = canvas.getContext('2d');
-  let W, H, T = 0;
+  let W, H;
 
   function resize() {
     W = canvas.width = canvas.offsetWidth;
@@ -1527,108 +1527,93 @@
   resize();
   window.addEventListener('resize', resize);
 
-  // ── Floating mote ─────────────────────────────────────────────────────────
-  class Mote {
-    constructor(scatter) { this.reset(scatter); }
-    reset(scatter) {
-      this.x       = Math.random() * W;
-      this.y       = scatter ? Math.random() * H : H + 8;
-      this.vy      = -(Math.random() * 0.20 + 0.06);
-      this.vx      = (Math.random() - 0.5) * 0.06;
-      this.r       = Math.random() * 1.3 + 0.4;
-      this.maxLife = Math.random() * 800 + 600;
-      this.life    = scatter ? Math.random() * this.maxLife : 0;
-      this.alpha   = Math.random() * 0.40 + 0.16;
-      this.sway    = Math.random() * Math.PI * 2;
-      this.sf      = 0.003 + Math.random() * 0.004;
-      this.mc      = Math.random() > 0.78 ? [238, 210, 140] : [201, 152, 74];
+  class Ember {
+    constructor(init) { this.reset(init); }
+    reset(init = false) {
+      this.x = Math.random() * W;
+      this.y = init ? Math.random() * H : H + Math.random() * 80 + 20;
+      this.size = Math.random() * 1.8 + 0.3;
+      this.glowR = Math.random() * 80 + 30;
+      this.speedY = -(Math.random() * 0.35 + 0.08);
+      this.speedX = (Math.random() - 0.5) * 0.12;
+      this.drift = Math.random() * Math.PI * 2;
+      this.driftSpeed = Math.random() * 0.008 + 0.003;
+      this.driftAmt = Math.random() * 0.25 + 0.08;
+      this.life = 0;
+      this.maxLife = Math.random() * 500 + 300;
+      this.hue = Math.random() * 25 + 18;
+      this.pulsing = Math.random() * Math.PI * 2;
     }
-    step() {
+    update() {
       this.life++;
-      if (this.life > this.maxLife || this.y < -12) { this.reset(false); return; }
-      this.sway += this.sf;
-      this.x += this.vx + Math.sin(this.sway) * 0.12;
-      this.y += this.vy;
-      if (this.x < -5) this.x = W + 5;
-      if (this.x > W + 5) this.x = -5;
+      this.drift += this.driftSpeed;
+      this.pulsing += 0.015;
+      this.x += this.speedX + Math.sin(this.drift) * this.driftAmt;
+      this.y += this.speedY;
+      if (this.life > this.maxLife || this.y < -20) this.reset();
     }
     draw() {
-      const p    = this.life / this.maxLife;
-      const fade = p < 0.10 ? p / 0.10 : p > 0.80 ? (1 - p) / 0.20 : 1;
-      const a    = this.alpha * fade;
-      if (a < 0.01) return;
-      const [mr, mg, mb] = this.mc;
-      // glow halo
-      const grd = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.r * 6);
-      grd.addColorStop(0,    `rgba(${mr},${mg},${mb},${a})`);
-      grd.addColorStop(0.45, `rgba(${mr},${mg},${mb},${a * 0.25})`);
-      grd.addColorStop(1,    `rgba(${mr},${mg},${mb},0)`);
+      const t = this.life / this.maxLife;
+      const fade = t < 0.15 ? t / 0.15 : t > 0.75 ? (1 - t) / 0.25 : 1;
+      const pulse = 0.85 + Math.sin(this.pulsing) * 0.15;
+      const alpha = fade * pulse;
+      const grd = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.glowR);
+      grd.addColorStop(0, `hsla(${this.hue}, 85%, 62%, ${alpha * 0.07})`);
+      grd.addColorStop(0.4, `hsla(${this.hue}, 80%, 48%, ${alpha * 0.03})`);
+      grd.addColorStop(1, `hsla(${this.hue}, 70%, 30%, 0)`);
       ctx.fillStyle = grd;
       ctx.beginPath();
-      ctx.arc(this.x, this.y, this.r * 6, 0, 6.283);
+      ctx.arc(this.x, this.y, this.glowR, 0, Math.PI * 2);
       ctx.fill();
-      // hard core
-      ctx.globalAlpha = a;
-      ctx.fillStyle = `rgb(${mr},${mg},${mb})`;
+      ctx.fillStyle = `hsla(${this.hue + 10}, 90%, 78%, ${alpha * 0.65})`;
       ctx.beginPath();
-      ctx.arc(this.x, this.y, this.r, 0, 6.283);
+      ctx.arc(this.x, this.y, this.size * pulse, 0, Math.PI * 2);
       ctx.fill();
-      ctx.globalAlpha = 1;
     }
   }
 
-  // ── Drifting ambient orbs (large radial glows that slowly wander) ─────────
-  const ORBS = [
-    { bx:0.50, by:0.60, ax:0.10, ay:0.08, sx:0.08, sy:0.06, r:0.70, or:[201,152,74], oa:0.38 },
-    { bx:0.30, by:0.68, ax:0.12, ay:0.05, sx:0.11, sy:0.09, r:0.50, or:[180,112,40], oa:0.26 },
-    { bx:0.70, by:0.52, ax:0.08, ay:0.09, sx:0.07, sy:0.12, r:0.46, or:[139,  0, 0], oa:0.24 },
-  ];
-
-  function drawOrbs(t) {
-    ORBS.forEach(o => {
-      const cx  = W * (o.bx + Math.sin(t * o.sx) * o.ax);
-      const cy  = H * (o.by + Math.cos(t * o.sy) * o.ay);
-      const rad = Math.min(W, H) * o.r;
-      const grd = ctx.createRadialGradient(cx, cy, 0, cx, cy, rad);
-      grd.addColorStop(0,    `rgba(${o.or[0]},${o.or[1]},${o.or[2]},${o.oa})`);
-      grd.addColorStop(0.45, `rgba(${o.or[0]},${o.or[1]},${o.or[2]},${o.oa * 0.28})`);
-      grd.addColorStop(1,    `rgba(${o.or[0]},${o.or[1]},${o.or[2]},0)`);
+  class Orb {
+    constructor() { this.reset(true); }
+    reset(init = false) {
+      this.x = Math.random() * W;
+      this.y = init ? Math.random() * H : H + 100;
+      this.r = Math.random() * 180 + 80;
+      this.speedY = -(Math.random() * 0.06 + 0.02);
+      this.speedX = (Math.random() - 0.5) * 0.04;
+      this.life = 0;
+      this.maxLife = Math.random() * 2000 + 1200;
+      this.hue = Math.random() * 20 + 20;
+      this.phase = Math.random() * Math.PI * 2;
+    }
+    update() {
+      this.life++;
+      this.phase += 0.005;
+      this.x += this.speedX + Math.sin(this.phase * 0.3) * 0.08;
+      this.y += this.speedY;
+      if (this.life > this.maxLife || this.y < -this.r) this.reset();
+    }
+    draw() {
+      const t = this.life / this.maxLife;
+      const fade = t < 0.2 ? t / 0.2 : t > 0.7 ? (1 - t) / 0.3 : 1;
+      const pulse = 0.9 + Math.sin(this.phase) * 0.1;
+      const grd = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.r * pulse);
+      grd.addColorStop(0, `hsla(${this.hue}, 75%, 52%, ${fade * 0.06})`);
+      grd.addColorStop(0.5, `hsla(${this.hue}, 70%, 40%, ${fade * 0.025})`);
+      grd.addColorStop(1, `hsla(${this.hue}, 65%, 25%, 0)`);
       ctx.fillStyle = grd;
-      ctx.fillRect(0, 0, W, H);
-    });
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.r * pulse, 0, Math.PI * 2);
+      ctx.fill();
+    }
   }
 
-  // ── Horizontal aurora bands — simple rect + vertical gradient (reliable) ──
-  // cy oscillates with time; gradient follows cy so it's always centred on the band.
-  const BANDS = [
-    { by:0.52, amp:0.06, spd:0.14, br:[201,152,74], bh:0.32, peak:0.48 },
-    { by:0.68, amp:0.05, spd:0.10, br:[180,112,40], bh:0.26, peak:0.38 },
-    { by:0.36, amp:0.07, spd:0.18, br:[139,  0, 0], bh:0.24, peak:0.30 },
-  ];
-
-  function drawBands(t) {
-    BANDS.forEach(bd => {
-      const cy   = H * (bd.by + Math.sin(t * bd.spd) * bd.amp);
-      const half = H * bd.bh * 0.5;
-      // gradient centred on actual cy (not a fixed position)
-      const grad = ctx.createLinearGradient(0, cy - half, 0, cy + half);
-      grad.addColorStop(0,    `rgba(${bd.br[0]},${bd.br[1]},${bd.br[2]},0)`);
-      grad.addColorStop(0.38, `rgba(${bd.br[0]},${bd.br[1]},${bd.br[2]},${bd.peak})`);
-      grad.addColorStop(0.62, `rgba(${bd.br[0]},${bd.br[1]},${bd.br[2]},${bd.peak})`);
-      grad.addColorStop(1,    `rgba(${bd.br[0]},${bd.br[1]},${bd.br[2]},0)`);
-      ctx.fillStyle = grad;
-      ctx.fillRect(0, cy - half, W, half * 2);
-    });
-  }
-
-  const motes = Array.from({ length: 220 }, () => new Mote(true));
+  const embers = Array.from({ length: 150 }, () => new Ember(true));
+  const orbs = Array.from({ length: 8 }, () => new Orb());
 
   function loop() {
-    T += 0.009;
     ctx.clearRect(0, 0, W, H);
-    drawOrbs(T);
-    drawBands(T);
-    motes.forEach(m => { m.step(); m.draw(); });
+    orbs.forEach(o => { o.update(); o.draw(); });
+    embers.forEach(e => { e.update(); e.draw(); });
     requestAnimationFrame(loop);
   }
   loop();
