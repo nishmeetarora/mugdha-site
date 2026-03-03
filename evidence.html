@@ -623,6 +623,9 @@
     .paper-item { grid-template-columns: 1fr; gap: 1.2rem; }
     .paper-num, .paper-link { display: none; }
     footer { padding: 2rem; flex-direction: column; align-items: flex-start; }
+    .nav-hamburger { display: flex; }
+    .cursor, .cursor-ring { display: none; }
+    body { cursor: auto; }
   }
   @media (max-width: 480px) {
     .numbers-grid { grid-template-columns: 1fr; }
@@ -631,6 +634,81 @@
     .book-cover-wrap { max-width: 260px; }
     .speaking-item { grid-template-columns: 1fr; }
     .speaking-year { display: none; }
+  }
+
+  /* ── HAMBURGER & MOBILE NAV ── */
+  .nav-hamburger {
+    display: none; flex-direction: column; gap: 5px;
+    background: none; border: none; cursor: pointer; padding: 4px;
+  }
+  .nav-hamburger span {
+    display: block; width: 22px; height: 1px;
+    background: var(--gold-light);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  .nav-hamburger.active span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .nav-hamburger.active span:nth-child(2) { opacity: 0; }
+  .nav-hamburger.active span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+  .mobile-nav {
+    position: fixed; inset: 0; z-index: 150;
+    background: rgba(7, 6, 10, 0.97);
+    backdrop-filter: blur(8px);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.4s ease;
+  }
+  .mobile-nav.open { opacity: 1; pointer-events: all; }
+  .mobile-nav-close {
+    position: absolute; top: 2rem; right: 2.2rem;
+    background: none; border: none;
+    font-family: 'Cinzel', serif; font-size: 0.8rem;
+    letter-spacing: 0.2em; color: rgba(240,232,216,0.4);
+    cursor: pointer; transition: color 0.3s;
+  }
+  .mobile-nav-links { list-style: none; text-align: center; margin-bottom: 3rem; }
+  .mobile-nav-links li {
+    opacity: 0; transform: translateY(14px);
+    transition: opacity 0.45s ease, transform 0.45s ease;
+  }
+  .mobile-nav.open .mobile-nav-links li { opacity: 1; transform: translateY(0); }
+  .mobile-nav.open .mobile-nav-links li:nth-child(1) { transition-delay: 0.04s; }
+  .mobile-nav.open .mobile-nav-links li:nth-child(2) { transition-delay: 0.08s; }
+  .mobile-nav.open .mobile-nav-links li:nth-child(3) { transition-delay: 0.12s; }
+  .mobile-nav.open .mobile-nav-links li:nth-child(4) { transition-delay: 0.16s; }
+  .mobile-nav.open .mobile-nav-links li:nth-child(5) { transition-delay: 0.20s; }
+  .mobile-nav.open .mobile-nav-links li:nth-child(6) { transition-delay: 0.24s; }
+  .mobile-nav-links a {
+    font-family: 'Cormorant Garamond', serif; font-weight: 300;
+    font-size: clamp(1.8rem, 7vw, 2.6rem);
+    color: rgba(240,232,216,0.65); text-decoration: none;
+    letter-spacing: 0.04em; padding: 0.65rem 0; display: block;
+    transition: color 0.3s;
+  }
+  .mobile-nav-links a.active,
+  .mobile-nav-links a:hover { color: var(--gold-light); }
+  .mobile-nav-social { display: flex; gap: 2.5rem; }
+  .mobile-nav-social a {
+    font-family: 'Cinzel', serif; font-size: 0.58rem;
+    letter-spacing: 0.22em; color: rgba(201,152,74,0.35);
+    text-decoration: none; text-transform: uppercase;
+  }
+
+  /* ── HOVER: NONE (touch device resets) ── */
+  @media (hover: none) {
+    .nav-links a:hover { color: var(--muted); }
+    .footer-links a:hover { color: var(--muted); }
+    .btn-enter:hover { color: var(--gold-light); }
+    .btn-enter:hover::before { transform: translateX(-100%); }
+    .btn-primary:hover { background: var(--gold); }
+    .btn-secondary:hover { border-color: var(--border); color: var(--gold-light); }
+    .speaking-item:hover { padding-left: 0; }
+    .media-card:hover { background: var(--charcoal); }
+    .media-card:hover .media-card-accent { transform: scaleY(0); }
+    .media-link:hover { color: rgba(201, 152, 74, 0.45); }
+    .paper-link:hover { color: rgba(201, 152, 74, 0.45); }
+    .number-item:hover { background: transparent; }
+    .number-item:hover::after { transform: scaleX(0); }
   }
 </style>
 </head>
@@ -648,8 +726,12 @@
     <li><a href="mission.html">The Mission</a></li>
     <li><a href="work.html">The Work</a></li>
     <li><a href="evidence.html" class="active">The Evidence</a></li>
-    <li><a href="index.html#contact">Contact</a></li>
+    <li><a href="thinking.html">The Thinking</a></li>
+    <li><a href="contact.html">Contact</a></li>
   </ul>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <!-- HERO -->
@@ -973,29 +1055,31 @@
 </footer>
 
 <script>
-  // Custom cursor
-  const cursor = document.getElementById('cursor');
-  const ring = document.getElementById('cursor-ring');
-  document.addEventListener('mousemove', e => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-    setTimeout(() => {
-      ring.style.left = e.clientX + 'px';
-      ring.style.top = e.clientY + 'px';
-    }, 60);
-  });
-  document.querySelectorAll('a, button').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      ring.style.width = '60px';
-      ring.style.height = '60px';
-      ring.style.opacity = '0.6';
+  if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    // Custom cursor
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursor-ring');
+    document.addEventListener('mousemove', e => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+      setTimeout(() => {
+        ring.style.left = e.clientX + 'px';
+        ring.style.top = e.clientY + 'px';
+      }, 60);
     });
-    el.addEventListener('mouseleave', () => {
-      ring.style.width = '36px';
-      ring.style.height = '36px';
-      ring.style.opacity = '1';
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        ring.style.width = '60px';
+        ring.style.height = '60px';
+        ring.style.opacity = '0.6';
+      });
+      el.addEventListener('mouseleave', () => {
+        ring.style.width = '36px';
+        ring.style.height = '36px';
+        ring.style.opacity = '1';
+      });
     });
-  });
+  }
 
   // Nav scroll
   const nav = document.getElementById('nav');
@@ -1114,6 +1198,42 @@
     requestAnimationFrame(animate);
   }
   animate();
+
+  // Mobile nav
+  const hamburger = document.getElementById('nav-hamburger');
+  const mobileNav = document.getElementById('mobile-nav');
+  const mobileClose = document.getElementById('mobile-nav-close');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    mobileNav.classList.toggle('open');
+    document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+  });
+  mobileClose.addEventListener('click', () => {
+    hamburger.classList.remove('active');
+    mobileNav.classList.remove('open');
+    document.body.style.overflow = '';
+  });
+  mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    hamburger.classList.remove('active');
+    mobileNav.classList.remove('open');
+    document.body.style.overflow = '';
+  }));
 </script>
+
+<div class="mobile-nav" id="mobile-nav">
+  <button class="mobile-nav-close" id="mobile-nav-close">✕</button>
+  <ul class="mobile-nav-links">
+    <li><a href="story.html">The Story</a></li>
+    <li><a href="mission.html">The Mission</a></li>
+    <li><a href="work.html">The Work</a></li>
+    <li><a href="evidence.html" class="active">The Evidence</a></li>
+    <li><a href="thinking.html">The Thinking</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="mobile-nav-social">
+    <a href="#">Instagram</a>
+    <a href="#">LinkedIn</a>
+  </div>
+</div>
 </body>
 </html>
