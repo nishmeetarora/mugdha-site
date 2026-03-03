@@ -781,6 +781,7 @@
     .pillars-grid { grid-template-columns: repeat(2, 1fr); }
     .vision-item { gap: 2rem; }
   }
+  .nav-hamburger { display: none; }
   @media (max-width: 768px) {
     nav { padding: 1.5rem 2rem; }
     nav.scrolled { padding: 1rem 2rem; }
@@ -802,7 +803,7 @@
 
   /* ── HAMBURGER & MOBILE NAV ── */
   .nav-hamburger {
-    display: none; flex-direction: column; gap: 5px;
+    flex-direction: column; gap: 5px;
     background: none; border: none; cursor: pointer; padding: 4px;
   }
   .nav-hamburger span {
