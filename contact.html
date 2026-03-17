@@ -31,23 +31,7 @@
     font-family: 'Jost', sans-serif;
     font-weight: 300;
     overflow-x: hidden;
-    cursor: none;
-  }
-
-  /* ── CURSOR ── */
-  .cursor {
-    position: fixed; width: 8px; height: 8px;
-    background: var(--gold); border-radius: 50%;
-    pointer-events: none; z-index: 9999;
-    transition: transform 0.1s ease;
-    transform: translate(-50%, -50%);
-  }
-  .cursor-ring {
-    position: fixed; width: 36px; height: 36px;
-    border: 1px solid rgba(201, 152, 74, 0.5); border-radius: 50%;
-    pointer-events: none; z-index: 9998;
-    transition: transform 0.18s ease, width 0.2s ease, height 0.2s ease, opacity 0.2s ease;
-    transform: translate(-50%, -50%);
+    cursor: auto;
   }
 
   /* ── GRAIN ── */
@@ -358,8 +342,6 @@
 </head>
 <body>
 
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursor-ring"></div>
 <div class="grain"></div>
 
 <!-- NAV -->
@@ -496,40 +478,6 @@
 </footer>
 
 <script>
-  /* ── CURSOR ── */
-  const cursor = document.getElementById('cursor');
-  const cursorRing = document.getElementById('cursor-ring');
-  let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
-
-  document.addEventListener('mousemove', e => {
-    mouseX = e.clientX; mouseY = e.clientY;
-    cursor.style.left = mouseX + 'px';
-    cursor.style.top  = mouseY + 'px';
-  });
-
-  (function animateRing() {
-    ringX += (mouseX - ringX) * 0.12;
-    ringY += (mouseY - ringY) * 0.12;
-    cursorRing.style.left = ringX + 'px';
-    cursorRing.style.top  = ringY + 'px';
-    requestAnimationFrame(animateRing);
-  })();
-
-  document.querySelectorAll('a, button').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      cursor.style.transform = 'translate(-50%,-50%) scale(2)';
-      cursorRing.style.width  = '56px';
-      cursorRing.style.height = '56px';
-      cursorRing.style.opacity = '0.6';
-    });
-    el.addEventListener('mouseleave', () => {
-      cursor.style.transform = 'translate(-50%,-50%) scale(1)';
-      cursorRing.style.width  = '36px';
-      cursorRing.style.height = '36px';
-      cursorRing.style.opacity = '1';
-    });
-  });
-
   /* ── NAV SCROLL ── */
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {

@@ -32,7 +32,7 @@ Personal website for Mugdha Pradhan, founder & CEO of iThrive (functional nutrit
 
 ## Reusable UI Patterns (copy from index.html — do not reinvent)
 
-**Custom cursor** — always include, copy `.cursor` + `.cursor-ring` divs and their JS verbatim.
+**Custom cursor** — removed. Do not add custom cursor to new pages.
 
 **Grain overlay** — always include `<div class="grain"></div>` with its CSS animation.
 
@@ -60,6 +60,6 @@ Personal website for Mugdha Pradhan, founder & CEO of iThrive (functional nutrit
 ## Build Conventions
 - Use the `frontend-design` skill when creating or significantly modifying any page
 - Maintain consistent nav, footer, and visual language across all pages
-- Preserve the custom cursor, grain overlay, and scroll-reveal patterns on every page
+- Preserve the grain overlay and scroll-reveal patterns on every page (custom cursor has been removed)
 - Responsive: mobile-first media queries at 768px and 900px breakpoints
 - Hero headlines: 2 clean lines max, `clamp`-based font size, `max-width: 1300px` on hero-content

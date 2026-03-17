@@ -33,29 +33,7 @@
     font-family: 'Jost', sans-serif;
     font-weight: 300;
     overflow-x: hidden;
-    cursor: none;
-  }
-
-  /* Custom Cursor */
-  .cursor {
-    position: fixed;
-    width: 8px; height: 8px;
-    background: var(--gold);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9999;
-    transition: transform 0.1s ease;
-    transform: translate(-50%, -50%);
-  }
-  .cursor-ring {
-    position: fixed;
-    width: 36px; height: 36px;
-    border: 1px solid rgba(201, 152, 74, 0.5);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9998;
-    transition: transform 0.18s ease, width 0.2s ease, height 0.2s ease, opacity 0.2s ease;
-    transform: translate(-50%, -50%);
+    cursor: auto;
   }
 
   /* NAV */
@@ -96,9 +74,11 @@
   /* HERO */
   .hero {
     position: relative;
-    height: 100vh; min-height: 700px;
+    height: 100vh; min-height: 750px;
     display: flex; align-items: center; justify-content: center;
     overflow: hidden;
+    padding-top: clamp(80px, 10vh, 120px);
+    padding-bottom: clamp(60px, 8vh, 100px);
   }
 
   /* Ember canvas */
@@ -1080,8 +1060,6 @@
     .closing-ctas { flex-direction: column; }
     .nav-links { display: none; }
     .nav-hamburger { display: flex; }
-    .cursor, .cursor-ring { display: none; }
-    body { cursor: auto; }
   }
 
   /* ── HAMBURGER & MOBILE NAV ── */
@@ -1160,8 +1138,6 @@
 </head>
 <body>
 
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursor-ring"></div>
 <div class="grain"></div>
 
 <!-- NAV -->
@@ -1532,32 +1508,6 @@
 </footer>
 
 <script>
-  if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-    // Custom cursor
-    const cursor = document.getElementById('cursor');
-    const ring = document.getElementById('cursor-ring');
-    document.addEventListener('mousemove', e => {
-      cursor.style.left = e.clientX + 'px';
-      cursor.style.top = e.clientY + 'px';
-      setTimeout(() => {
-        ring.style.left = e.clientX + 'px';
-        ring.style.top = e.clientY + 'px';
-      }, 60);
-    });
-    document.querySelectorAll('a, button').forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        ring.style.width = '60px';
-        ring.style.height = '60px';
-        ring.style.opacity = '0.6';
-      });
-      el.addEventListener('mouseleave', () => {
-        ring.style.width = '36px';
-        ring.style.height = '36px';
-        ring.style.opacity = '1';
-      });
-    });
-  }
-
   // Nav scroll
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
@@ -1692,16 +1642,23 @@
     }
   }
 
-  const embers = Array.from({ length: 150 }, () => new Ember(true));
+  const emberCount = window.devicePixelRatio > 1 ? 150 : 80;
+  const embers = Array.from({ length: emberCount }, () => new Ember(true));
   const orbs = Array.from({ length: 8 }, () => new Orb());
 
-  function loop() {
-    ctx.clearRect(0, 0, W, H);
-    orbs.forEach(o => { o.update(); o.draw(); });
-    embers.forEach(e => { e.update(); e.draw(); });
+  let lastFrameTime = 0;
+  const FRAME_INTERVAL = 1000 / 30;
+
+  function loop(ts) {
+    if (ts - lastFrameTime >= FRAME_INTERVAL) {
+      lastFrameTime = ts;
+      ctx.clearRect(0, 0, W, H);
+      orbs.forEach(o => { o.update(); o.draw(); });
+      embers.forEach(e => { e.update(); e.draw(); });
+    }
     requestAnimationFrame(loop);
   }
-  loop();
+  requestAnimationFrame(loop);
 
   // Mobile nav
   document.addEventListener('DOMContentLoaded', () => {

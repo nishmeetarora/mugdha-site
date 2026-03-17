@@ -31,23 +31,7 @@
     font-family: 'Jost', sans-serif;
     font-weight: 300;
     overflow-x: hidden;
-    cursor: none;
-  }
-
-  /* === CURSOR === */
-  .cursor {
-    position: fixed; width: 8px; height: 8px;
-    background: var(--gold); border-radius: 50%;
-    pointer-events: none; z-index: 9999;
-    transition: transform 0.1s ease;
-    transform: translate(-50%, -50%);
-  }
-  .cursor-ring {
-    position: fixed; width: 36px; height: 36px;
-    border: 1px solid rgba(201, 152, 74, 0.5); border-radius: 50%;
-    pointer-events: none; z-index: 9998;
-    transition: transform 0.18s ease, width 0.2s ease, height 0.2s ease, opacity 0.2s ease;
-    transform: translate(-50%, -50%);
+    cursor: auto;
   }
 
   /* === GRAIN === */
@@ -205,7 +189,7 @@
   .tedx-grid {
     display: grid; grid-template-columns: 1fr 1fr;
     gap: 3px; background: var(--border);
-    margin: 0 -4rem 5rem;
+    margin: 0 0 5rem;
   }
   .tedx-card { background: var(--black); }
   .tedx-video-wrap {
@@ -269,6 +253,15 @@
     letter-spacing: 0.15em; color: var(--muted); text-transform: uppercase;
     text-align: right;
   }
+  .speaking-watch {
+    font-family: 'Cinzel', serif; font-size: 0.58rem;
+    letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase;
+    text-decoration: none; text-align: right;
+    border-bottom: 1px solid rgba(201, 152, 74, 0.3);
+    padding-bottom: 2px;
+    transition: color 0.3s, border-color 0.3s;
+  }
+  .speaking-watch:hover { color: var(--gold-light); border-color: var(--gold-light); }
 
   /* === MEDIA SECTION === */
   .media-section {
@@ -625,8 +618,6 @@
     .paper-num, .paper-link { display: none; }
     footer { padding: 2rem; flex-direction: column; align-items: flex-start; }
     .nav-hamburger { display: flex; }
-    .cursor, .cursor-ring { display: none; }
-    body { cursor: auto; }
   }
   @media (max-width: 480px) {
     .numbers-grid { grid-template-columns: 1fr; }
@@ -635,6 +626,7 @@
     .book-cover-wrap { max-width: 260px; }
     .speaking-item { grid-template-columns: 1fr; }
     .speaking-year { display: none; }
+    .speaking-watch { display: none; }
   }
 
   /* ── HAMBURGER & MOBILE NAV ── */
@@ -715,8 +707,6 @@
 </head>
 <body>
 
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursor-ring"></div>
 <div class="grain"></div>
 
 <!-- NAV -->
@@ -772,10 +762,9 @@
   <div class="tedx-grid reveal">
     <div class="tedx-card">
       <div class="tedx-video-wrap">
-        <!-- Replace TEDX_VIDEO_ID_1 with the actual YouTube video ID -->
         <iframe
-          src="https://www.youtube.com/embed/TEDX_VIDEO_ID_1"
-          title="TEDx Talk 1 | Mugdha Pradhan"
+          src="https://www.youtube.com/embed/-fb2u5nCnf4"
+          title="TEDx Talk | Mugdha Pradhan"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
           loading="lazy">
@@ -784,17 +773,16 @@
       <div class="tedx-info">
         <div class="tedx-meta-left">
           <span class="tedx-type">TEDx Talk</span>
-          <p class="tedx-title">Talk Title: Replace with Actual Title</p>
+          <p class="tedx-title">Mugdha Pradhan at TEDx</p>
         </div>
-        <span class="tedx-year">Year · Location</span>
+        <span class="tedx-year">TEDx</span>
       </div>
     </div>
     <div class="tedx-card">
       <div class="tedx-video-wrap">
-        <!-- Replace TEDX_VIDEO_ID_2 with the actual YouTube video ID -->
         <iframe
-          src="https://www.youtube.com/embed/TEDX_VIDEO_ID_2"
-          title="TEDx Talk 2 | Mugdha Pradhan"
+          src="https://www.youtube.com/embed/lXVWq7tP9lY"
+          title="Only My Health | Mugdha Pradhan"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
           loading="lazy">
@@ -802,10 +790,10 @@
       </div>
       <div class="tedx-info">
         <div class="tedx-meta-left">
-          <span class="tedx-type">TEDx Talk</span>
-          <p class="tedx-title">Talk Title: Replace with Actual Title</p>
+          <span class="tedx-type">Only My Health</span>
+          <p class="tedx-title">Mugdha Pradhan on Only My Health</p>
         </div>
-        <span class="tedx-year">Year · Location</span>
+        <span class="tedx-year">Only My Health</span>
       </div>
     </div>
   </div>
@@ -817,28 +805,18 @@
       <div class="speaking-list">
         <div class="speaking-item">
           <span class="speaking-event">Josh Talks</span>
-          <span class="speaking-topic">Talk Topic: Replace with Actual Topic</span>
-          <span class="speaking-year">Year</span>
+          <span class="speaking-topic">Mugdha Pradhan on Josh Talks</span>
+          <a href="https://youtu.be/M94B7dKmdnw" target="_blank" rel="noopener" class="speaking-watch">Watch</a>
         </div>
         <div class="speaking-item">
-          <span class="speaking-event">Event Name</span>
-          <span class="speaking-topic">Talk Topic: Replace with Actual Topic</span>
-          <span class="speaking-year">Year</span>
+          <span class="speaking-event">IAFM Meet</span>
+          <span class="speaking-topic">Mugdha Pradhan at IAFM Meet</span>
+          <a href="https://youtu.be/4nybqnmDL90" target="_blank" rel="noopener" class="speaking-watch">Watch</a>
         </div>
         <div class="speaking-item">
-          <span class="speaking-event">Event Name</span>
-          <span class="speaking-topic">Talk Topic: Replace with Actual Topic</span>
-          <span class="speaking-year">Year</span>
-        </div>
-        <div class="speaking-item">
-          <span class="speaking-event">Event Name</span>
-          <span class="speaking-topic">Talk Topic: Replace with Actual Topic</span>
-          <span class="speaking-year">Year</span>
-        </div>
-        <div class="speaking-item">
-          <span class="speaking-event">Event Name</span>
-          <span class="speaking-topic">Talk Topic: Replace with Actual Topic</span>
-          <span class="speaking-year">Year</span>
+          <span class="speaking-event">No Ceiling Summit</span>
+          <span class="speaking-topic">Mugdha Pradhan at No Ceiling Summit</span>
+          <a href="https://youtu.be/T_dD2srP6Gg" target="_blank" rel="noopener" class="speaking-watch">Watch</a>
         </div>
       </div>
     </div>
@@ -862,39 +840,39 @@
     <div class="media-grid">
       <div class="media-card reveal">
         <div class="media-card-accent"></div>
-        <span class="media-pub-name">Publication Name</span>
-        <blockquote class="media-quote">"Pull quote: maximum ten words here."</blockquote>
-        <a href="#" class="media-link">Read Article</a>
+        <span class="media-pub-name">The Better India</span>
+        <blockquote class="media-quote">"It's in healing people that I find my joy."</blockquote>
+        <a href="https://thebetterindia.com/332088/mugdha-pradhan-ithrive-functional-medicine-mental-health-physical-health/" target="_blank" rel="noopener" class="media-link">Read Article</a>
       </div>
       <div class="media-card reveal reveal-delay-1">
         <div class="media-card-accent"></div>
-        <span class="media-pub-name">Publication Name</span>
-        <blockquote class="media-quote">"Pull quote: maximum ten words here."</blockquote>
-        <a href="#" class="media-link">Read Article</a>
+        <span class="media-pub-name">The Indian Express</span>
+        <blockquote class="media-quote">"The stress can even stall further weight loss after some initial success."</blockquote>
+        <a href="https://indianexpress.com/article/lifestyle/health/fast-food-reduce-calorie-intake-tips-nutrition-8477374/" target="_blank" rel="noopener" class="media-link">Read Article</a>
       </div>
       <div class="media-card reveal reveal-delay-2">
         <div class="media-card-accent"></div>
-        <span class="media-pub-name">Publication Name</span>
-        <blockquote class="media-quote">"Pull quote: maximum ten words here."</blockquote>
-        <a href="#" class="media-link">Read Article</a>
+        <span class="media-pub-name">Firstpost</span>
+        <blockquote class="media-quote">"I dropped 37 kg from my highest weight."</blockquote>
+        <a href="https://www.firstpost.com/health/book-excerpt-health-inc-10-real-life-stories-that-will-make-you-question-the-entire-healthcare-system-12377362.html" target="_blank" rel="noopener" class="media-link">Read Article</a>
       </div>
       <div class="media-card reveal">
         <div class="media-card-accent"></div>
-        <span class="media-pub-name">Publication Name</span>
-        <blockquote class="media-quote">"Pull quote: maximum ten words here."</blockquote>
-        <a href="#" class="media-link">Read Article</a>
+        <span class="media-pub-name">News18</span>
+        <blockquote class="media-quote">"Food manufacturers employ aliases to disguise harmful foods."</blockquote>
+        <a href="https://www.news18.com/lifestyle/the-hidden-truth-why-you-should-always-turn-the-package-for-nutrition-labeling-7481989.html" target="_blank" rel="noopener" class="media-link">Read Article</a>
       </div>
       <div class="media-card reveal reveal-delay-1">
         <div class="media-card-accent"></div>
-        <span class="media-pub-name">Publication Name</span>
-        <blockquote class="media-quote">"Pull quote: maximum ten words here."</blockquote>
-        <a href="#" class="media-link">Read Article</a>
+        <span class="media-pub-name">Life &amp; More</span>
+        <blockquote class="media-quote">"We have successfully treated over 158 various medical conditions."</blockquote>
+        <a href="https://lifeandmore.in/real-life-inspirational-stories/ithrive-founder-mugdha-pradhan/" target="_blank" rel="noopener" class="media-link">Read Article</a>
       </div>
       <div class="media-card reveal reveal-delay-2">
         <div class="media-card-accent"></div>
-        <span class="media-pub-name">Publication Name</span>
-        <blockquote class="media-quote">"Pull quote: maximum ten words here."</blockquote>
-        <a href="#" class="media-link">Read Article</a>
+        <span class="media-pub-name">CEOs of Bharat</span>
+        <blockquote class="media-quote">"Diseases considered irreversible could be successfully treated holistically."</blockquote>
+        <a href="https://ceosofbharat.com/ithrive-founder-mugdha-pradhan-navigating-health-challenges-to-business-triumph/" target="_blank" rel="noopener" class="media-link">Read Article</a>
       </div>
     </div>
   </div>
@@ -1056,32 +1034,6 @@
 </footer>
 
 <script>
-  if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-    // Custom cursor
-    const cursor = document.getElementById('cursor');
-    const ring = document.getElementById('cursor-ring');
-    document.addEventListener('mousemove', e => {
-      cursor.style.left = e.clientX + 'px';
-      cursor.style.top = e.clientY + 'px';
-      setTimeout(() => {
-        ring.style.left = e.clientX + 'px';
-        ring.style.top = e.clientY + 'px';
-      }, 60);
-    });
-    document.querySelectorAll('a, button').forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        ring.style.width = '60px';
-        ring.style.height = '60px';
-        ring.style.opacity = '0.6';
-      });
-      el.addEventListener('mouseleave', () => {
-        ring.style.width = '36px';
-        ring.style.height = '36px';
-        ring.style.opacity = '1';
-      });
-    });
-  }
-
   // Nav scroll
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
