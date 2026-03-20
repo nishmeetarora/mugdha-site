@@ -77,7 +77,7 @@
     height: 100vh; min-height: 750px;
     display: flex; align-items: center; justify-content: center;
     overflow: hidden;
-    padding-top: clamp(80px, 10vh, 120px);
+    padding-top: clamp(80px, 14vh, 140px);
     padding-bottom: clamp(60px, 8vh, 100px);
   }
 
@@ -137,7 +137,7 @@
     text-transform: uppercase;
     opacity: 0;
     animation: fade-up 1s ease 0.3s forwards;
-    margin-bottom: 1.5rem;
+    margin-bottom: clamp(1rem, 2vh, 1.5rem);
   }
 
   .hero-headline {
@@ -159,7 +159,7 @@
   .hero-divider {
     width: 1px; height: 60px;
     background: linear-gradient(to bottom, transparent, var(--gold), transparent);
-    margin: 1.5rem auto;
+    margin: clamp(0.8rem, 2vh, 1.5rem) auto;
     opacity: 0;
     animation: fade-in 1s ease 1s forwards;
   }
@@ -178,7 +178,7 @@
   }
 
   .hero-cta {
-    margin-top: 2.5rem;
+    margin-top: clamp(1.5rem, 3vh, 2.5rem);
     opacity: 0;
     animation: fade-up 1s ease 1.4s forwards;
   }
