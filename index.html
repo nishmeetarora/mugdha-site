@@ -675,37 +675,21 @@
     align-items: flex-start;
   }
 
-  /* PHOTO PLACEHOLDERS */
-  .photo-placeholder {
-    border: 1px dashed var(--gold);
-    aspect-ratio: 3/4;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-    text-align: center;
+  /* PHOTOS */
+  .story-photo {
     width: 100%;
-    opacity: 0.6;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
   }
-  .photo-placeholder-icon {
-    font-family: 'Cinzel', serif;
-    font-size: 0.6rem;
-    color: var(--gold);
-    text-transform: uppercase;
-    letter-spacing: 0.3em;
-    margin-bottom: 1rem;
-  }
-  .photo-placeholder-text {
-    font-family: 'Jost', sans-serif;
-    font-style: italic;
-    font-size: 0.75rem;
-    color: rgba(201, 152, 74, 0.6);
-    line-height: 1.7;
-  }
-  .photo-placeholder--wide {
-    aspect-ratio: 16/9;
+  .closing-photo {
+    width: 100%;
     max-width: 800px;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    object-position: center;
+    display: block;
     margin: 0 auto 4rem;
   }
 
@@ -1169,7 +1153,7 @@
     <div class="hero-divider"></div>
     <p class="hero-sub">Not manage their symptoms.<br>Not optimise their performance.<br>Remember.</p>
     <div class="hero-cta">
-      <a href="#story" class="btn-enter">Begin your remembrance</a>
+      <a href="work.html" class="btn-enter">Begin your remembrance</a>
       <a href="story.html" class="hero-story-link">Read my story →</a>
     </div>
   </div>
@@ -1316,7 +1300,7 @@
         <h3 class="card-title">If you back paradigm shifts, not products</h3>
         <p class="card-body">You are looking for the intersection of rigorous science, ancient wisdom, and a founder whose conviction was forged in the laboratory of her own body and tested on thousands of others. This is not a company building a supplement. This is a movement rewriting the story of human health. Not a product, a new paradigm. Not a market, a new category.</p>
       </div>
-      <a href="#contact" class="card-link">Investor Inquiry</a>
+      <a href="contact.html" class="card-link">Investor Inquiry</a>
     </div>
     <div class="audience-card reveal reveal-delay-1">
       <div>
@@ -1324,7 +1308,7 @@
         <h3 class="card-title">If you curate stages where ideas change rooms</h3>
         <p class="card-body">Your audience has heard the biohackers and the longevity brothers. They have heard the mindfulness teachers and the metabolic coaches. They have not heard someone who stands at the precise intersection of functional science, consciousness evolution, and ancient Vedic wisdom, and makes all three feel urgent, undeniable, and actionable in a single breath.</p>
       </div>
-      <a href="#contact" class="card-link">Speaking Inquiry</a>
+      <a href="contact.html" class="card-link">Speaking Inquiry</a>
     </div>
     <div class="audience-card reveal reveal-delay-2">
       <div>
@@ -1332,7 +1316,7 @@
         <h3 class="card-title">If you tell stories the world hasn't heard yet</h3>
         <p class="card-body">The story of a woman who reversed an irreversible disease, built a movement from a hospital bed, and is now attempting something medicine has never documented, the complete divinization of the human body, is not a wellness story. It is a story about what humanity is actually capable of, told by someone who has lived it.</p>
       </div>
-      <a href="#contact" class="card-link">Media Inquiry</a>
+      <a href="contact.html" class="card-link">Media Inquiry</a>
     </div>
   </div>
 </section>
@@ -1361,14 +1345,7 @@
       <a href="story.html" class="card-link reveal reveal-delay-3">Read the full story →</a>
     </div>
     <div class="story-photo-col reveal reveal-delay-2">
-      <div class="photo-placeholder">
-        <p class="photo-placeholder-icon">Photograph</p>
-        <p class="photo-placeholder-text">
-          [PHOTO: Mugdha Pradhan, intimate portrait, documentary style.<br>
-          Warm, directional light. Vulnerability and strength.<br>
-          Filename: mugdha-portrait-story.jpg]
-        </p>
-      </div>
+      <img src="images/mugdha-portrait-story.jpg" alt="Mugdha Pradhan" class="story-photo">
     </div>
   </div>
 </section>
@@ -1425,7 +1402,7 @@
       </div>
     </div>
     <div class="work-cta reveal">
-      <a href="#contact" class="btn-crimson">Discover Alive 2.0</a>
+      <a href="https://www.ithrivein.com/alive-2-0" target="_blank" rel="noopener" class="btn-crimson">Discover Alive 2.0</a>
     </div>
   </div>
 </section>
@@ -1437,7 +1414,7 @@
       <p class="section-tag">The Thinking</p>
       <h2>Ideas that refuse<br>to stay <em>quiet.</em></h2>
     </div>
-    <a href="#" class="view-all-link">View all essays →</a>
+    <a href="thinking.html" class="view-all-link">View all essays →</a>
   </div>
   <div class="essays-grid">
     <div class="essay-card featured reveal">
@@ -1472,14 +1449,7 @@
   <div class="closing-bg"></div>
   <div class="closing-inner">
     <p class="section-tag reveal" style="justify-content: center;">The Next Stage</p>
-    <div class="photo-placeholder photo-placeholder--wide reveal">
-      <p class="photo-placeholder-icon">Photograph</p>
-      <p class="photo-placeholder-text">
-        [PHOTO: Mugdha Pradhan, powerful, authoritative portrait.<br>
-        Dark background, forward-facing. End-of-manifesto feel.<br>
-        Filename: mugdha-portrait-closing.jpg]
-      </p>
-    </div>
+    <img src="images/mugdha-portrait-closing.jpg" alt="Mugdha Pradhan" class="closing-photo reveal">
     <h2 class="closing-headline reveal reveal-delay-1">
       The next stage of<br>human evolution<br>
       is not <em>coming.</em><br>
@@ -1489,7 +1459,7 @@
     <p class="closing-attribution reveal reveal-delay-2">— Mugdha Pradhan</p>
     <div class="closing-ctas reveal reveal-delay-3">
       <a href="#" class="btn-primary">Join the Movement</a>
-      <a href="#contact" class="btn-crimson">Begin your remembrance</a>
+      <a href="work.html" class="btn-crimson">Begin your remembrance</a>
     </div>
   </div>
 </section>
@@ -1499,10 +1469,10 @@
   <span class="footer-logo">Mugdha Pradhan © 2026</span>
   <p class="footer-quote">"You are not sick. You are asleep."</p>
   <ul class="footer-links">
-    <li><a href="#">Instagram</a></li>
-    <li><a href="#">LinkedIn</a></li>
-    <li><a href="#">YouTube</a></li>
-    <li><a href="#">X</a></li>
+    <li><a href="https://www.instagram.com/mugdhapradhan_official/" target="_blank" rel="noopener">Instagram</a></li>
+    <li><a href="https://www.linkedin.com/in/mugdhapradhan/" target="_blank" rel="noopener">LinkedIn</a></li>
+    <li><a href="https://www.youtube.com/@mugdhapradhan" target="_blank" rel="noopener">YouTube</a></li>
+    <li><a href="https://x.com/mugdhap" target="_blank" rel="noopener">X</a></li>
   </ul>
   <p class="footer-copy">mugdhapradhan.com | The Remembrance Movement</p>
 </footer>
@@ -1694,8 +1664,8 @@
     <li><a href="contact.html">Contact</a></li>
   </ul>
   <div class="mobile-nav-social">
-    <a href="#">Instagram</a>
-    <a href="#">LinkedIn</a>
+    <a href="https://www.instagram.com/mugdhapradhan_official/" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://www.linkedin.com/in/mugdhapradhan/" target="_blank" rel="noopener">LinkedIn</a>
   </div>
 </div>
 </body>
