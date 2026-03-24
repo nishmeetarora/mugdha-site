@@ -1,17 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4ZF1H4S5ES"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-4ZF1H4S5ES');
-  </script>
 <meta charset="UTF-8">
   <link rel="icon" href="/favicon.ico" sizes="32x32">
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mugdha Pradhan | The Remembrance Movement</title>
@@ -27,7 +18,8 @@
 <meta name="twitter:site" content="@mugdhap">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Cinzel:wght@400;500;600;700&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;600&family=Jost:wght@300;400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;600&family=Jost:wght@300;400&display=swap"></noscript>
 <style>
   :root {
     --black: #07060a;
@@ -128,6 +120,8 @@
     pointer-events: none;
     z-index: 999;
     animation: grain-move 8s steps(10) infinite;
+    will-change: transform;
+    transform: translateZ(0);
   }
   @keyframes grain-move {
     0%, 100% { transform: translate(0, 0); }
@@ -1390,7 +1384,7 @@
       <a href="/story" class="card-link reveal reveal-delay-3">Read the full story →</a>
     </div>
     <div class="story-photo-col reveal reveal-delay-2">
-      <img src="images/mugdha-portrait-story.jpg" alt="Mugdha Pradhan" class="story-photo">
+      <img src="images/mugdha-portrait-story.jpg" alt="Mugdha Pradhan" class="story-photo" width="597" height="896" loading="lazy">
     </div>
   </div>
 </section>
@@ -1494,7 +1488,7 @@
   <div class="closing-bg"></div>
   <div class="closing-inner">
     <p class="section-tag reveal" style="justify-content: center;">The Next Stage</p>
-    <img src="images/mugdha-portrait-closing.jpg" alt="Mugdha Pradhan" class="closing-photo reveal">
+    <img src="images/mugdha-portrait-closing.jpg" alt="Mugdha Pradhan" class="closing-photo reveal" width="2064" height="1152" loading="lazy">
     <h2 class="closing-headline reveal reveal-delay-1">
       The next stage of<br>human evolution<br>
       is not <em>coming.</em><br>
@@ -1657,23 +1651,59 @@
     }
   }
 
-  const emberCount = window.devicePixelRatio > 1 ? 150 : 80;
+  const isMobile = window.innerWidth < 768;
+  const emberCount = isMobile ? 40 : (window.devicePixelRatio > 1 ? 80 : 60);
+  const orbCount = isMobile ? 4 : 6;
   const embers = Array.from({ length: emberCount }, () => new Ember(true));
-  const orbs = Array.from({ length: 8 }, () => new Orb());
+  const orbs = Array.from({ length: orbCount }, () => new Orb());
 
   let lastFrameTime = 0;
   const FRAME_INTERVAL = 1000 / 30;
+  let isRunning = true;
+  let rafId = null;
 
   function loop(ts) {
+    if (!isRunning) return;
+    rafId = requestAnimationFrame(loop);
     if (ts - lastFrameTime >= FRAME_INTERVAL) {
       lastFrameTime = ts;
       ctx.clearRect(0, 0, W, H);
       orbs.forEach(o => { o.update(); o.draw(); });
       embers.forEach(e => { e.update(); e.draw(); });
     }
-    requestAnimationFrame(loop);
   }
-  requestAnimationFrame(loop);
+
+  // Pause when canvas scrolls offscreen
+  const canvasObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !isRunning) {
+        isRunning = true;
+        rafId = requestAnimationFrame(loop);
+      } else if (!entry.isIntersecting && isRunning) {
+        isRunning = false;
+        if (rafId) cancelAnimationFrame(rafId);
+      }
+    });
+  }, { threshold: 0 });
+  canvasObserver.observe(canvas);
+
+  // Pause when tab is hidden
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      isRunning = false;
+      if (rafId) cancelAnimationFrame(rafId);
+    } else if (!document.hidden) {
+      isRunning = true;
+      rafId = requestAnimationFrame(loop);
+    }
+  });
+
+  // Defer start until browser is idle
+  if (typeof requestIdleCallback !== 'undefined') {
+    requestIdleCallback(() => { rafId = requestAnimationFrame(loop); });
+  } else {
+    setTimeout(() => { rafId = requestAnimationFrame(loop); }, 200);
+  }
 
   // Mobile nav
   document.addEventListener('DOMContentLoaded', () => {
@@ -1713,5 +1743,13 @@
     <a href="https://www.linkedin.com/in/mugdhapradhan/" target="_blank" rel="noopener">LinkedIn</a>
   </div>
 </div>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4ZF1H4S5ES"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-4ZF1H4S5ES');
+</script>
 </body>
 </html>

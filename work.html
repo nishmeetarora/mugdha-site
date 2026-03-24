@@ -1,17 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4ZF1H4S5ES"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-4ZF1H4S5ES');
-  </script>
 <meta charset="UTF-8">
   <link rel="icon" href="/favicon.ico" sizes="32x32">
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Work | Mugdha Pradhan</title>
@@ -27,7 +18,8 @@
 <meta name="twitter:site" content="@mugdhap">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Cinzel:wght@400;500;600;700&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;600&family=Jost:wght@300;400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;600&family=Jost:wght@300;400&display=swap"></noscript>
 <style>
   :root {
     --black: #07060a;
@@ -69,6 +61,8 @@
     pointer-events: none;
     z-index: 999;
     animation: grain-move 8s steps(10) infinite;
+    will-change: transform;
+    transform: translateZ(0);
   }
   @keyframes grain-move {
     0%, 100% { transform: translate(0, 0); }
@@ -1008,16 +1002,56 @@
     }
   }
 
-  const embers = Array.from({ length: 120 }, () => new Ember(true));
-  const orbs = Array.from({ length: 8 }, () => new Orb());
+  const isMobile = window.innerWidth < 768;
+  const emberCount = isMobile ? 40 : 80;
+  const orbCount = isMobile ? 4 : 6;
+  const embers = Array.from({ length: emberCount }, () => new Ember(true));
+  const orbs = Array.from({ length: orbCount }, () => new Orb());
 
-  function animate() {
-    ctx.clearRect(0, 0, W, H);
-    orbs.forEach(o => { o.update(); o.draw(); });
-    embers.forEach(e => { e.update(); e.draw(); });
-    requestAnimationFrame(animate);
+  let lastFrameTime = 0;
+  const FRAME_INTERVAL = 1000 / 30;
+  let isRunning = true;
+  let rafId = null;
+
+  function animate(ts) {
+    if (!isRunning) return;
+    rafId = requestAnimationFrame(animate);
+    if (ts - lastFrameTime >= FRAME_INTERVAL) {
+      lastFrameTime = ts;
+      ctx.clearRect(0, 0, W, H);
+      orbs.forEach(o => { o.update(); o.draw(); });
+      embers.forEach(e => { e.update(); e.draw(); });
+    }
   }
-  animate();
+
+  const canvasObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !isRunning) {
+        isRunning = true;
+        rafId = requestAnimationFrame(animate);
+      } else if (!entry.isIntersecting && isRunning) {
+        isRunning = false;
+        if (rafId) cancelAnimationFrame(rafId);
+      }
+    });
+  }, { threshold: 0 });
+  canvasObserver.observe(canvas);
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      isRunning = false;
+      if (rafId) cancelAnimationFrame(rafId);
+    } else if (!document.hidden) {
+      isRunning = true;
+      rafId = requestAnimationFrame(animate);
+    }
+  });
+
+  if (typeof requestIdleCallback !== 'undefined') {
+    requestIdleCallback(() => { rafId = requestAnimationFrame(animate); });
+  } else {
+    setTimeout(() => { rafId = requestAnimationFrame(animate); }, 200);
+  }
 
   // Mobile nav
   document.addEventListener('DOMContentLoaded', () => {
@@ -1057,5 +1091,13 @@
     <a href="https://www.linkedin.com/in/mugdhapradhan/" target="_blank" rel="noopener">LinkedIn</a>
   </div>
 </div>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4ZF1H4S5ES"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-4ZF1H4S5ES');
+</script>
 </body>
 </html>
