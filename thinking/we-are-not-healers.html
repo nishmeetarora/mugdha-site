@@ -1,0 +1,1392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N6RX3XCR');</script>
+<!-- End Google Tag Manager -->
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>We Are Not Healers | Mugdha Pradhan</title>
+<meta name="description" content="Nine years of clinical work. Over thousands of clients. A hundred and seventy-four conditions. And the one thing I have become more certain of with every passing year is that I am not a healer. An essay by Mugdha Pradhan on guardianship, the body, and the work nobody romanticizes.">
+<link rel="canonical" href="https://mugdhapradhan.com/thinking/we-are-not-healers">
+<meta property="og:title" content="We Are Not Healers | Mugdha Pradhan">
+<meta property="og:description" content="Nine years of clinical work. Over thousands of clients. And the one thing I have become more certain of with every passing year is that I am not a healer.">
+<meta property="og:url" content="https://mugdhapradhan.com/thinking/we-are-not-healers">
+<meta property="og:image" content="https://mugdhapradhan.com/images/og-we-are-not-healers.png">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Mugdha Pradhan">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@mugdhap">
+<meta name="twitter:image" content="https://mugdhapradhan.com/images/og-we-are-not-healers.png">
+<meta name="author" content="Mugdha Pradhan">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="https://fonts.gstatic.com/s/cormorantgaramond/v21/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYqXtKky2F7g.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="https://fonts.gstatic.com/s/cormorantgaramond/v21/co3smX5slCNuHLi8bLeY9MK7whWMhyjYrGFEsdtdc62E6zd58jD-iNM8A_ipUA.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;600&family=Jost:wght@300;400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;600&family=Jost:wght@300;400&display=swap"></noscript>
+<style>
+  :root {
+    --black: #07060a;
+    --deep: #0d0b14;
+    --charcoal: #161320;
+    --gold: #c9984a;
+    --gold-light: #e8c07e;
+    --gold-dim: rgba(201, 152, 74, 0.15);
+    --amber: #d4803a;
+    --cream: #f0e8d8;
+    --white: #faf8f4;
+    --muted: rgba(240, 232, 216, 0.45);
+    --border: rgba(201, 152, 74, 0.2);
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--cream);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    cursor: auto;
+  }
+
+  /* Grain */
+  .grain {
+    position: fixed; inset: -50%;
+    width: 200%; height: 200%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: 0.35;
+    pointer-events: none;
+    z-index: 999;
+    animation: grain-move 8s steps(10) infinite;
+    will-change: transform;
+    transform: translateZ(0);
+  }
+  @keyframes grain-move {
+    0%, 100% { transform: translate(0, 0); }
+    10% { transform: translate(-2%, -3%); }
+    20% { transform: translate(3%, 1%); }
+    30% { transform: translate(-1%, 4%); }
+    40% { transform: translate(2%, -2%); }
+    50% { transform: translate(-3%, 2%); }
+    60% { transform: translate(1%, -4%); }
+    70% { transform: translate(-2%, 3%); }
+    80% { transform: translate(3%, -1%); }
+    90% { transform: translate(-1%, -3%); }
+  }
+
+  /* Reading Progress Bar */
+  .progress-bar {
+    position: fixed;
+    top: 0; left: 0;
+    height: 2px;
+    width: 0%;
+    background: linear-gradient(to right, var(--gold), var(--gold-light));
+    z-index: 200;
+    transition: width 0.1s linear;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 2rem 4rem;
+    display: flex; align-items: center; justify-content: space-between;
+    transition: background 0.4s ease, padding 0.4s ease;
+  }
+  nav.scrolled {
+    background: rgba(7, 6, 10, 0.92);
+    backdrop-filter: blur(12px);
+    padding: 1.2rem 4rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Cinzel', serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.25em;
+    color: var(--gold-light);
+    text-decoration: none;
+  }
+  .nav-links {
+    display: flex; gap: 2.5rem; list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+  .nav-links a.active { color: var(--gold-light); }
+
+  /* Chapter Navigator */
+  .chapter-nav {
+    position: fixed;
+    right: 2.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-end;
+  }
+  .chapter-dot {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+  }
+  .chapter-dot-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    opacity: 0;
+    transform: translateX(8px);
+    transition: opacity 0.3s, transform 0.3s, color 0.3s;
+    white-space: nowrap;
+  }
+  .chapter-dot:hover .chapter-dot-label,
+  .chapter-dot.active .chapter-dot-label {
+    opacity: 1;
+    transform: translateX(0);
+    color: var(--gold-light);
+  }
+  .chapter-dot-pip {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: transparent;
+    border: 1px solid rgba(201, 152, 74, 0.35);
+    transition: background 0.3s, transform 0.3s, border-color 0.3s;
+    flex-shrink: 0;
+  }
+  .chapter-dot:hover .chapter-dot-pip,
+  .chapter-dot.active .chapter-dot-pip {
+    background: var(--gold);
+    border-color: var(--gold);
+    transform: scale(1.4);
+  }
+  @media (max-width: 1200px) { .chapter-nav { display: none; } }
+
+  /* HERO */
+  .story-hero {
+    position: relative;
+    min-height: max(85vh, 700px);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: clamp(8rem, 14vh, 14rem) 4rem clamp(5rem, 9vh, 9rem);
+    overflow: hidden;
+  }
+  .hero-ambient {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 70% 50% at 50% 90%, rgba(201, 152, 74, 0.05) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 30% at 20% 30%, rgba(201, 152, 74, 0.02) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .story-hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 800px;
+  }
+  .story-eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.45em;
+    color: var(--gold);
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fade-up 1s ease 0.3s forwards;
+    margin-bottom: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+  .story-eyebrow::before, .story-eyebrow::after {
+    content: '';
+    width: 40px; height: 1px;
+    background: var(--gold);
+    opacity: 0.4;
+  }
+  .story-hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(3rem, 7vw, 6rem);
+    line-height: 1.1;
+    color: var(--white);
+    opacity: 0;
+    animation: fade-up 1.2s ease 0.55s forwards;
+    margin-bottom: 2.5rem;
+    letter-spacing: -0.01em;
+  }
+  .story-hero-title em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+  .story-hero-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    color: var(--muted);
+    opacity: 0;
+    animation: fade-up 1s ease 0.9s forwards;
+    letter-spacing: 0.05em;
+  }
+  .story-hero-divider {
+    width: 1px; height: 70px;
+    background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+    margin: 3rem auto 0;
+    opacity: 0;
+    animation: fade-in 1s ease 1.3s forwards;
+  }
+
+  /* ESSAY META */
+  .essay-meta {
+    text-align: center;
+    padding: 2rem 4rem 0;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .essay-meta-inner {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    align-items: center;
+  }
+  .essay-meta-item {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    color: rgba(240, 232, 216, 0.28);
+    text-transform: uppercase;
+  }
+  .essay-meta-item::before {
+    content: none;
+  }
+  .essay-meta-dot {
+    width: 3px; height: 3px;
+    border-radius: 50%;
+    background: rgba(201, 152, 74, 0.3);
+    flex-shrink: 0;
+  }
+
+  /* STORY BODY */
+  .story-body { position: relative; }
+
+  /* OPENING */
+  .story-opening {
+    padding: 7rem 4rem 3rem;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  /* CHAPTER SECTIONS */
+  .chapter-section {
+    padding: 5rem 4rem 4rem;
+    max-width: 720px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .chapter-header { margin-bottom: 3rem; }
+
+  .chapter-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.4em;
+    color: var(--gold);
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    margin-bottom: 1.2rem;
+  }
+  .chapter-label::after {
+    content: '';
+    width: 40px; height: 1px;
+    background: var(--gold);
+    opacity: 0.35;
+  }
+  .chapter-num-small {
+    color: rgba(201, 152, 74, 0.4);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+  }
+  .chapter-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(1.9rem, 3.5vw, 2.9rem);
+    line-height: 1.15;
+    color: var(--cream);
+    margin-bottom: 0.4rem;
+  }
+
+  /* Prose */
+  .prose p {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 2.05;
+    color: rgba(240, 232, 216, 0.72);
+    margin-bottom: 1.75rem;
+  }
+  .prose p:last-child { margin-bottom: 0; }
+  .prose p strong { color: var(--cream); font-weight: 400; }
+  .prose p em { color: rgba(240, 232, 216, 0.9); font-style: italic; }
+
+  /* Staccato */
+  .staccato { margin: 2.5rem 0; }
+  .staccato p {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(1.2rem, 2.5vw, 1.75rem);
+    line-height: 1.35;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+    padding-left: 2rem;
+    border-left: 1px solid rgba(201, 152, 74, 0.2);
+  }
+  .staccato p.gold { color: var(--gold-light); font-style: italic; }
+
+  /* Pull Quote */
+  .pull-quote {
+    position: relative;
+    margin: 3.5rem 0;
+    padding: 2.5rem 3rem 2.5rem 4rem;
+    border-left: 2px solid var(--gold);
+    background: rgba(201, 152, 74, 0.03);
+  }
+  .pull-quote::before {
+    content: '\201C';
+    position: absolute;
+    top: 0.8rem; left: 1.2rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem;
+    line-height: 1;
+    color: var(--gold);
+    opacity: 0.25;
+  }
+  .pull-quote p {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(1.3rem, 2.5vw, 1.9rem);
+    line-height: 1.45;
+    color: var(--cream);
+    margin: 0;
+  }
+  .pull-quote p em { color: var(--gold-light); }
+
+  /* Centered Pull */
+  .centered-pull {
+    text-align: center;
+    margin: 4.5rem auto;
+    max-width: 560px;
+  }
+  .centered-pull p {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1.5rem, 3vw, 2.4rem);
+    line-height: 1.4;
+    color: var(--gold-light);
+    margin: 0;
+  }
+
+  /* Confession Block */
+  .confession {
+    margin: 3rem 0;
+    padding: 2.5rem 3rem;
+    border: 1px solid var(--border);
+    background: var(--deep);
+    position: relative;
+  }
+  .confession p {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(1.1rem, 2vw, 1.45rem);
+    line-height: 1.65;
+    color: var(--cream);
+    margin-bottom: 0.7rem;
+  }
+  .confession p:last-child { margin-bottom: 0; }
+  .confession p.muted {
+    color: var(--muted);
+    font-size: 0.95rem;
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    line-height: 1.8;
+  }
+
+  /* Section break dots */
+  .story-break {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    margin: 3rem auto;
+    max-width: 720px;
+    padding: 0 4rem;
+  }
+  .story-break-dot {
+    width: 3px; height: 3px;
+    border-radius: 50%;
+    background: var(--gold);
+    opacity: 0.35;
+  }
+
+  /* Chapter Divider */
+  .chapter-divider {
+    max-width: 720px;
+    margin: 2rem auto;
+    padding: 0 4rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .chapter-divider-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+  .chapter-divider-ornament {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.9rem;
+    color: var(--gold);
+    opacity: 0.35;
+    flex-shrink: 0;
+  }
+
+  /* Closing */
+  .story-closing {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 5rem 4rem 10rem;
+    text-align: center;
+  }
+  .story-signature {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--gold);
+    letter-spacing: 0.04em;
+    line-height: 2;
+  }
+
+  /* Bio section */
+  .bio-section {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 4rem 4rem 6rem;
+    border-top: 1px solid var(--border);
+  }
+  .bio-inner {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+  }
+  .bio-text p {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 0.88rem;
+    line-height: 1.9;
+    color: rgba(240, 232, 216, 0.55);
+    margin-bottom: 1rem;
+  }
+  .bio-text p:last-child { margin-bottom: 0; }
+  .bio-text strong {
+    color: var(--cream);
+    font-weight: 400;
+  }
+  .bio-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .bio-links {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+  .bio-links a {
+    font-family: 'Cinzel', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.22em;
+    color: rgba(201, 152, 74, 0.4);
+    border: 1px solid rgba(201, 152, 74, 0.14);
+    padding: 0.65rem 1.5rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: border-color 0.3s, color 0.3s;
+  }
+  .bio-links a:hover {
+    border-color: rgba(201, 152, 74, 0.35);
+    color: var(--gold);
+  }
+
+  /* Next page CTA */
+  .page-cta {
+    background: var(--deep);
+    border-top: 1px solid var(--border);
+    padding: 5rem 4rem;
+    text-align: center;
+  }
+  .page-cta p {
+    font-family: 'Cinzel', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.35em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+  .page-cta-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    display: inline-block;
+    font-family: 'Cinzel', serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--black);
+    background: var(--gold);
+    padding: 1rem 2.5rem;
+    text-decoration: none;
+    transition: background 0.3s;
+  }
+  .btn-primary:hover { background: var(--gold-light); }
+  .btn-secondary {
+    display: inline-block;
+    font-family: 'Cinzel', serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    border: 1px solid var(--border);
+    padding: 1rem 2.5rem;
+    text-decoration: none;
+    transition: border-color 0.3s, color 0.3s;
+  }
+  .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* FOOTER */
+  footer {
+    padding: 3rem 4rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+  .footer-logo {
+    font-family: 'Cinzel', serif;
+    font-size: 0.82rem;
+    letter-spacing: 0.25em;
+    color: var(--gold-light);
+  }
+  .footer-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: rgba(240, 232, 216, 0.62);
+    text-align: center;
+  }
+  .footer-links {
+    display: flex; gap: 2rem; list-style: none;
+  }
+  .footer-links a {
+    font-size: 0.78rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .footer-links a:hover { color: var(--gold-light); }
+  .footer-copy {
+    width: 100%;
+    text-align: center;
+    font-size: 0.75rem;
+    color: rgba(240, 232, 216, 0.2);
+    letter-spacing: 0.1em;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(201, 152, 74, 0.08);
+    margin-top: 1rem;
+  }
+
+  /* Animations */
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.15s; }
+  .reveal-delay-2 { transition-delay: 0.3s; }
+  .reveal-delay-3 { transition-delay: 0.45s; }
+  .nav-hamburger { display: none; }
+
+  @media (max-width: 768px) {
+    nav { padding: 1.5rem 2rem; }
+    nav.scrolled { padding: 1rem 2rem; }
+    .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
+
+    /* Hero */
+    .story-hero {
+      padding: 8rem 2rem 5rem;
+      min-height: auto;
+    }
+    .story-hero-title {
+      font-size: clamp(2.4rem, 10vw, 4rem);
+      line-height: 1.15;
+    }
+    .story-hero-sub {
+      font-size: 0.95rem;
+      letter-spacing: 0.03em;
+    }
+    .story-hero-divider { height: 50px; margin-top: 2rem; }
+    .story-eyebrow { margin-bottom: 2rem; }
+    .story-eyebrow::before, .story-eyebrow::after { width: 24px; }
+
+    /* Essay Meta */
+    .essay-meta { padding: 1.5rem 2rem 0; }
+    .essay-meta-inner {
+      flex-direction: column;
+      gap: 0.4rem;
+      align-items: center;
+    }
+    .essay-meta-dot { display: none; }
+
+    /* Sections */
+    .story-opening { padding: 4rem 2rem 3rem; }
+    .chapter-section { padding: 4rem 2rem 3rem; }
+    .chapter-divider { padding: 0 2rem; }
+    .story-break { padding: 0 2rem; }
+    .story-closing { padding: 4rem 2rem 8rem; }
+
+    /* Chapter Headers */
+    .chapter-header { margin-bottom: 2.5rem; }
+    .chapter-title {
+      font-size: clamp(1.6rem, 6vw, 2.4rem);
+      line-height: 1.2;
+    }
+    .chapter-label {
+      font-size: 0.52rem;
+      letter-spacing: 0.3em;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+    }
+    .chapter-label::after { width: 24px; }
+    .chapter-num-small { font-size: 0.65rem; }
+
+    /* Prose */
+    .prose p {
+      font-size: 0.95rem;
+      line-height: 1.9;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Pull Quote */
+    .pull-quote {
+      margin: 2.5rem 0;
+      padding: 2rem 1.5rem 2rem 2rem;
+    }
+    .pull-quote::before {
+      font-size: 3rem;
+      top: 0.6rem;
+      left: 0.8rem;
+    }
+    .pull-quote p {
+      font-size: clamp(1.15rem, 4vw, 1.5rem);
+      line-height: 1.4;
+    }
+
+    /* Centered Pull */
+    .centered-pull {
+      margin: 3rem auto;
+      padding: 0 1rem;
+      max-width: 100%;
+    }
+    .centered-pull p {
+      font-size: clamp(1.3rem, 5vw, 2rem);
+      line-height: 1.4;
+    }
+
+    /* Confession Block */
+    .confession {
+      margin: 2.5rem 0;
+      padding: 2rem 1.5rem;
+    }
+    .confession p {
+      font-size: clamp(1rem, 3.5vw, 1.25rem);
+      line-height: 1.55;
+    }
+    .confession p.muted {
+      font-size: 0.85rem;
+      line-height: 1.7;
+    }
+
+    /* Staccato */
+    .staccato { margin: 2rem 0; }
+    .staccato p {
+      font-size: clamp(1.1rem, 4.5vw, 1.5rem);
+      padding-left: 1.5rem;
+      line-height: 1.4;
+    }
+
+    /* Chapter Divider */
+    .chapter-divider { margin: 1.5rem auto; }
+
+    /* Story Break */
+    .story-break { margin: 2.5rem auto; }
+
+    /* Bio Section */
+    .bio-section { padding: 2.5rem 2rem 4rem; }
+    .bio-inner { flex-direction: column; }
+    .bio-text p {
+      font-size: 0.82rem;
+      line-height: 1.8;
+    }
+    .bio-name { font-size: 1rem; }
+    .bio-links {
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+    .bio-links a {
+      font-size: 0.5rem;
+      padding: 0.5rem 1rem;
+    }
+
+    /* Page CTA */
+    .page-cta { padding: 4rem 2rem; }
+    .page-cta-links { flex-direction: column; gap: 1rem; }
+    .btn-primary, .btn-secondary {
+      padding: 1rem 2rem;
+      font-size: 0.62rem;
+      letter-spacing: 0.25em;
+    }
+
+    /* Footer */
+    footer {
+      padding: 2rem;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.5rem;
+    }
+    .footer-quote {
+      text-align: left;
+      font-size: 0.95rem;
+    }
+    .footer-links {
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+
+  /* Extra-small screens (under 400px) */
+  @media (max-width: 400px) {
+    .story-hero { padding: 7rem 1.5rem 4rem; }
+    .story-opening, .chapter-section { padding: 3rem 1.5rem 2.5rem; }
+    .chapter-divider { padding: 0 1.5rem; }
+    .story-break { padding: 0 1.5rem; }
+    .story-hero-title {
+      font-size: 2.2rem;
+      line-height: 1.15;
+    }
+    .pull-quote { padding: 1.5rem 1rem 1.5rem 1.5rem; }
+    .confession { padding: 1.5rem 1.2rem; }
+    .bio-section { padding: 2rem 1.5rem 3rem; }
+    .page-cta { padding: 3rem 1.5rem; }
+  }
+
+  /* ── MOBILE INLINE-STYLE OVERRIDES ── */
+  @media (max-width: 768px) {
+    .centered-pull { margin: 3rem auto !important; }
+    .prose { margin-top: 0 !important; }
+  }
+  @media (max-width: 400px) {
+    .centered-pull { margin: 2rem auto !important; }
+  }
+
+  /* HAMBURGER & MOBILE NAV */
+  .nav-hamburger {
+    flex-direction: column; gap: 5px;
+    background: none; border: none; cursor: pointer; padding: 4px;
+  }
+  .nav-hamburger span {
+    display: block; width: 22px; height: 1px;
+    background: var(--gold-light);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  .nav-hamburger.active span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .nav-hamburger.active span:nth-child(2) { opacity: 0; }
+  .nav-hamburger.active span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+  .mobile-nav {
+    position: fixed; inset: 0; z-index: 150;
+    background: rgba(7, 6, 10, 0.97);
+    backdrop-filter: blur(8px);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.4s ease;
+  }
+  .mobile-nav.open { opacity: 1; pointer-events: all; }
+  .mobile-nav-close {
+    position: absolute; top: 2rem; right: 2.2rem;
+    background: none; border: none;
+    font-family: 'Cinzel', serif; font-size: 0.8rem;
+    letter-spacing: 0.2em; color: rgba(240,232,216,0.4);
+    cursor: pointer; transition: color 0.3s;
+  }
+  .mobile-nav-links { list-style: none; text-align: center; margin-bottom: 3rem; }
+  .mobile-nav-links li {
+    opacity: 0; transform: translateY(14px);
+    transition: opacity 0.45s ease, transform 0.45s ease;
+  }
+  .mobile-nav.open .mobile-nav-links li { opacity: 1; transform: translateY(0); }
+  .mobile-nav.open .mobile-nav-links li:nth-child(1) { transition-delay: 0.04s; }
+  .mobile-nav.open .mobile-nav-links li:nth-child(2) { transition-delay: 0.08s; }
+  .mobile-nav.open .mobile-nav-links li:nth-child(3) { transition-delay: 0.12s; }
+  .mobile-nav.open .mobile-nav-links li:nth-child(4) { transition-delay: 0.16s; }
+  .mobile-nav.open .mobile-nav-links li:nth-child(5) { transition-delay: 0.20s; }
+  .mobile-nav.open .mobile-nav-links li:nth-child(6) { transition-delay: 0.24s; }
+  .mobile-nav-links a {
+    font-family: 'Cormorant Garamond', serif; font-weight: 300;
+    font-size: clamp(1.8rem, 7vw, 2.6rem);
+    color: rgba(240,232,216,0.65); text-decoration: none;
+    letter-spacing: 0.04em; padding: 0.65rem 0; display: block;
+    transition: color 0.3s;
+  }
+  .mobile-nav-links a.active,
+  .mobile-nav-links a:hover { color: var(--gold-light); }
+  .mobile-nav-social { display: flex; gap: 2.5rem; }
+  .mobile-nav-social a {
+    font-family: 'Cinzel', serif; font-size: 0.58rem;
+    letter-spacing: 0.22em; color: rgba(201,152,74,0.35);
+    text-decoration: none; text-transform: uppercase;
+  }
+
+  /* TOUCH: DISABLE HOVER STATES */
+  @media (hover: none) {
+    .nav-links a:hover { color: var(--muted); }
+    .footer-links a:hover { color: var(--muted); }
+    .btn-primary:hover { background: var(--gold); }
+    .btn-secondary:hover { border-color: var(--border); color: var(--gold-light); }
+  }
+</style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N6RX3XCR"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<div class="grain"></div>
+<div class="progress-bar" id="progress-bar"></div>
+
+<!-- CHAPTER NAVIGATOR -->
+<aside class="chapter-nav" aria-label="Section navigation">
+  <a href="#opening" class="chapter-dot" data-section="opening">
+    <span class="chapter-dot-label">Preface</span>
+    <span class="chapter-dot-pip"></span>
+  </a>
+  <a href="#section-the-job" class="chapter-dot" data-section="section-the-job">
+    <span class="chapter-dot-label">The Job</span>
+    <span class="chapter-dot-pip"></span>
+  </a>
+  <a href="#section-watching" class="chapter-dot" data-section="section-watching">
+    <span class="chapter-dot-label">When Nobody Watches</span>
+    <span class="chapter-dot-pip"></span>
+  </a>
+  <a href="#section-healing-vs-guarding" class="chapter-dot" data-section="section-healing-vs-guarding">
+    <span class="chapter-dot-label">Healing vs. Guarding</span>
+    <span class="chapter-dot-pip"></span>
+  </a>
+  <a href="#section-never-stop" class="chapter-dot" data-section="section-never-stop">
+    <span class="chapter-dot-label">Why We Never Stop</span>
+    <span class="chapter-dot-pip"></span>
+  </a>
+  <a href="#section-sacred-ground" class="chapter-dot" data-section="section-sacred-ground">
+    <span class="chapter-dot-label">Sacred Ground</span>
+    <span class="chapter-dot-pip"></span>
+  </a>
+  <a href="#section-invisible-wall" class="chapter-dot" data-section="section-invisible-wall">
+    <span class="chapter-dot-label">The Invisible Wall</span>
+    <span class="chapter-dot-pip"></span>
+  </a>
+  <a href="#section-what-i-am-saying" class="chapter-dot" data-section="section-what-i-am-saying">
+    <span class="chapter-dot-label">What I Am Saying</span>
+    <span class="chapter-dot-pip"></span>
+  </a>
+</aside>
+
+<!-- MAIN NAV -->
+<nav id="nav">
+  <a href="/" class="nav-logo">Mugdha Pradhan</a>
+  <ul class="nav-links">
+    <li><a href="/story">The Story</a></li>
+    <li><a href="/mission">The Mission</a></li>
+    <li><a href="/work">The Work</a></li>
+    <li><a href="/evidence">The Evidence</a></li>
+    <li><a href="/thinking" class="active">The Thinking</a></li>
+    <li><a href="/contact">Contact</a></li>
+  </ul>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="story-hero">
+  <div class="hero-ambient"></div>
+  <div class="story-hero-content">
+    <p class="story-eyebrow">Essay</p>
+    <h1 class="story-hero-title">
+      We Are Not<br><em>Healers</em>
+    </h1>
+    <p class="story-hero-sub">On Guardianship, the Body,<br>and the Work Nobody Romanticizes</p>
+    <div class="story-hero-divider"></div>
+  </div>
+</section>
+
+<!-- ESSAY META -->
+<div class="essay-meta">
+  <div class="essay-meta-inner">
+    <span class="essay-meta-item">May 2026</span>
+    <span class="essay-meta-dot"></span>
+    <span class="essay-meta-item">9 min read</span>
+    <span class="essay-meta-dot"></span>
+    <span class="essay-meta-item">Philosophy of Health</span>
+  </div>
+</div>
+
+<!-- ESSAY BODY -->
+<main class="story-body">
+
+  <!-- PREFACE -->
+  <section id="opening" class="story-opening">
+
+    <div class="essay-cover-image reveal">
+      <img src="../images/we-are-not-healers.png" alt="We Are Not Healers" style="width:100%;max-width:900px;display:block;margin:0 auto 3rem;border-radius:4px;opacity:0.92;">
+    </div>
+
+    <div class="staccato reveal">
+      <p>Nine years of clinical work.</p>
+      <p>Over thousands of clients.</p>
+      <p>A hundred and seventy-four conditions.</p>
+    </div>
+
+    <div class="prose reveal reveal-delay-1" style="margin-top:2.5rem;">
+      <p>And the one thing I have become more certain of with every passing year is that I am not a healer.</p>
+      <p>Neither is my team.</p>
+    </div>
+
+    <div class="prose reveal">
+      <p>The word &ldquo;healer&rdquo; carries an assumption that is quietly dangerous. It implies that I am the one doing the healing. That you come to me broken and I fix you. That the magic lives in my hands, my protocols, my supplements.</p>
+      <p>It doesn&rsquo;t.</p>
+    </div>
+
+    <div class="pull-quote reveal">
+      <p>The magic lives in the body that showed up.</p>
+    </div>
+
+    <div class="prose reveal">
+      <p>What we do is something far less glamorous and far more sacred.</p>
+    </div>
+
+    <div class="centered-pull reveal" style="margin:4.5rem auto;">
+      <p>We guard.</p>
+    </div>
+
+  </section>
+
+  <div class="chapter-divider reveal">
+    <div class="chapter-divider-line"></div>
+    <div class="chapter-divider-ornament">✦</div>
+    <div class="chapter-divider-line"></div>
+  </div>
+
+  <!-- I. THE JOB NOBODY ROMANTICIZES -->
+  <section id="section-the-job" class="chapter-section">
+    <div class="chapter-header reveal">
+      <p class="chapter-label"><span class="chapter-num-small">I</span>&nbsp;&nbsp;The Job Nobody Romanticizes</p>
+      <h2 class="chapter-title">The Job Nobody Romanticizes</h2>
+    </div>
+
+    <div class="prose">
+      <p class="reveal">When a human body walks into our consults, it has usually been through war. Years of metabolic damage. Decades of nutritional deficiency. The inflammation is so chronic it has become the body&rsquo;s baseline. Gut ecosystems are so devastated that the immune system has turned on the very organism it was designed to protect.</p>
+      <p class="reveal">And in most cases, the damage is still ongoing. The person is still eating the thing that is destroying their gut lining. Still sleeping under blue light. Still running on cortisol and caffeine. Still taking the medication that is depleting the very nutrient their body is screaming for.</p>
+    </div>
+
+    <div class="staccato reveal">
+      <p>Our first job is not to heal.</p>
+      <p class="gold">Our first job is to stop the bleeding.</p>
+    </div>
+
+    <div class="prose reveal" style="margin-top:2.5rem;">
+      <p>You stand between the body and the thing that is destroying it. You hold the line. You keep watch. And you do this while the body does what it was always designed to do, which is repair itself.</p>
+    </div>
+
+    <div class="centered-pull reveal" style="margin:4.5rem auto;">
+      <p>That is not healing.<br>That is <em>guardianship.</em></p>
+    </div>
+
+  </section>
+
+  <div class="chapter-divider reveal">
+    <div class="chapter-divider-line"></div>
+    <div class="chapter-divider-ornament">✦</div>
+    <div class="chapter-divider-line"></div>
+  </div>
+
+  <!-- II. WHAT IT LOOKS LIKE WHEN NOBODY IS WATCHING -->
+  <section id="section-watching" class="chapter-section">
+    <div class="chapter-header reveal">
+      <p class="chapter-label"><span class="chapter-num-small">II</span>&nbsp;&nbsp;What It Looks Like When Nobody Is Watching</p>
+      <h2 class="chapter-title">What It Looks Like When Nobody Is Watching</h2>
+    </div>
+
+    <div class="prose">
+      <p class="reveal">A guardian learns. Relentlessly, obsessively, without end. Not because learning is virtuous. Because the threats keep evolving and the body deserves someone who has kept up.</p>
+      <p class="reveal">I read the research so my clients don&rsquo;t have to decode it. I track the biomarkers so the patterns become visible before the disease does. I cross-reference the blood work with the gut map with the organic acids with the symptoms with the history with the environment. Because no single data point tells the truth. The truth only emerges in the crosstalk.</p>
+      <p class="reveal">A guardian also says no. No, that supplement is not appropriate for your biochemistry right now. No, that trending protocol your favourite influencer swears by is not what your body needs. No, the fact that it worked for someone on Instagram does not mean it will work for you.</p>
+    </div>
+
+    <div class="pull-quote reveal">
+      <p>Your body is not a content trend. It is a specific, irreducible, unrepeatable biological system. <em>It deserves to be treated like one.</em></p>
+    </div>
+
+    <div class="prose reveal">
+      <p>Nobody makes a reel about the three hours spent analyzing a single client&rsquo;s labs. Nobody romanticizes the practitioner who catches a contraindication before it becomes a crisis. Prevention is invisible by definition. You cannot photograph the disease that never happened.</p>
+    </div>
+
+    <div class="staccato reveal">
+      <p class="gold">But that is the work.</p>
+    </div>
+
+  </section>
+
+  <div class="chapter-divider reveal">
+    <div class="chapter-divider-line"></div>
+    <div class="chapter-divider-ornament">✦</div>
+    <div class="chapter-divider-line"></div>
+  </div>
+
+  <!-- III. HEALING VS. GUARDING -->
+  <section id="section-healing-vs-guarding" class="chapter-section">
+    <div class="chapter-header reveal">
+      <p class="chapter-label"><span class="chapter-num-small">III</span>&nbsp;&nbsp;Healing vs. Guarding</p>
+      <h2 class="chapter-title">Healing vs. Guarding</h2>
+    </div>
+
+    <div class="prose">
+      <p class="reveal">Healing, the way the wellness industry uses the word, has become a performance. Crystals on Instagram. Sound baths with no diagnostic foundation. &ldquo;Trust your body&rdquo; is offered to someone whose body is sending distress signals that nobody is bothering to read.</p>
+      <p class="reveal">I am not against any of these things in their proper context. But context requires knowledge. Deep, specific, unglamorous knowledge about what is happening inside a particular human body at a particular moment in time.</p>
+    </div>
+
+    <div class="confession reveal">
+      <p>A healer, in the popular imagination, channels something. A guardian studies something.</p>
+      <p>A healer follows intuition. A guardian follows data, and then uses clinical intuition sharpened by thousands of cases to interpret what the data cannot say on its own.</p>
+    </div>
+
+    <div class="prose reveal" style="margin-top:2.5rem;">
+      <p>The distinction matters because it changes what the client expects. And expectations shape outcomes.</p>
+      <p>If you come to me expecting healing, you are waiting to be saved. You are outsourcing your recovery to my expertise. You are passive.</p>
+    </div>
+
+    <div class="pull-quote reveal">
+      <p>If you understand that I am guarding your body while it heals itself, something shifts. You become the protagonist. The body becomes the intelligence. <em>I become the one standing at the gate.</em></p>
+    </div>
+
+  </section>
+
+  <div class="chapter-divider reveal">
+    <div class="chapter-divider-line"></div>
+    <div class="chapter-divider-ornament">✦</div>
+    <div class="chapter-divider-line"></div>
+  </div>
+
+  <!-- IV. WHY WE NEVER STOP -->
+  <section id="section-never-stop" class="chapter-section">
+    <div class="chapter-header reveal">
+      <p class="chapter-label"><span class="chapter-num-small">IV</span>&nbsp;&nbsp;Why We Never Stop</p>
+      <h2 class="chapter-title">Why We Never Stop</h2>
+    </div>
+
+    <div class="prose">
+      <p class="reveal">Every senior clinical person at iThrive carries an active caseload. Including me. This is not symbolic. It is structural.</p>
+      <p class="reveal">A practitioner who stops seeing clients stops recognizing patterns. And pattern recognition is the difference between a protocol-follower and a guardian. The protocol tells you what to do in theory. The pattern tells you what is happening in the body sitting in front of you right now.</p>
+      <p class="reveal">We study functional blood chemistry because conventional reference ranges are derived from population averages. And a population average is, by definition, an average of the sick. We use optimal ranges because we are not interested in whether your numbers are &ldquo;normal.&rdquo; We are interested in whether your body is thriving.</p>
+      <p class="reveal">We study the gut microbiome because the gut is not a digestive organ. It is an immune organ, a neurological organ, a hormonal organ. When the gut falls, everything downstream falls with it.</p>
+      <p class="reveal">We study peptides and bioregulators because the body has repair mechanisms that most of conventional medicine has either ignored or actively suppressed. We study environmental toxins, electromagnetic fields, light exposure, water quality, circadian biology. Because the body does not exist in a vacuum. It exists inside an environment that is, in most modern contexts, actively hostile to human health.</p>
+      <p class="reveal">We study the mind. The nervous system. The psychological architecture that determines whether the body is in repair mode or defense mode. Because the most pristine protocol in the world will not work in a body whose nervous system believes it is under threat.</p>
+    </div>
+
+    <div class="staccato reveal">
+      <p>We never stop learning.</p>
+      <p>Not because we are academics.</p>
+      <p class="gold">Because the bodies that come to us deserve someone who knows what they are looking at.</p>
+    </div>
+
+  </section>
+
+  <div class="chapter-divider reveal">
+    <div class="chapter-divider-line"></div>
+    <div class="chapter-divider-ornament">✦</div>
+    <div class="chapter-divider-line"></div>
+  </div>
+
+  <!-- V. THE BODY AS SACRED GROUND -->
+  <section id="section-sacred-ground" class="chapter-section">
+    <div class="chapter-header reveal">
+      <p class="chapter-label"><span class="chapter-num-small">V</span>&nbsp;&nbsp;The Body as Sacred Ground</p>
+      <h2 class="chapter-title">The Body as Sacred Ground</h2>
+    </div>
+
+    <div class="prose">
+      <p class="reveal">The bodies that come to us come for repair and maintenance.</p>
+      <p class="reveal">That language is not clinical detachment. It is precision.</p>
+      <p class="reveal">Repair means something was damaged. Maintenance means the work does not end when the symptoms resolve. A body is not a problem to be solved. It is a living system to be supported and protected over time.</p>
+    </div>
+
+    <div class="pull-quote reveal">
+      <p>When I say we guard these bodies, I mean it in the most literal, unsentimental sense. <em>We are protective. Fiercely, sometimes inconveniently protective.</em></p>
+    </div>
+
+    <div class="prose reveal">
+      <p>We will push back against a doctor&rsquo;s prescription if we believe it is doing more harm than good. We will insist on a test you don&rsquo;t think you need. We will say the uncomfortable thing about your lifestyle, your stress, your sleep, your relationships. Because the body keeps score, and we can read the score.</p>
+    </div>
+
+    <div class="centered-pull reveal" style="margin:4.5rem auto;">
+      <p>This is not arrogance.<br>It is <em>responsibility.</em></p>
+    </div>
+
+    <div class="prose reveal">
+      <p>When someone hands me their blood work, their symptoms, their history, their trust, they are handing me something that deserves to be held with more seriousness than most of healthcare currently offers.</p>
+    </div>
+
+  </section>
+
+  <div class="chapter-divider reveal">
+    <div class="chapter-divider-line"></div>
+    <div class="chapter-divider-ornament">✦</div>
+    <div class="chapter-divider-line"></div>
+  </div>
+
+  <!-- VI. THE INVISIBLE WALL -->
+  <section id="section-invisible-wall" class="chapter-section">
+    <div class="chapter-header reveal">
+      <p class="chapter-label"><span class="chapter-num-small">VI</span>&nbsp;&nbsp;The Invisible Wall</p>
+      <h2 class="chapter-title">The Invisible Wall</h2>
+    </div>
+
+    <div class="prose">
+      <p class="reveal">There is a gap between what we do and what the person inside the body perceives.</p>
+      <p class="reveal">Most clients, understandably, come looking for a fix. They want the protocol. The supplement stack. The answer. And we give them answers. Rigorously. Precisely.</p>
+      <p class="reveal">But what they don&rsquo;t see is everything else. The cross-referencing. The ruling out. The three differential possibilities we considered and discarded before arriving at the one we recommended. The paper I read at midnight because something in their labs didn&rsquo;t sit right. The conversation between practitioners that happened after hours because the pattern was unusual and we needed another set of eyes.</p>
+    </div>
+
+    <div class="pull-quote reveal">
+      <p>They don&rsquo;t see this because guardianship, done well, is invisible. You see the result. <em>You don&rsquo;t see the wall that was built around your body to make the result possible.</em></p>
+    </div>
+
+    <div class="prose reveal">
+      <p>We see the intervention. The pill. The drip. The surgery. The visible, dramatic act.</p>
+      <p>We don&rsquo;t see the guarding. The holding. The daily, invisible, unglamorous act of standing between a body and everything that wants to break it down.</p>
+    </div>
+
+  </section>
+
+  <div class="chapter-divider reveal">
+    <div class="chapter-divider-line"></div>
+    <div class="chapter-divider-ornament">✦</div>
+    <div class="chapter-divider-line"></div>
+  </div>
+
+  <!-- VII. WHAT I AM SAYING -->
+  <section id="section-what-i-am-saying" class="chapter-section">
+    <div class="chapter-header reveal">
+      <p class="chapter-label"><span class="chapter-num-small">VII</span>&nbsp;&nbsp;What I Am Saying</p>
+      <h2 class="chapter-title">What I Am Saying</h2>
+    </div>
+
+    <div class="prose">
+      <p class="reveal">I am not asking for gratitude.</p>
+      <p class="reveal">I am asking for a different understanding of what this work is.</p>
+      <p class="reveal">It is not a transaction. It is not a service you consume and rate on a feedback form.</p>
+      <p class="reveal">It is someone who chose to spend their life learning everything there is to learn about the human body so that when your body shows up, damaged and confused and running on fumes, there is a person in the room who is ready. Not to save you. To guard you while you save yourself.</p>
+      <p class="reveal">The body knows how to heal. It has always known. What it needs is someone who will clear the obstacles, hold the line, and refuse to let anything through that does not serve its recovery.</p>
+    </div>
+
+    <div class="centered-pull reveal" style="margin:5rem auto;">
+      <p>Not healers.<br><em>Guardians.</em></p>
+    </div>
+
+    <div class="staccato reveal">
+      <p class="gold">And we take it more seriously than you will probably ever know.</p>
+    </div>
+
+  </section>
+
+  <div class="story-break reveal">
+    <div class="story-break-dot"></div>
+    <div class="story-break-dot"></div>
+    <div class="story-break-dot"></div>
+  </div>
+
+  <!-- BIO -->
+  <section class="bio-section">
+    <div class="bio-inner">
+      <div class="bio-text">
+        <p class="bio-name">Mugdha Pradhan</p>
+        <p>Mugdha Pradhan is the Founder and CEO of iThrive. Nine years in clinical practice, 10,000+ clients, 174 conditions. Author of <em>Health, Inc.</em> and a clinical textbook covering 44 therapeutic peptides. 2x TEDx speaker. Published researcher. Functional medicine, quantum biology, breathwork, peptides, Integral Yoga, Jungian psychology.</p>
+        <p><strong>I help humans remember what they are.</strong></p>
+        <div class="bio-links">
+          <a href="https://www.instagram.com/mugdhapradhan_official/" target="_blank" rel="noopener">Instagram</a>
+          <a href="/">mugdhapradhan.com</a>
+          <a href="https://www.ithrivein.com/" target="_blank" rel="noopener">iThrive</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- PAGE CTA -->
+<div class="page-cta">
+  <p>Continue reading</p>
+  <div class="page-cta-links">
+    <a href="/thinking" class="btn-primary">All Essays</a>
+    <a href="/story" class="btn-secondary">The Story</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">Mugdha Pradhan &copy; 2026</span>
+  <p class="footer-quote">&ldquo;I help humans remember what they are.&rdquo;</p>
+  <ul class="footer-links">
+    <li><a href="https://www.instagram.com/mugdhapradhan_official/" target="_blank" rel="noopener">Instagram</a></li>
+    <li><a href="https://www.linkedin.com/in/mugdhapradhan/" target="_blank" rel="noopener">LinkedIn</a></li>
+    <li><a href="https://www.youtube.com/@mugdhapradhan" target="_blank" rel="noopener">YouTube</a></li>
+    <li><a href="https://x.com/mugdhap" target="_blank" rel="noopener">X</a></li>
+  </ul>
+  <p class="footer-copy">mugdhapradhan.com | The Remembrance Movement</p>
+</footer>
+
+<script>
+  // Nav scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Reading progress bar
+  const progressBar = document.getElementById('progress-bar');
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = (scrollTop / docHeight) * 100;
+    progressBar.style.width = progress + '%';
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => revealObserver.observe(el));
+
+  // Chapter nav active state
+  const chapterDots = document.querySelectorAll('.chapter-dot');
+  const sections = [];
+  chapterDots.forEach(dot => {
+    const id = dot.getAttribute('href').substring(1);
+    const el = document.getElementById(id);
+    if (el) sections.push({ id, el, dot });
+  });
+  const chapterObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        chapterDots.forEach(d => d.classList.remove('active'));
+        const match = sections.find(s => s.el === entry.target);
+        if (match) match.dot.classList.add('active');
+      }
+    });
+  }, { threshold: 0.3 });
+  sections.forEach(s => chapterObserver.observe(s.el));
+
+  // Mobile nav
+  document.addEventListener('DOMContentLoaded', () => {
+    const hamburger = document.getElementById('nav-hamburger');
+    const mobileNav = document.getElementById('mobile-nav');
+    const mobileClose = document.getElementById('mobile-nav-close');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      mobileNav.classList.toggle('open');
+      document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+    });
+    mobileClose.addEventListener('click', () => {
+      hamburger.classList.remove('active');
+      mobileNav.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+    mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      hamburger.classList.remove('active');
+      mobileNav.classList.remove('open');
+      document.body.style.overflow = '';
+    }));
+  });
+</script>
+
+<div class="mobile-nav" id="mobile-nav">
+  <button class="mobile-nav-close" id="mobile-nav-close">&#10005;</button>
+  <ul class="mobile-nav-links">
+    <li><a href="/story">The Story</a></li>
+    <li><a href="/mission">The Mission</a></li>
+    <li><a href="/work">The Work</a></li>
+    <li><a href="/evidence">The Evidence</a></li>
+    <li><a href="/thinking" class="active">The Thinking</a></li>
+    <li><a href="/contact">Contact</a></li>
+  </ul>
+  <div class="mobile-nav-social">
+    <a href="https://www.instagram.com/mugdhapradhan_official/" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://www.linkedin.com/in/mugdhapradhan/" target="_blank" rel="noopener">LinkedIn</a>
+  </div>
+</div>
+
+</body>
+</html>
