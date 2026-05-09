@@ -44,14 +44,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     --white: #faf8f4;
     --muted: rgba(240, 232, 216, 0.45);
     --border: rgba(201, 152, 74, 0.2);
+
+    /* Light reading theme (essay body only) */
+    --ink: #1a1620;
+    --ink-soft: rgba(26, 22, 32, 0.78);
+    --ink-muted: rgba(26, 22, 32, 0.55);
+    --ink-faint: rgba(26, 22, 32, 0.35);
+    --gold-deep: #a87a35;
+    --gold-deep-soft: rgba(168, 122, 53, 0.55);
+    --gold-deep-dim: rgba(168, 122, 53, 0.3);
+    --border-light: rgba(168, 122, 53, 0.25);
+    --paper: #f0e8d8;
+    --paper-soft: rgba(168, 122, 53, 0.06);
   }
 
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
 
   body {
-    background: var(--black);
-    color: var(--cream);
+    background: var(--paper);
+    color: var(--ink);
     font-family: 'Jost', sans-serif;
     font-weight: 300;
     overflow-x: hidden;
@@ -152,7 +164,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     font-size: 0.65rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--muted);
+    color: var(--gold-deep-soft);
     opacity: 0;
     transform: translateX(8px);
     transition: opacity 0.3s, transform 0.3s, color 0.3s;
@@ -162,20 +174,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .chapter-dot.active .chapter-dot-label {
     opacity: 1;
     transform: translateX(0);
-    color: var(--gold-light);
+    color: var(--gold-deep);
   }
   .chapter-dot-pip {
     width: 5px; height: 5px;
     border-radius: 50%;
     background: transparent;
-    border: 1px solid rgba(201, 152, 74, 0.35);
+    border: 1px solid rgba(168, 122, 53, 0.45);
     transition: background 0.3s, transform 0.3s, border-color 0.3s;
     flex-shrink: 0;
   }
   .chapter-dot:hover .chapter-dot-pip,
   .chapter-dot.active .chapter-dot-pip {
-    background: var(--gold);
-    border-color: var(--gold);
+    background: var(--gold-deep);
+    border-color: var(--gold-deep);
     transform: scale(1.4);
   }
   @media (max-width: 1200px) { .chapter-nav { display: none; } }
@@ -189,6 +201,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     justify-content: center;
     padding: clamp(8rem, 14vh, 14rem) 4rem clamp(5rem, 9vh, 9rem);
     overflow: hidden;
+    background: var(--black);
+    color: var(--cream);
   }
   .hero-ambient {
     position: absolute; inset: 0;
@@ -272,7 +286,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     font-family: 'Jost', sans-serif;
     font-size: 0.68rem;
     letter-spacing: 0.12em;
-    color: rgba(240, 232, 216, 0.28);
+    color: var(--ink-faint);
     text-transform: uppercase;
   }
   .essay-meta-item::before {
@@ -281,7 +295,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .essay-meta-dot {
     width: 3px; height: 3px;
     border-radius: 50%;
-    background: rgba(201, 152, 74, 0.3);
+    background: var(--gold-deep-dim);
     flex-shrink: 0;
   }
 
@@ -309,7 +323,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     font-family: 'Cinzel', serif;
     font-size: 0.58rem;
     letter-spacing: 0.4em;
-    color: var(--gold);
+    color: var(--gold-deep);
     text-transform: uppercase;
     display: flex;
     align-items: center;
@@ -319,11 +333,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .chapter-label::after {
     content: '';
     width: 40px; height: 1px;
-    background: var(--gold);
-    opacity: 0.35;
+    background: var(--gold-deep);
+    opacity: 0.5;
   }
   .chapter-num-small {
-    color: rgba(201, 152, 74, 0.4);
+    color: var(--gold-deep-soft);
     font-family: 'Cormorant Garamond', serif;
     font-size: 0.75rem;
     letter-spacing: 0.05em;
@@ -333,7 +347,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     font-weight: 300;
     font-size: clamp(1.9rem, 3.5vw, 2.9rem);
     line-height: 1.15;
-    color: var(--cream);
+    color: var(--ink);
     margin-bottom: 0.4rem;
   }
 
@@ -343,21 +357,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     font-weight: 300;
     font-size: 1rem;
     line-height: 2.05;
-    color: rgba(240, 232, 216, 0.72);
+    color: var(--ink-soft);
     margin-bottom: 1.75rem;
   }
   .prose p:last-child { margin-bottom: 0; }
-  .prose p strong { color: var(--cream); font-weight: 400; }
-  .prose p em { color: rgba(240, 232, 216, 0.9); font-style: italic; }
+  .prose p strong { color: var(--ink); font-weight: 400; }
+  .prose p em { color: var(--ink); font-style: italic; }
   .prose p a {
-    color: var(--gold);
+    color: var(--gold-deep);
     text-decoration: none;
-    border-bottom: 1px solid rgba(201, 152, 74, 0.3);
+    border-bottom: 1px solid rgba(168, 122, 53, 0.4);
     transition: color 0.3s, border-color 0.3s;
   }
   .prose p a:hover {
-    color: var(--gold-light);
-    border-color: var(--gold-light);
+    color: #8a6328;
+    border-color: #8a6328;
   }
 
   /* Staccato */
@@ -367,20 +381,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     font-weight: 300;
     font-size: clamp(1.2rem, 2.5vw, 1.75rem);
     line-height: 1.35;
-    color: var(--cream);
+    color: var(--ink);
     margin-bottom: 0.5rem;
     padding-left: 2rem;
-    border-left: 1px solid rgba(201, 152, 74, 0.2);
+    border-left: 1px solid var(--gold-deep-dim);
   }
-  .staccato p.gold { color: var(--gold-light); font-style: italic; }
+  .staccato p.gold { color: var(--gold-deep); font-style: italic; }
 
   /* Pull Quote */
   .pull-quote {
     position: relative;
     margin: 3.5rem 0;
     padding: 2.5rem 3rem 2.5rem 4rem;
-    border-left: 2px solid var(--gold);
-    background: rgba(201, 152, 74, 0.03);
+    border-left: 2px solid var(--gold-deep);
+    background: var(--paper-soft);
   }
   .pull-quote::before {
     content: '\201C';
@@ -389,8 +403,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     font-family: 'Cormorant Garamond', serif;
     font-size: 4rem;
     line-height: 1;
-    color: var(--gold);
-    opacity: 0.25;
+    color: var(--gold-deep);
+    opacity: 0.4;
   }
   .pull-quote p {
     font-family: 'Cormorant Garamond', serif;
@@ -398,10 +412,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     font-weight: 300;
     font-size: clamp(1.3rem, 2.5vw, 1.9rem);
     line-height: 1.45;
-    color: var(--cream);
+    color: var(--ink);
     margin: 0;
   }
-  .pull-quote p em { color: var(--gold-light); }
+  .pull-quote p em { color: var(--gold-deep); }
 
   /* Centered Pull */
   .centered-pull {
@@ -414,7 +428,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     font-style: italic;
     font-size: clamp(1.5rem, 3vw, 2.4rem);
     line-height: 1.4;
-    color: var(--gold-light);
+    color: var(--gold-deep);
     margin: 0;
   }
 
@@ -422,8 +436,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .confession {
     margin: 3rem 0;
     padding: 2.5rem 3rem;
-    border: 1px solid var(--border);
-    background: var(--deep);
+    border: 1px solid var(--border-light);
+    background: var(--paper-soft);
     position: relative;
   }
   .confession p {
@@ -431,12 +445,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     font-weight: 300;
     font-size: clamp(1.1rem, 2vw, 1.45rem);
     line-height: 1.65;
-    color: var(--cream);
+    color: var(--ink);
     margin-bottom: 0.7rem;
   }
   .confession p:last-child { margin-bottom: 0; }
   .confession p.muted {
-    color: var(--muted);
+    color: var(--ink-muted);
     font-size: 0.95rem;
     font-family: 'Jost', sans-serif;
     font-weight: 300;
@@ -456,8 +470,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .story-break-dot {
     width: 3px; height: 3px;
     border-radius: 50%;
-    background: var(--gold);
-    opacity: 0.35;
+    background: var(--gold-deep);
+    opacity: 0.5;
   }
 
   /* Chapter Divider */
@@ -472,13 +486,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .chapter-divider-line {
     flex: 1;
     height: 1px;
-    background: var(--border);
+    background: var(--border-light);
   }
   .chapter-divider-ornament {
     font-family: 'Cormorant Garamond', serif;
     font-size: 0.9rem;
-    color: var(--gold);
-    opacity: 0.35;
+    color: var(--gold-deep);
+    opacity: 0.5;
     flex-shrink: 0;
   }
 
@@ -493,7 +507,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
     font-size: 1.1rem;
-    color: var(--gold);
+    color: var(--gold-deep);
     letter-spacing: 0.04em;
     line-height: 2;
   }
@@ -503,7 +517,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     max-width: 720px;
     margin: 0 auto;
     padding: 4rem 4rem 6rem;
-    border-top: 1px solid var(--border);
+    border-top: 1px solid var(--border-light);
   }
   .bio-inner {
     display: flex;
@@ -515,19 +529,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     font-weight: 300;
     font-size: 0.88rem;
     line-height: 1.9;
-    color: rgba(240, 232, 216, 0.55);
+    color: var(--ink-muted);
     margin-bottom: 1rem;
   }
   .bio-text p:last-child { margin-bottom: 0; }
   .bio-text strong {
-    color: var(--cream);
+    color: var(--ink);
     font-weight: 400;
   }
   .bio-name {
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
     font-size: 1.1rem;
-    color: var(--gold);
+    color: var(--gold-deep);
     margin-bottom: 1rem;
   }
   .bio-links {
@@ -539,17 +553,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     font-family: 'Cinzel', serif;
     font-size: 0.58rem;
     letter-spacing: 0.22em;
-    color: rgba(201, 152, 74, 0.4);
-    border: 1px solid rgba(201, 152, 74, 0.14);
+    color: var(--gold-deep-soft);
+    border: 1px solid var(--border-light);
     padding: 0.65rem 1.5rem;
     text-decoration: none;
     text-transform: uppercase;
     transition: border-color 0.3s, color 0.3s;
   }
   .bio-links a:hover {
-    border-color: rgba(201, 152, 74, 0.35);
-    color: var(--gold);
+    border-color: var(--gold-deep);
+    color: var(--gold-deep);
   }
+
+  /* Essay cover image — display fully on light bg */
+  .essay-cover-image img { opacity: 1 !important; }
 
   /* Next page CTA */
   .page-cta {
@@ -609,6 +626,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 2rem;
+    background: var(--black);
   }
   .footer-logo {
     font-family: 'Cinzel', serif;
@@ -1044,7 +1062,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- I. THE ACADEMY NOBODY WANTS TO TALK ABOUT -->
   <section id="section-academy" class="chapter-section">
     <div class="chapter-header reveal">
-      <p class="chapter-label"><span class="chapter-num-small">I</span>&nbsp;&nbsp;The Academy Nobody Wants to Talk About</p>
+      <p class="chapter-label">Chapter <span class="chapter-num-small">I</span></p>
       <h2 class="chapter-title">The Academy Nobody Wants to Talk About</h2>
     </div>
 
@@ -1077,7 +1095,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- II. THE EASY VERSION OF ACCOUNTABILITY -->
   <section id="section-easy" class="chapter-section">
     <div class="chapter-header reveal">
-      <p class="chapter-label"><span class="chapter-num-small">II</span>&nbsp;&nbsp;The Easy Version of Accountability</p>
+      <p class="chapter-label">Chapter <span class="chapter-num-small">II</span></p>
       <h2 class="chapter-title">The Easy Version of Accountability</h2>
     </div>
 
@@ -1102,7 +1120,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- III. THE INVENTORY -->
   <section id="section-inventory" class="chapter-section">
     <div class="chapter-header reveal">
-      <p class="chapter-label"><span class="chapter-num-small">III</span>&nbsp;&nbsp;The Inventory</p>
+      <p class="chapter-label">Chapter <span class="chapter-num-small">III</span></p>
       <h2 class="chapter-title">The Inventory</h2>
     </div>
 
@@ -1149,7 +1167,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- IV. THE CORRUPTION -->
   <section id="section-corruption" class="chapter-section">
     <div class="chapter-header reveal">
-      <p class="chapter-label"><span class="chapter-num-small">IV</span>&nbsp;&nbsp;The Corruption</p>
+      <p class="chapter-label">Chapter <span class="chapter-num-small">IV</span></p>
       <h2 class="chapter-title">The Corruption</h2>
     </div>
 
@@ -1179,7 +1197,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- V. THE GUARDIAN WHO REMEMBERS -->
   <section id="section-guardian" class="chapter-section">
     <div class="chapter-header reveal">
-      <p class="chapter-label"><span class="chapter-num-small">V</span>&nbsp;&nbsp;The Guardian Who Remembers</p>
+      <p class="chapter-label">Chapter <span class="chapter-num-small">V</span></p>
       <h2 class="chapter-title">The Guardian Who Remembers</h2>
     </div>
 
@@ -1214,7 +1232,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- VI. WHAT IS COMING -->
   <section id="section-coming" class="chapter-section">
     <div class="chapter-header reveal">
-      <p class="chapter-label"><span class="chapter-num-small">VI</span>&nbsp;&nbsp;What Is Coming</p>
+      <p class="chapter-label">Chapter <span class="chapter-num-small">VI</span></p>
       <h2 class="chapter-title">What Is Coming</h2>
     </div>
 
