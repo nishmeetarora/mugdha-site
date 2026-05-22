@@ -1,5 +1,8 @@
 {
   "cleanUrls": true,
+  "rewrites": [
+    { "source": "/resources/:name", "destination": "/resources/:name.pdf" }
+  ],
   "headers": [
     {
       "source": "/images/(.*)",
