@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N6RX3XCR');</script>
+<!-- End Google Tag Manager -->
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>You Were Never Meant to Last | Mugdha Pradhan</title>
+<meta name="description" content="Everyone is terrified of ego death while secretly wishing for it. An essay on why the ego was the helper that became the bar, and what evolution demands of us now.">
+<link rel="canonical" href="https://mugdhapradhan.com/thinking/ego-death">
+<meta property="og:title" content="You Were Never Meant to Last | Mugdha Pradhan">
+<meta property="og:description" content="Everyone is terrified of ego death while secretly wishing for it. An essay on why the ego was the helper that became the bar, and what evolution demands of us now.">
+<meta property="og:url" content="https://mugdhapradhan.com/thinking/ego-death">
+<meta property="og:image" content="https://mugdhapradhan.com/images/og-default.jpg">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Mugdha Pradhan">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@mugdhap">
+<meta name="author" content="Mugdha Pradhan">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="https://fonts.gstatic.com/s/cormorantgaramond/v21/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYqXtKky2F7g.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="https://fonts.gstatic.com/s/cormorantgaramond/v21/co3smX5slCNuHLi8bLeY9MK7whWMhyjYrGFEsdtdc62E6zd58jD-iNM8A_ipUA.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;600&family=Jost:wght@300;400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;600&family=Jost:wght@300;400&display=swap"></noscript>
+<style>
+  :root {
+    --black: #07060a;
+    --deep: #0d0b14;
+    --charcoal: #161320;
+    --gold: #c9984a;
+    --gold-light: #e8c07e;
+    --gold-dim: rgba(201, 152, 74, 0.15);
+    --amber: #d4803a;
+    --cream: #f0e8d8;
+    --white: #faf8f4;
+    --muted: rgba(240, 232, 216, 0.45);
+    --border: rgba(201, 152, 74, 0.2);
+
+    /* Light reading theme */
+    --ink: #1a1620;
+    --ink-soft: rgba(26, 22, 32, 0.9);
+    --ink-muted: rgba(26, 22, 32, 0.55);
+    --ink-faint: rgba(26, 22, 32, 0.35);
+    --gold-deep: #a87a35;
+    --gold-deep-soft: rgba(168, 122, 53, 0.55);
+    --gold-deep-dim: rgba(168, 122, 53, 0.3);
+    --border-light: rgba(168, 122, 53, 0.25);
+    --paper: #f0e8d8;
+    --paper-soft: rgba(168, 122, 53, 0.06);
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    cursor: auto;
+  }
+
+  /* Grain */
+  .grain {
+    position: fixed; inset: -50%;
+    width: 200%; height: 200%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: 0.35;
+    pointer-events: none;
+    z-index: 999;
+    animation: grain-move 8s steps(10) infinite;
+    will-change: transform;
+    transform: translateZ(0);
+  }
+  @keyframes grain-move {
+    0%, 100% { transform: translate(0, 0); }
+    10% { transform: translate(-2%, -3%); }
+    20% { transform: translate(3%, 1%); }
+    30% { transform: translate(-1%, 4%); }
+    40% { transform: translate(2%, -2%); }
+    50% { transform: translate(-3%, 2%); }
+    60% { transform: translate(1%, -4%); }
+    70% { transform: translate(-2%, 3%); }
+    80% { transform: translate(3%, -1%); }
+    90% { transform: translate(-1%, -3%); }
+  }
+
+  /* Reading Progress Bar */
+  .progress-bar {
+    position: fixed;
+    top: 0; left: 0;
+    height: 2px;
+    width: 0%;
+    background: linear-gradient(to right, var(--gold), var(--gold-light));
+    z-index: 200;
+    transition: width 0.1s linear;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 2rem 4rem;
+    display: flex; align-items: center; justify-content: space-between;
+    transition: background 0.4s ease, padding 0.4s ease;
+  }
+  nav.scrolled {
+    background: rgba(7, 6, 10, 0.92);
+    backdrop-filter: blur(12px);
+    padding: 1.2rem 4rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Cinzel', serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.25em;
+    color: var(--gold-light);
+    text-decoration: none;
+  }
+  .nav-links {
+    display: flex; gap: 2.5rem; list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+  .nav-links a.active { color: var(--gold-light); }
+
+  /* Chapter Navigator */
+  .chapter-nav {
+    position: fixed;
+    right: 2.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-end;
+  }
+  .chapter-dot {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+  }
+  .chapter-dot-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-deep-soft);
+    opacity: 0;
+    transform: translateX(8px);
+    transition: opacity 0.3s, transform 0.3s, color 0.3s;
+    white-space: nowrap;
+  }
+  .chapter-dot:hover .chapter-dot-label,
+  .chapter-dot.active .chapter-dot-label {
+    opacity: 1;
+    transform: translateX(0);
+    color: var(--gold-deep);
+  }
+  .chapter-dot-pip {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: transparent;
+    border: 1px solid rgba(168, 122, 53, 0.45);
+    transition: background 0.3s, transform 0.3s, border-color 0.3s;
+    flex-shrink: 0;
+  }
+  .chapter-dot:hover .chapter-dot-pip,
+  .chapter-dot.active .chapter-dot-pip {
+    background: var(--gold-deep);
+    border-color: var(--gold-deep);
+    transform: scale(1.4);
+  }
+  @media (max-width: 1200px) { .chapter-nav { display: none; } }
+
+  /* HERO */
+  .story-hero {
+    position: relative;
+    min-height: max(85vh, 700px);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: clamp(8rem, 14vh, 14rem) 4rem clamp(5rem, 9vh, 9rem);
+    overflow: hidden;
+    background: var(--black);
+    color: var(--cream);
+  }
+  .hero-ambient {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 70% 50% at 50% 90%, rgba(201, 152, 74, 0.05) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 30% at 20% 30%, rgba(201, 152, 74, 0.02) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .story-hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 800px;
+  }
+  .story-eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.45em;
+    color: var(--gold);
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fade-up 1s ease 0.3s forwards;
+    margin-bottom: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+  .story-eyebrow::before, .story-eyebrow::after {
+    content: '';
+    width: 40px; height: 1px;
+    background: var(--gold);
+    opacity: 0.4;
+  }
+  .story-hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(3rem, 7vw, 6rem);
+    line-height: 1.1;
+    color: var(--white);
+    opacity: 0;
+    animation: fade-up 1.2s ease 0.55s forwards;
+    margin-bottom: 2.5rem;
+    letter-spacing: -0.01em;
+  }
+  .story-hero-title em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+  .story-hero-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    color: rgba(240, 232, 216, 0.92);
+    opacity: 0;
+    animation: fade-up 1s ease 0.9s forwards;
+    letter-spacing: 0.05em;
+  }
+  .story-hero-divider {
+    width: 1px; height: 70px;
+    background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+    margin: 3rem auto 0;
+    opacity: 0;
+    animation: fade-in 1s ease 1.3s forwards;
+  }
+
+  /* ESSAY META */
+  .essay-meta {
+    text-align: center;
+    padding: 2rem 4rem 0;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .essay-meta-inner {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    align-items: center;
+  }
+  .essay-meta-item {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    color: rgba(26, 22, 32, 0.75);
+    text-transform: uppercase;
+  }
+  .essay-meta-dot {
+    width: 3px; height: 3px;
+    border-radius: 50%;
+    background: var(--gold-deep-dim);
+    flex-shrink: 0;
+  }
+
+  /* STORY BODY */
+  .story-body { position: relative; }
+
+  /* OPENING */
+  .story-opening {
+    padding: 7rem 4rem 3rem;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  /* CHAPTER SECTIONS */
+  .chapter-section {
+    padding: 5rem 4rem 4rem;
+    max-width: 720px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .chapter-header { margin-bottom: 3rem; }
+
+  .chapter-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.4em;
+    color: var(--gold-deep);
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    margin-bottom: 1.2rem;
+  }
+  .chapter-label::after {
+    content: '';
+    width: 40px; height: 1px;
+    background: var(--gold-deep);
+    opacity: 0.5;
+  }
+  .chapter-num-small {
+    color: var(--gold-deep-soft);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+  }
+  .chapter-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(1.9rem, 3.5vw, 2.9rem);
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 0.4rem;
+  }
+
+  /* Prose */
+  .prose p {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 2.05;
+    color: var(--ink-soft);
+    margin-bottom: 1.75rem;
+  }
+  .prose p:last-child { margin-bottom: 0; }
+  .prose p strong { color: var(--ink); font-weight: 400; }
+  .prose p em { color: var(--ink); font-style: italic; }
+
+  /* Staccato */
+  .staccato { margin: 2.5rem 0; }
+  .staccato p {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(1.2rem, 2.5vw, 1.75rem);
+    line-height: 1.35;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+    padding-left: 2rem;
+    border-left: 1px solid var(--gold-deep-dim);
+  }
+  .staccato p.gold { color: var(--gold-deep); font-style: italic; }
+
+  /* Pull Quote */
+  .pull-quote {
+    position: relative;
+    margin: 3.5rem 0;
+    padding: 2.5rem 3rem 2.5rem 4rem;
+    border-left: 2px solid var(--gold-deep);
+    background: var(--paper-soft);
+  }
+  .pull-quote::before {
+    content: '\201C';
+    position: absolute;
+    top: 0.8rem; left: 1.2rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem;
+    line-height: 1;
+    color: var(--gold-deep);
+    opacity: 0.4;
+  }
+  .pull-quote p {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(1.3rem, 2.5vw, 1.9rem);
+    line-height: 1.45;
+    color: var(--ink);
+    margin: 0;
+  }
+  .pull-quote p em { color: var(--gold-deep); }
+
+  /* Centered Pull */
+  .centered-pull {
+    text-align: center;
+    margin: 4.5rem auto;
+    max-width: 560px;
+  }
+  .centered-pull p {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1.5rem, 3vw, 2.4rem);
+    line-height: 1.4;
+    color: var(--gold-deep);
+    margin: 0;
+  }
+
+  /* Confession Block */
+  .confession {
+    margin: 3rem 0;
+    padding: 2.5rem 3rem;
+    border: 1px solid var(--border-light);
+    background: var(--paper-soft);
+    position: relative;
+  }
+  .confession p {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(1.1rem, 2vw, 1.45rem);
+    line-height: 1.65;
+    color: var(--ink);
+    margin-bottom: 0.7rem;
+  }
+  .confession p:last-child { margin-bottom: 0; }
+  .confession p.muted {
+    color: var(--ink-muted);
+    font-size: 0.95rem;
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    line-height: 1.8;
+  }
+
+  /* Point Entries (Chapter IV) */
+  .point-entry { margin-bottom: 2.8rem; }
+  .point-entry-heading {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 0.8rem;
+  }
+  .point-entry-num {
+    font-family: 'Cinzel', serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.28em;
+    color: var(--gold-deep);
+    flex-shrink: 0;
+  }
+  .point-entry-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: clamp(1.15rem, 2vw, 1.45rem);
+    line-height: 1.3;
+    color: var(--ink);
+  }
+  .point-entry .prose p {
+    margin-bottom: 0;
+  }
+
+  /* Section break dots */
+  .story-break {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    margin: 3rem auto;
+    max-width: 720px;
+    padding: 0 4rem;
+  }
+  .story-break-dot {
+    width: 3px; height: 3px;
+    border-radius: 50%;
+    background: var(--gold-deep);
+    opacity: 0.5;
+  }
+
+  /* Chapter Divider */
+  .chapter-divider {
+    max-width: 720px;
+    margin: 2rem auto;
+    padding: 0 4rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .chapter-divider-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border-light);
+  }
+  .chapter-divider-ornament {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.9rem;
+    color: var(--gold-deep);
+    opacity: 0.5;
+    flex-shrink: 0;
+  }
+
+  /* Closing */
+  .story-closing {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 5rem 4rem 10rem;
+    text-align: center;
+  }
+  .story-signature {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--gold-deep);
+    letter-spacing: 0.04em;
+    line-height: 2;
+  }
+
+  /* Bio section */
+  .bio-section {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 4rem 4rem 6rem;
+    border-top: 1px solid var(--border-light);
+  }
+  .bio-inner {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+  }
+  .bio-text p {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 0.88rem;
+    line-height: 1.9;
+    color: var(--ink-muted);
+    margin-bottom: 1rem;
+  }
+  .bio-text p:last-child { margin-bottom: 0; }
+  .bio-text strong { color: var(--ink); font-weight: 400; }
+  .bio-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--gold-deep);
+    margin-bottom: 1rem;
+  }
+  .bio-links {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+  .bio-links a {
+    font-family: 'Cinzel', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.22em;
+    color: var(--gold-deep-soft);
+    border: 1px solid var(--border-light);
+    padding: 0.65rem 1.5rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: border-color 0.3s, color 0.3s;
+  }
+  .bio-links a:hover {
+    border-color: var(--gold-deep);
+    color: var(--gold-deep);
+  }
+
+  /* Next page CTA */
+  .page-cta {
+    background: var(--deep);
+    border-top: 1px solid var(--border);
+    padding: 5rem 4rem;
+    text-align: center;
+  }
+  .page-cta p {
+    font-family: 'Cinzel', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.35em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+  .page-cta-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    display: inline-block;
+    font-family: 'Cinzel', serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--black);
+    background: var(--gold);
+    padding: 1rem 2.5rem;
+    text-decoration: none;
+    transition: background 0.3s;
+  }
+  .btn-primary:hover { background: var(--gold-light); }
+  .btn-secondary {
+    display: inline-block;
+    font-family: 'Cinzel', serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    border: 1px solid var(--border);
+    padding: 1rem 2.5rem;
+    text-decoration: none;
+    transition: border-color 0.3s, color 0.3s;
+  }
+  .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* FOOTER */
+  footer {
+    padding: 3rem 4rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2rem;
+    background: var(--black);
+  }
+  .footer-logo {
+    font-family: 'Cinzel', serif;
+    font-size: 0.82rem;
+    letter-spacing: 0.25em;
+    color: var(--gold-light);
+  }
+  .footer-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: rgba(240, 232, 216, 0.62);
+    text-align: center;
+  }
+  .footer-links {
+    display: flex; gap: 2rem; list-style: none;
+  }
+  .footer-links a {
+    font-size: 0.78rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .footer-links a:hover { color: var(--gold-light); }
+  .footer-copy {
+    width: 100%;
+    text-align: center;
+    font-size: 0.75rem;
+    color: rgba(240, 232, 216, 0.2);
+    letter-spacing: 0.1em;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(201, 152, 74, 0.08);
+    margin-top: 1rem;
+  }
+
+  /* Animations */
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.15s; }
+  .reveal-delay-2 { transition-delay: 0.3s; }
+  .reveal-delay-3 { transition-delay: 0.45s; }
+  .nav-hamburger { display: none; }
+
+  @media (max-width: 768px) {
+    nav { padding: 1.5rem 2rem; }
+    nav.scrolled { padding: 1rem 2rem; }
+    .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
+
+    .story-hero {
+      padding: 8rem 2rem 5rem;
+      min-height: auto;
+    }
+    .story-hero-title {
+      font-size: clamp(2.4rem, 10vw, 4rem);
+      line-height: 1.15;
+    }
+    .story-hero-sub {
+      font-size: 1.1rem;
+      letter-spacing: 0.03em;
+    }
+    .story-hero-divider { height: 50px; margin-top: 2rem; }
+    .story-eyebrow { margin-bottom: 2rem; }
+    .story-eyebrow::before, .story-eyebrow::after { width: 24px; }
+
+    .essay-meta { padding: 1.5rem 2rem 0; }
+    .essay-meta-inner {
+      flex-direction: column;
+      gap: 0.4rem;
+      align-items: center;
+    }
+    .essay-meta-dot { display: none; }
+
+    .story-opening { padding: 4rem 2rem 3rem; }
+    .chapter-section { padding: 4rem 2rem 3rem; }
+    .chapter-divider { padding: 0 2rem; }
+    .story-break { padding: 0 2rem; }
+    .story-closing { padding: 4rem 2rem 8rem; }
+
+    .chapter-header { margin-bottom: 2.5rem; }
+    .chapter-title {
+      font-size: clamp(1.6rem, 6vw, 2.4rem);
+      line-height: 1.2;
+    }
+    .chapter-label {
+      font-size: 0.52rem;
+      letter-spacing: 0.3em;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+    }
+    .chapter-label::after { width: 24px; }
+    .chapter-num-small { font-size: 0.65rem; }
+
+    .prose p {
+      font-size: 1.05rem;
+      line-height: 1.9;
+      margin-bottom: 1.5rem;
+    }
+
+    .pull-quote {
+      margin: 2.5rem 0;
+      padding: 2rem 1.5rem 2rem 2rem;
+    }
+    .pull-quote::before {
+      font-size: 3rem;
+      top: 0.6rem;
+      left: 0.8rem;
+    }
+    .pull-quote p {
+      font-size: clamp(1.15rem, 4vw, 1.5rem);
+      line-height: 1.4;
+    }
+
+    .centered-pull {
+      margin: 3rem auto;
+      padding: 0 1rem;
+      max-width: 100%;
+    }
+    .centered-pull p {
+      font-size: clamp(1.3rem, 5vw, 2rem);
+      line-height: 1.4;
+    }
+
+    .confession {
+      margin: 2.5rem 0;
+      padding: 2rem 1.5rem;
+    }
+    .confession p {
+      font-size: clamp(1rem, 3.5vw, 1.25rem);
+      line-height: 1.55;
+    }
+    .confession p.muted {
+      font-size: 0.85rem;
+      line-height: 1.7;
+    }
+
+    .staccato { margin: 2rem 0; }
+    .staccato p {
+      font-size: clamp(1.1rem, 4.5vw, 1.5rem);
+      padding-left: 1.5rem;
+      line-height: 1.4;
+    }
+
+    .chapter-divider { margin: 1.5rem auto; }
+    .story-break { margin: 2.5rem auto; }
+
+    .bio-section { padding: 2.5rem 2rem 4rem; }
+    .bio-inner { flex-direction: column; }
+    .bio-text p {
+      font-size: 0.82rem;
+      line-height: 1.8;
+    }
+    .bio-name { font-size: 1rem; }
+    .bio-links { flex-wrap: wrap; gap: 0.8rem; }
+    .bio-links a {
+      font-size: 0.5rem;
+      padding: 0.5rem 1rem;
+    }
+
+    .page-cta { padding: 4rem 2rem; }
+    .page-cta-links { flex-direction: column; gap: 1rem; }
+    .btn-primary, .btn-secondary {
+      padding: 1rem 2rem;
+      font-size: 0.62rem;
+      letter-spacing: 0.25em;
+    }
+
+    footer {
+      padding: 2rem;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.5rem;
+    }
+    .footer-quote {
+      text-align: left;
+      font-size: 0.95rem;
+    }
+    .footer-links {
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .story-hero { padding: 7rem 1.5rem 4rem; }
+    .story-opening, .chapter-section { padding: 3rem 1.5rem 2.5rem; }
+    .chapter-divider { padding: 0 1.5rem; }
+    .story-break { padding: 0 1.5rem; }
+    .story-hero-title {
+      font-size: 2.2rem;
+      line-height: 1.15;
+    }
+    .pull-quote { padding: 1.5rem 1rem 1.5rem 1.5rem; }
+    .confession { padding: 1.5rem 1.2rem; }
+    .bio-section { padding: 2rem 1.5rem 3rem; }
+    .page-cta { padding: 3rem 1.5rem; }
+  }
+
+  @media (max-width: 768px) {
+    .centered-pull { margin: 3rem auto !important; }
+    .prose { margin-top: 0 !important; }
+  }
+  @media (max-width: 400px) {
+    .centered-pull { margin: 2rem auto !important; }
+  }
+
+  /* HAMBURGER & MOBILE NAV */
+  .nav-hamburger {
+    flex-direction: column; gap: 5px;
+    background: none; border: none; cursor: pointer; padding: 4px;
+  }
+  .nav-hamburger span {
+    display: block; width: 22px; height: 1px;
+    background: var(--gold-light);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  .nav-hamburger.active span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .nav-hamburger.active span:nth-child(2) { opacity: 0; }
+  .nav-hamburger.active span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+  .mobile-nav {
+    position: fixed; inset: 0; z-index: 150;
+    background: rgba(7, 6, 10, 0.97);
+    backdrop-filter: blur(8px);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.4s ease;
+  }
+  .mobile-nav.open { opacity: 1; pointer-events: all; }
+  .mobile-nav-close {
+    position: absolute; top: 2rem; right: 2.2rem;
+    background: none; border: none;
+    font-family: 'Cinzel', serif; font-size: 0.8rem;
+    letter-spacing: 0.2em; color: rgba(240,232,216,0.4);
+    cursor: pointer; transition: color 0.3s;
+  }
+  .mobile-nav-links { list-style: none; text-align: center; margin-bottom: 3rem; }
+  .mobile-nav-links li {
+    opacity: 0; transform: translateY(14px);
+    transition: opacity 0.45s ease, transform 0.45s ease;
+  }
+  .mobile-nav.open .mobile-nav-links li { opacity: 1; transform: translateY(0); }
+  .mobile-nav.open .mobile-nav-links li:nth-child(1) { transition-delay: 0.04s; }
+  .mobile-nav.open .mobile-nav-links li:nth-child(2) { transition-delay: 0.08s; }
+  .mobile-nav.open .mobile-nav-links li:nth-child(3) { transition-delay: 0.12s; }
+  .mobile-nav.open .mobile-nav-links li:nth-child(4) { transition-delay: 0.16s; }
+  .mobile-nav.open .mobile-nav-links li:nth-child(5) { transition-delay: 0.20s; }
+  .mobile-nav.open .mobile-nav-links li:nth-child(6) { transition-delay: 0.24s; }
+  .mobile-nav-links a {
+    font-family: 'Cormorant Garamond', serif; font-weight: 300;
+    font-size: clamp(1.8rem, 7vw, 2.6rem);
+    color: rgba(240,232,216,0.65); text-decoration: none;
+    letter-spacing: 0.04em; padding: 0.65rem 0; display: block;
+    transition: color 0.3s;
+  }
+  .mobile-nav-links a.active,
+  .mobile-nav-links a:hover { color: var(--gold-light); }
+  .mobile-nav-social { display: flex; gap: 2.5rem; }
+  .mobile-nav-social a {
+    font-family: 'Cinzel', serif; font-size: 0.58rem;
+    letter-spacing: 0.22em; color: rgba(201,152,74,0.35);
+    text-decoration: none; text-transform: uppercase;
+  }
+
+  @media (hover: none) {
+    .nav-links a:hover { color: var(--muted); }
+    .footer-links a:hover { color: var(--muted); }
+    .btn-primary:hover { background: var(--gold); }
+    .btn-secondary:hover { border-color: var(--border); color: var(--gold-light); }
+  }
+</style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N6RX3XCR"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<div class="grain"></div>
+<div class="progress-bar" id="progress-bar"></div>
+
+<!-- CHAPTER NAVIGATOR -->
+<aside class="chapter-nav" aria-label="Section navigation">
+  <a href="#opening" class="chapter-dot" data-section="opening">
+    <span class="chapter-dot-label">Opening</span>
+    <span class="chapter-dot-pip"></span>
+  </a>
+  <a href="#section-what-is" class="chapter-dot" data-section="section-what-is">
+    <span class="chapter-dot-label">What Is Ego Death?</span>
+    <span class="chapter-dot-pip"></span>
+  </a>
+  <a href="#section-why" class="chapter-dot" data-section="section-why">
+    <span class="chapter-dot-label">Why It Is Necessary</span>
+    <span class="chapter-dot-pip"></span>
+  </a>
+  <a href="#section-higher" class="chapter-dot" data-section="section-higher">
+    <span class="chapter-dot-label">How It Takes Us Higher</span>
+    <span class="chapter-dot-pip"></span>
+  </a>
+  <a href="#section-let-go" class="chapter-dot" data-section="section-let-go">
+    <span class="chapter-dot-label">What to Let Go Of</span>
+    <span class="chapter-dot-pip"></span>
+  </a>
+</aside>
+
+<!-- MAIN NAV -->
+<nav id="nav">
+  <a href="/" class="nav-logo">Mugdha Pradhan</a>
+  <ul class="nav-links">
+    <li><a href="/story">The Story</a></li>
+    <li><a href="/mission">The Mission</a></li>
+    <li><a href="/work">The Work</a></li>
+    <li><a href="/evidence">The Evidence</a></li>
+    <li><a href="/thinking" class="active">The Thinking</a></li>
+    <li><a href="/contact">Contact</a></li>
+  </ul>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="story-hero">
+  <div class="hero-ambient"></div>
+  <div class="story-hero-content">
+    <p class="story-eyebrow">Essay</p>
+    <h1 class="story-hero-title">
+      You Were Never<br><em>Meant to Last</em>
+    </h1>
+    <p class="story-hero-sub">And Why Ego Death is a Necessity</p>
+    <div class="story-hero-divider"></div>
+  </div>
+</section>
+
+<!-- ESSAY META -->
+<div class="essay-meta">
+  <div class="essay-meta-inner">
+    <span class="essay-meta-item">Jun 2026</span>
+    <span class="essay-meta-dot"></span>
+    <span class="essay-meta-item">5 min read</span>
+    <span class="essay-meta-dot"></span>
+    <span class="essay-meta-item">Consciousness &amp; Spirituality</span>
+  </div>
+</div>
+
+<!-- ESSAY BODY -->
+<main class="story-body">
+
+  <!-- OPENING -->
+  <section id="opening" class="story-opening">
+
+    <div class="centered-pull reveal" style="margin:0 auto 4.5rem;">
+      <p>Everyone is terrified of ego death<br>while secretly wishing for it.</p>
+    </div>
+
+    <div class="prose reveal" style="text-align:center;">
+      <p>And not even knowing what they are terrified of.</p>
+    </div>
+
+  </section>
+
+  <div class="chapter-divider reveal">
+    <div class="chapter-divider-line"></div>
+    <div class="chapter-divider-ornament">✦</div>
+    <div class="chapter-divider-line"></div>
+  </div>
+
+  <!-- I. WHAT IS EGO DEATH? -->
+  <section id="section-what-is" class="chapter-section">
+    <div class="chapter-header reveal">
+      <p class="chapter-label">Chapter <span class="chapter-num-small">I</span></p>
+      <h2 class="chapter-title">What is ego death?</h2>
+    </div>
+
+    <div class="prose">
+      <p class="reveal">Ego death is the death of the thing you mistook for yourself. That thing is the ego, and the ego is narrower than you think.</p>
+      <p class="reveal">Your mind, your life, your body &mdash; the whole vessel that carries your experience &mdash; Sri Aurobindo called the <em>adhara</em>. The instrument. It stays. The ego is the knot inside the instrument that gathers all of it around a single claim: <em>This is who I am, and it must be defended.</em> The claim has three parts. Sameness. Separateness. Permanence. The ego insists there is a fixed, continuous, bounded &ldquo;I&rdquo; running the vessel, and that its one job is to persist.</p>
+      <p class="reveal">Ego death is the moment that claim loses its authority. The instrument remains. The knot releases.</p>
+    </div>
+
+    <div class="pull-quote reveal">
+      <p>The wellness version promises something easier. Dissolve into oneness, feel the bliss, and leave the ego exactly where it sat, now wearing robes. That is the ego trying on enlightenment as an accessory and keeping the receipt.</p>
+    </div>
+
+    <div class="prose reveal">
+      <p>Look at what the costume leaves untouched. The ego keeps its seat at the center, still in command, now better lit and speaking softly about oneness. The whole forgery exists to guard that seat. Real ego death goes straight for it.</p>
+      <p>When the ego actually dies, your contents stay where they are. You keep your memories. You keep your mind. You keep your capacities. What moves is the ego. It gets dethroned. It keeps its place in the vessel and loses the throne. King to servant. That is the whole event.</p>
+    </div>
+
+    <div class="confession reveal">
+      <p>The fear that meets you at the edge is the suspicion that there is nothing underneath. That if the story stops, you stop. That you are the costume all the way down.</p>
+      <p class="muted">There is something underneath. There always was. Sri Aurobindo called it the Psychic Being &mdash; the Soul, the divine nucleus that stands behind mind and life and body and persists when they do not. The Soul was there the whole time. The ego was talking over it.</p>
+    </div>
+
+  </section>
+
+  <div class="chapter-divider reveal">
+    <div class="chapter-divider-line"></div>
+    <div class="chapter-divider-ornament">✦</div>
+    <div class="chapter-divider-line"></div>
+  </div>
+
+  <!-- II. WHY IS IT NECESSARY? -->
+  <section id="section-why" class="chapter-section">
+    <div class="chapter-header reveal">
+      <p class="chapter-label">Chapter <span class="chapter-num-small">II</span></p>
+      <h2 class="chapter-title">Why is it necessary?</h2>
+    </div>
+
+    <div class="prose reveal">
+      <p>The reason sits inside a single line from Sri Aurobindo.</p>
+    </div>
+
+    <div class="centered-pull reveal" style="margin:3.5rem auto;">
+      <p>&ldquo;To be perpetually reborn is the condition of material immortality.&rdquo;</p>
+    </div>
+
+    <div class="prose">
+      <p class="reveal">Read it slowly, because the word <em>immortality</em> carries a trap. Almost everyone hears immortality and pictures permanence. A self that lasts forever, unchanged. A body that does not die. The Mother spent years correcting exactly this. Immortality is the opposite of permanence. Immortality is the capacity to be continuously remade.</p>
+      <p class="reveal">The only thing that gets to live forever is the thing willing to die constantly.</p>
+      <p class="reveal">Anything that stops being reborn begins to decay. This is the law. The refusal to change is the mechanism of death. And the ego exists to keep you the same. To hold the form. To defend the boundary. To carry the self of yesterday into tomorrow intact.</p>
+    </div>
+
+    <div class="staccato reveal">
+      <p>So the ego is the agent of your mortality.</p>
+      <p class="gold">It is the part of you choosing death, quietly, every single day, by refusing to be remade.</p>
+    </div>
+
+    <div class="prose reveal" style="margin-top:2.5rem;">
+      <p>Sri Aurobindo put the next part just as plainly. &ldquo;Ego was the helper; Ego is the bar.&rdquo; The ego earned its place. Nature used it to carve a separate self out of the undifferentiated &mdash; to give you edges, a center, a will of your own. It individualised you. Without it you would have stayed a smear of undifferentiated life, never a person at all. Then the same ego that built the separate self plants itself in the doorway of the larger one. The helper becomes the bar.</p>
+      <p>Ego death is necessary because the ego already succeeded, and its success is finished. What carried you to the threshold cannot carry you across it.</p>
+    </div>
+
+  </section>
+
+  <div class="chapter-divider reveal">
+    <div class="chapter-divider-line"></div>
+    <div class="chapter-divider-ornament">✦</div>
+    <div class="chapter-divider-line"></div>
+  </div>
+
+  <!-- III. HOW DOES IT TAKE US HIGHER? -->
+  <section id="section-higher" class="chapter-section">
+    <div class="chapter-header reveal">
+      <p class="chapter-label">Chapter <span class="chapter-num-small">III</span></p>
+      <h2 class="chapter-title">How does it take us higher?</h2>
+    </div>
+
+    <div class="prose">
+      <p class="reveal">Sri Aurobindo&rsquo;s cosmology rests on one claim most traditions flinch from. The human being is a transitional being.</p>
+      <p class="reveal">We treat man as the finished product of Nature. The top of the chain. The reason for the whole arc. Sri Aurobindo treats man as a bridge. Matter became life. Life became mind. Mind is a stage. Something stands beyond mind the way mind once stood beyond the animal, and the work of this age is to make the crossing.</p>
+    </div>
+
+    <div class="centered-pull reveal" style="margin:4rem auto;">
+      <p>The crossing requires you<br>to put the ego down.</p>
+    </div>
+
+    <div class="prose reveal">
+      <p>Watch how evolution moves. The caterpillar enters the chrysalis and liquefies almost to nothing. The form dissolves completely. Its life does not. The creature that crawled is the one that flies. Evolution surrenders the old structure and carries the being across.</p>
+      <p>That is the shape of ego death. The structure is the ego. The being is the instrument and the Soul inside it. What dissolves is the arrangement that kept the separate self at the center. What continues is everything that arrangement was holding.</p>
+    </div>
+
+    <div class="pull-quote reveal">
+      <p>Sri Aurobindo described the soul as wearing two faces. In front, a desire-soul, reaching always for things to possess and enjoy. Behind it, mostly hidden, the true Psychic Being &mdash; the real keeper of the spirit&rsquo;s experience. <em>Ego death is the front face loosening its grip so the one behind it can come forward and take the seat. The vessel stays. The occupant changes.</em></p>
+    </div>
+
+    <div class="prose">
+      <p class="reveal">This is what the depth traditions named individuation. The return to wholeness &mdash; the true Self emerging into the center the ego used to occupy. It was never self-improvement. It was a change of who sits in the middle. In Jung&rsquo;s version the ego is relativized. It steps down from the center of the psyche, the Self takes that place, and the ego stays on as the seat of waking attention. Same event. Different vocabulary.</p>
+      <p class="reveal">Sri Aurobindo&rsquo;s name for the move is surrender &mdash; the most misunderstood word in spirituality. People hear surrender and think defeat. They think collapse, giving up, going limp. Surrender is the transfer of authority. It moves command from the small constructed will to the larger Will that was already running the deeper machinery.</p>
+      <p class="reveal">The ego guards one secret above the rest. The free will it defends so fiercely is mostly an illusion. Sri Aurobindo called it a shackled puppet. The ego believes it is choosing while conditioning, inheritance, and the modes of Nature move it from underneath. Real freedom begins the moment you step out of the ego&rsquo;s choosing and align with something that actually sees.</p>
+    </div>
+
+    <div class="staccato reveal">
+      <p>You go higher by ceasing to be organized around a separate self.</p>
+      <p class="gold">Ego death is the price of the next species.</p>
+    </div>
+
+  </section>
+
+  <div class="chapter-divider reveal">
+    <div class="chapter-divider-line"></div>
+    <div class="chapter-divider-ornament">✦</div>
+    <div class="chapter-divider-line"></div>
+  </div>
+
+  <!-- IV. WHAT DO YOU HAVE TO LET GO OF? -->
+  <section id="section-let-go" class="chapter-section">
+    <div class="chapter-header reveal">
+      <p class="chapter-label">Chapter <span class="chapter-num-small">IV</span></p>
+      <h2 class="chapter-title">What do you have to let go of?</h2>
+    </div>
+
+    <div class="point-entry reveal">
+      <div class="point-entry-heading">
+        <span class="point-entry-num">01</span>
+        <span class="point-entry-title">The fiction of sameness</span>
+      </div>
+      <div class="prose">
+        <p>You carry the belief that one continuous &ldquo;I&rdquo; has lived your whole life. Sri Aurobindo dismantles it without flinching. What continued was the stream of force, never the same for a moment, pouring itself into new forms. You have already been a dozen people. The child. The one who broke. The one who rebuilt. The one reading this. The ego stitched them into a single story and called the story you. Letting go here means releasing a fiction you were never living inside.</p>
+      </div>
+    </div>
+
+    <div class="point-entry reveal">
+      <div class="point-entry-heading">
+        <span class="point-entry-num">02</span>
+        <span class="point-entry-title">The identity that profits from staying the same</span>
+      </div>
+      <div class="prose">
+        <p>Every ego keeps a story it is paid to protect. The one who was wronged. The one who tried everything. The strong one who cannot be helped. The wounded one who is owed. These are positions. And positions extract a price, from you and from everyone standing near you. The real question is what it costs you to keep playing the protagonist.</p>
+      </div>
+    </div>
+
+    <div class="point-entry reveal">
+      <div class="point-entry-heading">
+        <span class="point-entry-num">03</span>
+        <span class="point-entry-title">The demand for continuity</span>
+      </div>
+      <div class="prose">
+        <p>The ego wants tomorrow to confirm yesterday. It wants to arrive in the future vindicated, intact, recognizable. Anything that insists on arriving intact stays exactly as it is. Transformation asks you to become someone your current self would not recognize. Someone your current self might not even approve of.</p>
+      </div>
+    </div>
+
+    <div class="point-entry reveal">
+      <div class="point-entry-heading">
+        <span class="point-entry-num">04</span>
+        <span class="point-entry-title">Authorship</span>
+      </div>
+      <div class="prose">
+        <p>This is the hardest one. The ego believes it is the author of your life. The one choosing. The one who earns the credit and carries the blame. Surrender is the admission that you are not the source. A larger movement is already underway, and your work is to consent to it. To become transparent to it. To get out of its way.</p>
+      </div>
+    </div>
+
+    <div class="point-entry reveal">
+      <div class="point-entry-heading">
+        <span class="point-entry-num">05</span>
+        <span class="point-entry-title">The fear itself</span>
+      </div>
+      <div class="prose">
+        <p>The fear is the tell. The dread you feel reading this is the ego defending its seat. It is the wall warning you that without it you will have no shape. The ego is lying, the way it always has.</p>
+      </div>
+    </div>
+
+    <div class="prose reveal" style="margin-top:3rem;">
+      <p>Here is what survives. The ego steps down from command and stays on as a servant. The instrument it spent a lifetime defending gets handed to the one it was built to serve. You keep the vessel. The mind, the memory, the will, the whole apparatus &mdash; all of it remains. What you lose is the knot in the middle that called itself you.</p>
+    </div>
+
+  </section>
+
+  <div class="story-break reveal">
+    <div class="story-break-dot"></div>
+    <div class="story-break-dot"></div>
+    <div class="story-break-dot"></div>
+  </div>
+
+  <!-- CLOSING -->
+  <section class="story-closing">
+    <div class="centered-pull reveal" style="margin:0 auto 2rem;">
+      <p>You were never meant to last.</p>
+    </div>
+    <p class="story-signature reveal reveal-delay-1">You were meant to keep beginning.<br>Perpetually.</p>
+  </section>
+
+  <!-- BIO -->
+  <section class="bio-section">
+    <div class="bio-inner">
+      <div class="bio-text">
+        <p class="bio-name">Mugdha Pradhan</p>
+        <p>Mugdha Pradhan is the Founder and CEO of iThrive. Nine years in clinical practice, 10,000+ clients, 174 conditions. Author of <em>Health, Inc.</em> and a clinical textbook covering 44 therapeutic peptides. 2x TEDx speaker. Published researcher. Functional medicine, quantum biology, breathwork, peptides, Integral Yoga, Jungian psychology.</p>
+        <p><strong>I help humans remember what they are.</strong></p>
+        <div class="bio-links">
+          <a href="https://www.instagram.com/mugdhapradhan_official/" target="_blank" rel="noopener">Instagram</a>
+          <a href="/">mugdhapradhan.com</a>
+          <a href="https://www.ithrivein.com/" target="_blank" rel="noopener">iThrive</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- PAGE CTA -->
+<div class="page-cta">
+  <p>Continue reading</p>
+  <div class="page-cta-links">
+    <a href="/thinking" class="btn-primary">All Essays</a>
+    <a href="/story" class="btn-secondary">The Story</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">Mugdha Pradhan &copy; 2026</span>
+  <p class="footer-quote">&ldquo;I help humans remember what they are.&rdquo;</p>
+  <ul class="footer-links">
+    <li><a href="https://www.instagram.com/mugdhapradhan_official/" target="_blank" rel="noopener">Instagram</a></li>
+    <li><a href="https://www.linkedin.com/in/mugdhapradhan/" target="_blank" rel="noopener">LinkedIn</a></li>
+    <li><a href="https://www.youtube.com/@mugdhapradhan" target="_blank" rel="noopener">YouTube</a></li>
+    <li><a href="https://x.com/mugdhap" target="_blank" rel="noopener">X</a></li>
+  </ul>
+  <p class="footer-copy">mugdhapradhan.com | The Remembrance Movement</p>
+</footer>
+
+<script>
+  // Nav scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Reading progress bar
+  const progressBar = document.getElementById('progress-bar');
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = (scrollTop / docHeight) * 100;
+    progressBar.style.width = progress + '%';
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => revealObserver.observe(el));
+
+  // Chapter nav active state
+  const chapterDots = document.querySelectorAll('.chapter-dot');
+  const sections = [];
+  chapterDots.forEach(dot => {
+    const id = dot.getAttribute('href').substring(1);
+    const el = document.getElementById(id);
+    if (el) sections.push({ id, el, dot });
+  });
+  const chapterObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        chapterDots.forEach(d => d.classList.remove('active'));
+        const match = sections.find(s => s.el === entry.target);
+        if (match) match.dot.classList.add('active');
+      }
+    });
+  }, { threshold: 0.3 });
+  sections.forEach(s => chapterObserver.observe(s.el));
+
+  // Mobile nav
+  document.addEventListener('DOMContentLoaded', () => {
+    const hamburger = document.getElementById('nav-hamburger');
+    const mobileNav = document.getElementById('mobile-nav');
+    const mobileClose = document.getElementById('mobile-nav-close');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      mobileNav.classList.toggle('open');
+      document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+    });
+    mobileClose.addEventListener('click', () => {
+      hamburger.classList.remove('active');
+      mobileNav.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+    mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      hamburger.classList.remove('active');
+      mobileNav.classList.remove('open');
+      document.body.style.overflow = '';
+    }));
+  });
+</script>
+
+<div class="mobile-nav" id="mobile-nav">
+  <button class="mobile-nav-close" id="mobile-nav-close">&#10005;</button>
+  <ul class="mobile-nav-links">
+    <li><a href="/story">The Story</a></li>
+    <li><a href="/mission">The Mission</a></li>
+    <li><a href="/work">The Work</a></li>
+    <li><a href="/evidence">The Evidence</a></li>
+    <li><a href="/thinking" class="active">The Thinking</a></li>
+    <li><a href="/contact">Contact</a></li>
+  </ul>
+  <div class="mobile-nav-social">
+    <a href="https://www.instagram.com/mugdhapradhan_official/" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://www.linkedin.com/in/mugdhapradhan/" target="_blank" rel="noopener">LinkedIn</a>
+  </div>
+</div>
+
+</body>
+</html>
