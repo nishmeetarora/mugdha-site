@@ -567,6 +567,58 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
   .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
 
+  /* ── PROTOCOL CALLOUT ── */
+  .protocol-section {
+    padding: 8rem 4rem;
+    border-top: 1px solid var(--border);
+  }
+  .protocol-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1.15fr 1fr;
+    gap: 5rem; align-items: center;
+  }
+  .protocol-headline {
+    font-family: 'Cormorant Garamond', serif; font-weight: 300;
+    font-size: clamp(1.9rem, 3.2vw, 2.8rem); line-height: 1.22;
+    color: var(--white); margin-bottom: 1.8rem; letter-spacing: -0.01em;
+  }
+  .protocol-headline em { font-style: italic; color: var(--gold-light); }
+  .protocol-body p {
+    font-family: 'Jost', sans-serif; font-size: 0.93rem;
+    line-height: 2; color: var(--muted); font-weight: 300;
+    margin-bottom: 1.2rem;
+  }
+  .protocol-body p:last-child { margin-bottom: 0; }
+  .protocol-card {
+    border: 1px solid var(--border);
+    background: rgba(22,19,32,0.5);
+    padding: 3rem 2.6rem; text-align: center;
+  }
+  .protocol-card-label {
+    font-family: 'Cinzel', serif; font-size: 0.56rem;
+    letter-spacing: 0.36em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.2rem;
+  }
+  .protocol-card-title {
+    font-family: 'Cormorant Garamond', serif; font-weight: 300;
+    font-size: 2rem; line-height: 1.2; color: var(--white);
+    margin-bottom: 1.6rem;
+  }
+  .protocol-card-meta {
+    font-family: 'Jost', sans-serif; font-size: 0.76rem;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: rgba(240,232,216,0.28); margin-top: 1.6rem;
+  }
+
+  @media (max-width: 900px) {
+    .protocol-inner { grid-template-columns: 1fr; gap: 3rem; }
+  }
+  @media (max-width: 768px) {
+    .protocol-section { padding: 5rem 2rem; }
+    .protocol-card { padding: 2.4rem 1.8rem; }
+    .protocol-headline br { display: none; }
+  }
+
   .book-reviews { border-top: 1px solid var(--border); padding-top: 2.5rem; }
   .book-reviews-label {
     font-family: 'Cinzel', serif; font-size: 0.55rem;
@@ -1021,6 +1073,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <span class="paper-citation">Integrative Medicine: A Clinician's Journal (IMCJ) · February 2026</span>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ PROTOCOL ═══════════════════════════════ -->
+<section class="protocol-section" id="protocol">
+  <div class="protocol-inner">
+    <div>
+      <p class="section-tag reveal">In the Field</p>
+      <h2 class="protocol-headline reveal">The research is one thing. <br><em>The bloodwork is another.</em></h2>
+      <div class="protocol-body reveal reveal-delay-1">
+        <p>In May 2022, a 27-year-old on Mugdha's team died of a sudden stroke. Twelve days earlier, the iThrive clinical team had run his blood work and found inflammation and clotting markers no one expects to see in a healthy young man.</p>
+        <p>Out of that, the team wrote down everything they had learned: the markers to test for, what the numbers mean, and the recovery strategy they use with post-Covid and post-vaccine clients. It is free, and there is no email gate.</p>
+      </div>
+    </div>
+    <div class="protocol-card reveal reveal-delay-2">
+      <p class="protocol-card-label">Free Document</p>
+      <p class="protocol-card-title">The Rahul<br>Protocol</p>
+      <a href="/rahul-protocol" class="btn-primary">Read &amp; Download</a>
+      <p class="protocol-card-meta">PDF · 30 Pages</p>
     </div>
   </div>
 </section>
