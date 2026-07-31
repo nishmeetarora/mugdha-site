@@ -77,7 +77,7 @@ Copy `template.html` and fill the placeholders:
 phrase in `<em>`:
 
 ```html
-The Body Keeps<br>The Score. <em>Or Does It?</em>
+The<br><em>Rotating Cast</em>
 ```
 
 `{{CHAPTER_NAV}}` is one entry per section, plus `opening` first. Labels are
@@ -130,7 +130,7 @@ Chapter header — ornament label, then the author's heading verbatim:
 | `.confession` | An admission plus its gloss. Second `p` gets `.muted`. |
 
 Use them sparingly — a wall of pull-quotes reads as noise. Look at
-`thinking/the-body-keeps-score.html` for the rhythm.
+`thinking/rotating-cast.html` for the rhythm.
 
 Close with a `.centered-pull` and a `.story-signature`, both drawn from the
 essay's own last lines.
