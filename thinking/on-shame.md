@@ -260,8 +260,6 @@ I am not going to be.
 
 Not because I am brave. I want to be precise about this, because bravery is the wrong frame and it invites the pedestal I have no interest in standing on. I am refusing because I have examined the instrument, and it is not a moral instrument. It does not correct. It does not repair. It has one function, which is to make the person carrying it stop taking up space. I am not going to run that program against myself on behalf of people who have never once run it against themselves.
 
-If a single one of them had made an argument, I would have engaged the argument. Nobody made one.
-
 The noise will pass. Noise always passes. It has the half-life of a mosquito and roughly the same significance, and I will start speaking again when the buzzing stops, which it will, because outrage is a consumable and these accounts have a quota to fill next week too.
 
 But I want to leave you with the operative instruction, because this article is useless as a piece of commentary and only worth something as a piece of practice.
